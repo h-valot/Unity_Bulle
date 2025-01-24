@@ -1,25 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
 
 public class Interactible : MonoBehaviour
 {
-
     [Title("External References")]
-    [SerializeField] private RSO_CurrentItem _currentItem;
+    [SerializeField] private RSO_CurrentItem m_currentItem;
 
-    [SerializeField] private InteractType _type;
+    [SerializeField] private InteractType m_type;
     
-    [ShowIf("_type", InteractType.TRAVEL)]
-    [SerializeField] private PanelType _destination;
+    [ShowIf("m_type", InteractType.TRAVEL)]
+    [SerializeField] private PanelType m_destination;
 
-    [ShowIf("_type", InteractType.SPAWN)]
-    [SerializeField] private ItemType _item;
+    [ShowIf("m_type", InteractType.SPAWN)]
+    [SerializeField] private ItemType m_item;
 
-    [ShowIf("_type", InteractType.PLACE)]
-    [SerializeField] private Transform _placePosition;
-
-    
-    
+    [ShowIf("m_type", InteractType.PLACE)]
+    [SerializeField] private Transform m_placePosition;
 }
