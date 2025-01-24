@@ -1,4 +1,4 @@
-public enum InteractibleType
+public enum InteractType
 {
 	TRAVEL,
     SPAWN,
