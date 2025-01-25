@@ -21,6 +21,7 @@ public class Interactable : MonoBehaviour
 	// PICKUP
     [ShowIf("m_type", InteractType.PICKUP)][SerializeField] private ItemType m_pickupType;
 	[ShowIf("m_pickupType", ItemType.BOOT)][SerializeField] private Transform m_marketTravelPosition;
+	[ShowIf("m_pickupType", ItemType.BOOT)][SerializeField] private Interactable m_fishInteractable;
 	[ShowIf("m_pickupType", ItemType.DIVING_SUIT)][SerializeField] private Vector2 m_abyssTravelPosition;
 
 
@@ -28,11 +29,6 @@ public class Interactable : MonoBehaviour
 	[ShowIf("m_type", InteractType.PLACE)][SerializeField] private Transform m_placePosition;
 	[ShowIf("m_type", InteractType.PLACE)][SerializeField] private ItemType m_itemRequiered;
 
-	[ShowIf("m_itemRequiered", ItemType.BOOT)][SerializeField] private Interactable m_fishSpawner;
-	[ShowIf("m_itemRequiered", ItemType.BOOT)][SerializeField] private Sprite m_fishermanSprite;
-	[ShowIf("m_itemRequiered", ItemType.BOOT)][SerializeField] private SpriteRenderer m_fishermanRenderer;
-	[ShowIf("m_itemRequiered", ItemType.BOOT)][SerializeField] private Sprite m_fishermanFishBubble;
-	[ShowIf("m_itemRequiered", ItemType.BOOT)][SerializeField] private SpriteRenderer m_fishBubbleRenderer;
 
 	[ShowIf("m_itemRequiered", ItemType.FISH)][SerializeField] private Interactable m_rainTravel;
 	[ShowIf("m_itemRequiered", ItemType.FISH)][SerializeField] private SpriteRenderer m_doorRenderer;
@@ -65,11 +61,11 @@ public class Interactable : MonoBehaviour
 	[FoldoutGroup("Scriptable")][SerializeField] private RSO_ToggleMitigedGravity m_rsoToggleMitigedGravity;
 	[FoldoutGroup("Scriptable")][SerializeField] private RSE_SetBubble m_rseSetBubble;
 
+	[SerializeField] public bool IsValid = true;
 	[SerializeField] private bool m_displayGizmos;
 
 	public Action OnInteracted;
 	public Action<CharacterInteract> OnInteractedWithRef;
-	[HideInInspector] public bool IsValid = true;
 
 	private CharacterInteract m_characterInteract;
 
@@ -148,22 +144,35 @@ public class Interactable : MonoBehaviour
 				break;
 
 			case InteractType.PICKUP:
-				if (m_rsoCurrentItem.Value == ItemType.NONE && m_pickupType == ItemType.DIVING_SUIT)
+				if (m_rsoCurrentItem.Value == ItemType.NONE 
+				&& m_pickupType == ItemType.DIVING_SUIT)
 				{
-					m_rsoToggleDivingSuit.Value = true;
 					m_rsoCurrentPanel.Value = PanelType.ABYSS;
+					m_rsoToggleDivingSuit.Value = true;
 					m_rseSetCharacterPosition.Call(m_abyssTravelPosition);
+
+					Destroy(gameObject);
 				}
-				else if (m_rsoCurrentItem.Value == ItemType.NONE && m_pickupType == ItemType.BOOT)
+				else if (m_rsoCurrentItem.Value == ItemType.NONE 
+				&& m_pickupType == ItemType.BOOT)
 				{
-					m_rsoToggleDivingSuit.Value = false;
 					m_rsoCurrentPanel.Value = PanelType.MARKET;
+					m_rsoToggleDivingSuit.Value = false;
 					m_rseSetCharacterPosition.Call(m_marketTravelPosition.position);
+
+					IsValid = false;
+					m_rsoCurrentItem.Value = m_pickupType;
+					m_rsePickupItem.Call(transform);
 				}
-				else if (m_rsoCurrentItem.Value == ItemType.NONE && m_pickupType == ItemType.GRANNY)
+				else if (m_rsoCurrentItem.Value == ItemType.NONE
+				&& m_pickupType == ItemType.GRANNY)
 				{
-					m_rseSetBubble.Call(CharacterType.LOVER, 1);
 					m_rsoToggleMitigedGravity.Value = true;
+					m_rseSetBubble.Call(CharacterType.LOVER, 1);
+
+					IsValid = false;
+					m_rsoCurrentItem.Value = m_pickupType;
+					m_rsePickupItem.Call(transform);
 				}
 				else if (m_rsoCurrentItem.Value == ItemType.NONE)
 				{
@@ -180,6 +189,8 @@ public class Interactable : MonoBehaviour
 		// Assertion
 		if (m_rsoCurrentItem.Value != m_pickupType) return;
 
+		m_rsoCurrentItem.Value = ItemType.NONE;
+
 		// TODO DOJump towards destination
 		transform.position = destination;
 		transform.parent = null;
@@ -187,9 +198,8 @@ public class Interactable : MonoBehaviour
 		switch (m_pickupType)
 		{
 			case ItemType.BOOT:
-				m_fishBubbleRenderer.sprite = m_fishermanSprite;
-				m_fishBubbleRenderer.sprite = m_fishermanFishBubble;
-				m_fishSpawner.gameObject.SetActive(true);
+				m_rseSetBubble.Call(CharacterType.FISHERMAN, 1);
+				m_fishInteractable.IsValid = true;
 				Destroy(gameObject);
 				break;
 
@@ -225,8 +235,6 @@ public class Interactable : MonoBehaviour
 				// TODO Starts end game cinematic
 				break;
 		}
-
-		m_rsoCurrentItem.Value = ItemType.NONE;
 	}
 
 #if UNITY_EDITOR
