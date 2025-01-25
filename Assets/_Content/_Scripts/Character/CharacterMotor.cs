@@ -6,6 +6,7 @@ public class CharacterMotor : MonoBehaviour
 	[FoldoutGroup("Internal references")][SerializeField] private Rigidbody2D m_rigidbody2D;
 
 	[FoldoutGroup("Scriptable")][SerializeField] private SSO_Character m_ssoCharacter;
+	[FoldoutGroup("Scriptable")][SerializeField] private RSO_CurrentPosition m_rsoCurrentPosition;
 	[FoldoutGroup("Scriptable")][SerializeField] private RSE_Move m_rseMove;
 
 	private Vector2 m_moveInput;
@@ -23,6 +24,8 @@ public class CharacterMotor : MonoBehaviour
 	private void FixedUpdate()
 	{
 		Move();
+
+		m_rsoCurrentPosition.Value = m_rigidbody2D.position;
 	}
 
 	private void UpdateMoveInput(Vector2 moveInput)

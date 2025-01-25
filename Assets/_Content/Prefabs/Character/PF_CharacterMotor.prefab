@@ -50,6 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_rigidbody2D: {fileID: 1112500034327644085}
   m_ssoCharacter: {fileID: 11400000, guid: 4d72b7f9f302f63478716a3a4dc8fec5, type: 2}
+  m_rsoCurrentPosition: {fileID: 11400000, guid: ded93db3c6beea9409520de0f320dfef, type: 2}
   m_rseMove: {fileID: 11400000, guid: 2ae46e52cfd6af14ab8189d45844ac82, type: 2}
 --- !u!114 &5952477918962114214
 MonoBehaviour:
