@@ -5,21 +5,53 @@ using System;
 public class Interactable : MonoBehaviour
 {
     [Title("Tweakable values")]
+	[OnValueChanged("ResetSerializedTypes")]
     [SerializeField] private InteractType m_type;
+
 	// TRAVEL
     [ShowIf("m_type", InteractType.TRAVEL)][SerializeField] private PanelType m_travelTo;
     [ShowIf("m_type", InteractType.TRAVEL)][SerializeField] private Transform m_travelPosition;
+
+
 	// SPAWN
     [ShowIf("m_type", InteractType.SPAWN)][SerializeField] private Interactable m_pfItemSpawned;
     [ShowIf("m_type", InteractType.SPAWN)][SerializeField] private Transform m_spawnPosition;
-	// PLACE
-    [ShowIf("m_type", InteractType.PLACE)][SerializeField] private ItemType m_itemRequiered;
-    [ShowIf("m_type", InteractType.PLACE)][SerializeField] private Transform m_placePosition;
+
+
 	// PICKUP
     [ShowIf("m_type", InteractType.PICKUP)][SerializeField] private ItemType m_pickupType;
+	[ShowIf("m_pickupType", ItemType.BOOT)][SerializeField] private Transform m_marketTravelPosition;
 
 
-	[SerializeField] private bool m_displayGizmos;
+	// PLACE
+	[ShowIf("m_type", InteractType.PLACE)][SerializeField] private Transform m_placePosition;
+	[ShowIf("m_type", InteractType.PLACE)][SerializeField] private ItemType m_itemRequiered;
+
+	[ShowIf("m_itemRequiered", ItemType.BOOT)][SerializeField] private Interactable m_fishSpawner;
+	[ShowIf("m_itemRequiered", ItemType.BOOT)][SerializeField] private Sprite m_fishermanSprite;
+	[ShowIf("m_itemRequiered", ItemType.BOOT)][SerializeField] private SpriteRenderer m_fishermanRenderer;
+	[ShowIf("m_itemRequiered", ItemType.BOOT)][SerializeField] private Sprite m_fishermanFishBubble;
+	[ShowIf("m_itemRequiered", ItemType.BOOT)][SerializeField] private SpriteRenderer m_fishBubbleRenderer;
+
+	[ShowIf("m_itemRequiered", ItemType.FISH)][SerializeField] private Interactable m_rainTravel;
+	[ShowIf("m_itemRequiered", ItemType.FISH)][SerializeField] private SpriteRenderer m_doorRenderer;
+	[ShowIf("m_itemRequiered", ItemType.FISH)][SerializeField] private Sprite m_doorSprite;
+
+	[ShowIf("m_itemRequiered", ItemType.KEY)][SerializeField] private Interactable m_houseTravel;
+	[ShowIf("m_itemRequiered", ItemType.KEY)][SerializeField] private SpriteRenderer m_houseDoorRenderer;
+	[ShowIf("m_itemRequiered", ItemType.KEY)][SerializeField] private Sprite m_houseDoorSprite;
+
+	[ShowIf("m_itemRequiered", ItemType.LADDER)][SerializeField] private Interactable m_balconyTravel;
+	[ShowIf("m_itemRequiered", ItemType.LADDER)][SerializeField] private GameObject m_pfLadderLong;
+
+	[ShowIf("m_itemRequiered", ItemType.PLANT)][SerializeField] private Interactable m_lightTopTravel;
+	[ShowIf("m_itemRequiered", ItemType.PLANT)][SerializeField] private GameObject m_pfPlantLong;
+
+	[ShowIf("m_itemRequiered", ItemType.GRANNY)][SerializeField] private Sprite m_grannySprite;
+	[ShowIf("m_itemRequiered", ItemType.GRANNY)][SerializeField] private SpriteRenderer m_grannyRenderer;
+	[ShowIf("m_itemRequiered", ItemType.GRANNY)][SerializeField] private Sprite m_grandpaBubble;
+	[ShowIf("m_itemRequiered", ItemType.GRANNY)][SerializeField] private SpriteRenderer m_grandpaBubbleRenderer;
+
 
     [FoldoutGroup("Internal references")][SerializeField] private BoxCollider2D m_boxCollider2D;
 
@@ -28,6 +60,10 @@ public class Interactable : MonoBehaviour
 	[FoldoutGroup("Scriptable")][SerializeField] private RSE_PickupItem m_rsePickupItem;
 	[FoldoutGroup("Scriptable")][SerializeField] private RSE_PlaceItem m_rsePlaceItem;
 	[FoldoutGroup("Scriptable")][SerializeField] private RSE_SetCharacterPosition m_rseSetCharacterPosition;
+	[FoldoutGroup("Scriptable")][SerializeField] private RSO_ToggleDivingSuit m_rsoToggleDivingSuit;
+	[FoldoutGroup("Scriptable")][SerializeField] private RSO_ToggleMitigedGravity m_rsoToggleMitigedGravity;
+
+	[SerializeField] private bool m_displayGizmos;
 
 	public Action OnInteracted;
 	public Action<CharacterInteract> OnInteractedWithRef;
@@ -43,6 +79,12 @@ public class Interactable : MonoBehaviour
 	private void OnDisable()
 	{
 		if (m_type == InteractType.PICKUP) m_rsePlaceItem.Action -= PlaceItem;
+	}
+
+	private void ResetSerializedTypes()
+	{
+		m_pickupType = ItemType.NONE;
+		m_itemRequiered = ItemType.NONE;
 	}
 
 	/// <summary>
@@ -110,6 +152,21 @@ public class Interactable : MonoBehaviour
 					m_rsoCurrentItem.Value = m_pickupType;
 					m_rsePickupItem.Call(transform);
 				}
+				else if (m_rsoCurrentItem.Value == ItemType.DIVING_SUIT)
+				{
+					m_rsoToggleDivingSuit.Value = true;
+				}
+				else if (m_rsoCurrentItem.Value == ItemType.BOOT)
+				{
+					m_rsoToggleDivingSuit.Value = false;
+					m_rsoCurrentPanel.Value = PanelType.MARKET;
+					m_rseSetCharacterPosition.Call(m_marketTravelPosition.position);
+				}
+				else if (m_rsoCurrentItem.Value == ItemType.GRANNY)
+				{
+					// TODO Update Granny's amant dialogue
+					m_rsoToggleMitigedGravity.Value = true;
+				}
 				break;
 		}
 	}
@@ -126,36 +183,41 @@ public class Interactable : MonoBehaviour
 		switch (m_pickupType)
 		{
 			case ItemType.BOOT:
-				// TODO Update fisherman sprite (with boot in feet)
-				// TODO Update fisherman dialogue 
-				// TODO Enable interactable to spawn fish
-				// TODO Destroy this game object
+				m_fishBubbleRenderer.sprite = m_fishermanSprite;
+				m_fishBubbleRenderer.sprite = m_fishermanFishBubble;
+				m_fishSpawner.gameObject.SetActive(true);
+				Destroy(gameObject);
 				break;
 
 			case ItemType.FISH:
-				// TODO Update door sprite
-				// TODO Enable interactable travel to Rain
+				m_doorRenderer.sprite = m_doorSprite;
+				m_rainTravel.gameObject.SetActive(true);
 				break;
 
 			case ItemType.KEY:
-				// TODO Enable interactable travel to House
+				m_houseDoorRenderer.sprite = m_houseDoorSprite;
+				m_houseTravel.gameObject.SetActive(true);
+				Destroy(gameObject);
 				break;
 
 			case ItemType.LADDER:
-				// TODO Instantiate ladder prefab
-				// TODO Enable interactable travel to Rain-Balcony
-				// TODO Destroy this game object
+				Instantiate(m_pfLadderLong, transform.position, Quaternion.identity);
+				// TODO Temp ? Maybe only activate on complete of ladder prefab animation
+				m_balconyTravel.gameObject.SetActive(true);
+				Destroy(gameObject);
 				break;
 
 			case ItemType.PLANT:
-				// TODO Instantiate plant prefab
-				// TODO Enable interactable travel to Lighthouse Top
-				// TODO Destroy this game object
+				Instantiate(m_pfPlantLong, transform.position, Quaternion.identity);
+				// TODO Temp ? Maybe only activate on complete of plant prefab animation
+				m_lightTopTravel.gameObject.SetActive(true);
+				Destroy(gameObject);
 				break;
 
 			case ItemType.GRANNY:
-				// TODO Update Granny sprite
-				// TODO Update Grandpa dialogue 
+				m_rsoToggleMitigedGravity.Value = false;
+				m_grannyRenderer.sprite = m_grannySprite;
+				m_grandpaBubbleRenderer.sprite = m_balconyTravel.m_grandpaBubble;
 				// TODO Starts end game cinematic
 				break;
 		}
