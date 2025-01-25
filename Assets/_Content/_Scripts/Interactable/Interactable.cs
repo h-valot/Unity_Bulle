@@ -32,6 +32,8 @@ public class Interactable : MonoBehaviour
 
 	[ShowIf("PickupType", ItemType.PLANT)][SerializeField] private GameObject m_pfPlantLong;
 
+	[ShowIf("PickupType", ItemType.GRANNY)][SerializeField] private Interactable m_interactableGrandpaGranny;
+
 
 	// PLACE
 	[ShowIf("m_type", InteractType.PLACE)][SerializeField] private Transform m_placePosition;
@@ -46,11 +48,6 @@ public class Interactable : MonoBehaviour
 	[ShowIf("m_itemRequiered", ItemType.LADDER)][SerializeField] private Interactable m_balconyTravel;
 
 	[ShowIf("m_itemRequiered", ItemType.PLANT)][SerializeField] private Interactable m_lightTopTravel;
-
-	[ShowIf("m_itemRequiered", ItemType.GRANNY)][SerializeField] private Sprite m_grannySprite;
-	[ShowIf("m_itemRequiered", ItemType.GRANNY)][SerializeField] private SpriteRenderer m_grannyRenderer;
-	[ShowIf("m_itemRequiered", ItemType.GRANNY)][SerializeField] private Sprite m_grandpaBubble;
-	[ShowIf("m_itemRequiered", ItemType.GRANNY)][SerializeField] private SpriteRenderer m_grandpaBubbleRenderer;
 
 
     [FoldoutGroup("Internal references")][SerializeField] private BoxCollider2D m_boxCollider2D;
@@ -199,6 +196,7 @@ public class Interactable : MonoBehaviour
 				{
 					m_rsoToggleMitigedGravity.Value = true;
 					m_rseSetBubble.Call(CharacterType.LOVER, 1);
+					m_interactableGrandpaGranny.IsValid = true;
 
 					IsValid = false;
 					m_rsoCurrentItem.Value = PickupType;
@@ -252,6 +250,7 @@ public class Interactable : MonoBehaviour
 			case ItemType.GRANNY:
 				m_rsoToggleMitigedGravity.Value = false;
 				// TODO Starts end game cinematic
+				print("the end");
 				break;
 		}
 	}
