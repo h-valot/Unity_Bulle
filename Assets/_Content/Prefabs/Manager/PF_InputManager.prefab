@@ -48,6 +48,7 @@ MonoBehaviour:
   m_playerInput: {fileID: 1052102503873065851}
   m_rseMove: {fileID: 11400000, guid: 2ae46e52cfd6af14ab8189d45844ac82, type: 2}
   m_rseInteract: {fileID: 11400000, guid: 011a508c9dbd8394e8c717ad4da0dbc4, type: 2}
+  m_rseJump: {fileID: 11400000, guid: 7892fbf9c0a7865479fa6ea8add75035, type: 2}
 --- !u!114 &1052102503873065851
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -9,15 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19402fe2874f5234692444b5d02195a4, type: 3}
-  m_Name: SSO_Character
+  m_Script: {fileID: 11500000, guid: 1370d992d43ab1945afc911f972f662c, type: 3}
+  m_Name: RSE_Jump
   m_EditorClassIdentifier: 
-  Speed: 5
-  JumpForce: 20
-  JumpDuration: 1
-  GravityForce: 9.8
-  GravityScalar: 1
-  GroundLength: 1.1
-  GroundLayerToInclude:
-    serializedVersion: 2
-    m_Bits: 1
