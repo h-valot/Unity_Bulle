@@ -25,7 +25,7 @@ public class CharacterInteract : MonoBehaviour
 		// Assertion
 		if (m_interactables.Count <= 0) return;
 
-		m_interactables.FirstOrDefault()?.Interact();
+		m_interactables.FirstOrDefault(i => i.IsValid)?.Interact();
 	}
 
 	/// <summary>

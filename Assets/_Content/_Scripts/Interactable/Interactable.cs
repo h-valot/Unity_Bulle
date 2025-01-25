@@ -10,11 +10,10 @@ public class Interactable : MonoBehaviour
     [ShowIf("m_type", InteractType.TRAVEL)][SerializeField] private PanelType m_travelTo;
     [ShowIf("m_type", InteractType.TRAVEL)][SerializeField] private Transform m_travelPosition;
 	// SPAWN
-    [ShowIf("m_type", InteractType.SPAWN)][SerializeField] private GameObject m_pfItemSpawned;
+    [ShowIf("m_type", InteractType.SPAWN)][SerializeField] private Interactable m_pfItemSpawned;
     [ShowIf("m_type", InteractType.SPAWN)][SerializeField] private Transform m_spawnPosition;
 	// PLACE
-    [ShowIf("m_type", InteractType.PLACE)][SerializeField] private ItemType m_itemRecievedType;
-    [ShowIf("m_type", InteractType.PLACE)][SerializeField] private GameObject m_pfItemRecieved;
+    [ShowIf("m_type", InteractType.PLACE)][SerializeField] private ItemType m_itemRequiered;
     [ShowIf("m_type", InteractType.PLACE)][SerializeField] private Transform m_placePosition;
 	// PICKUP
     [ShowIf("m_type", InteractType.PICKUP)][SerializeField] private ItemType m_pickupType;
@@ -32,18 +31,18 @@ public class Interactable : MonoBehaviour
 
 	public Action OnInteracted;
 	public Action<CharacterInteract> OnInteractedWithRef;
-	public bool IsValid = true;
+	[HideInInspector] public bool IsValid = true;
 
 	private CharacterInteract m_characterInteract;
 
 	private void OnEnable()
 	{
-		m_rsePlaceItem.Action += PlacePickup;
+		if (m_type == InteractType.PICKUP) m_rsePlaceItem.Action += PlaceItem;
 	}
 
 	private void OnDisable()
 	{
-		m_rsePlaceItem.Action -= PlacePickup;
+		if (m_type == InteractType.PICKUP) m_rsePlaceItem.Action -= PlaceItem;
 	}
 
 	/// <summary>
@@ -62,8 +61,6 @@ public class Interactable : MonoBehaviour
 	/// </summary>
 	public virtual void OnTriggerEnter2D(Collider2D collider)
 	{
-		if (!IsValid) return;
-
 		if (collider.TryGetComponent<CharacterInteract>(out var character))
 		{
 			m_characterInteract = character;
@@ -77,12 +74,10 @@ public class Interactable : MonoBehaviour
 	/// </summary>
 	public virtual void OnTriggerExit2D(Collider2D collider)
 	{
-		if (!IsValid) return;
-
 		if (collider.TryGetComponent<CharacterInteract>(out var character))
 		{
-			m_characterInteract = null;
 			character.Remove(this);
+			m_characterInteract = null;
 		}
 	}
 
@@ -91,44 +86,42 @@ public class Interactable : MonoBehaviour
 		switch(m_type)
 		{
 			case InteractType.TRAVEL:
-				m_rseSetCharacterPosition.Call(m_travelPosition.position);
 				m_rsoCurrentPanel.Value = m_travelTo;
+				m_rseSetCharacterPosition.Call(m_travelPosition.position);
 				break;
 
 			case InteractType.SPAWN:
 				IsValid = false;
-				Interactable spawnedItem = Instantiate(m_pfItemSpawned, m_spawnPosition.position, Quaternion.identity).GetComponent<Interactable>();
-				spawnedItem.IsValid = true;
-				m_characterInteract.Remove(this);
-				m_characterInteract = null;
+				Instantiate(m_pfItemSpawned, m_spawnPosition.position, Quaternion.identity);
 				break;
 
 			case InteractType.PLACE:
-				if (m_rsoCurrentItem.Value == m_itemRecievedType) 
+				if (m_rsoCurrentItem.Value == m_itemRequiered) 
 				{
 					IsValid = false;
 					m_rsePlaceItem.Call(m_placePosition.position);
-					m_characterInteract.Remove(this);
-					m_characterInteract = null;
 				}
 				break;
 
 			case InteractType.PICKUP:
-				if(m_rsoCurrentItem.Value != ItemType.NONE) return;
-				m_rsePickupItem.Call(gameObject);
-				IsValid = false;
-				m_characterInteract = null;
+				if (m_rsoCurrentItem.Value == ItemType.NONE) 
+				{
+					IsValid = false;
+					m_rsoCurrentItem.Value = m_pickupType;
+					m_rsePickupItem.Call(transform);
+				}
 				break;
 		}
 	}
 
-	private void PlacePickup(Vector3 destination) 
+	private void PlaceItem(Vector3 destination)
 	{
-		if(m_rsoCurrentItem.Value == m_pickupType)
-		{
-			transform.parent = null;
-			transform.position = destination;
-		}
+		// Assertion
+		if (m_rsoCurrentItem.Value != m_pickupType) return;
+
+		transform.parent = null;
+		transform.position = destination;
+		m_rsoCurrentItem.Value = ItemType.NONE;
 	}
 
 #if UNITY_EDITOR

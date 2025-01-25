@@ -4,13 +4,14 @@ using UnityEngine;
 public class CharacterMotor : MonoBehaviour
 {
 	[FoldoutGroup("Internal references")][SerializeField] private Rigidbody2D m_rigidbody2D;
-	[FoldoutGroup("Internal references")] public GameObject ItemAnchor;
+	[FoldoutGroup("Internal references")][SerializeField] private Transform m_itemAnchor;
 
 	[FoldoutGroup("Scriptable")][SerializeField] private SSO_Character m_ssoCharacter;
 	[FoldoutGroup("Scriptable")][SerializeField] private RSO_CurrentPosition m_rsoCurrentPosition;
 	[FoldoutGroup("Scriptable")][SerializeField] private RSE_Move m_rseMove;
 	[FoldoutGroup("Scriptable")][SerializeField] private RSE_Jump m_rseJump;
 	[FoldoutGroup("Scriptable")][SerializeField] private RSE_SetCharacterPosition m_rseSetCharacterPosition;
+	[FoldoutGroup("Scriptable")][SerializeField] private RSE_PickupItem m_rsePickupItem;
 
 	private Vector2 m_moveInput;
 	private bool m_isGrounded;
@@ -21,14 +22,17 @@ public class CharacterMotor : MonoBehaviour
 	private void OnEnable()
 	{
 		m_rseSetCharacterPosition.Action += SetCharacterPosition;
+		m_rsePickupItem.Action += PickUpItem;
 
 		m_rseMove.Action += UpdateMoveInput;
 		m_rseJump.Action += UpdateJumpInput;
+
 	}
 
 	private void OnDisable()
 	{
 		m_rseSetCharacterPosition.Action -= SetCharacterPosition;
+		m_rsePickupItem.Action -= PickUpItem;
 
 		m_rseMove.Action -= UpdateMoveInput;
 		m_rseJump.Action -= UpdateJumpInput;
@@ -62,6 +66,12 @@ public class CharacterMotor : MonoBehaviour
 		m_rigidbody2D.velocity = Vector2.zero;
 		m_rigidbody2D.position = position;
 		m_rsoCurrentPosition.Value = transform.position;
+	}
+
+	private void PickUpItem(Transform pickupTransform)
+	{
+		pickupTransform.SetParent(m_itemAnchor);
+		pickupTransform.position = m_itemAnchor.position;
 	}
 
 	private void CheckGround()
