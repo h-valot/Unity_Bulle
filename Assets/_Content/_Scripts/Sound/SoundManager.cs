@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Audio;
 using Sirenix.OdinInspector;
 
-public class AudioManager : MonoBehaviour
+public class S_AudioManager : MonoBehaviour
 {
     [Header("Tweakable values")]
 	[InfoBox("Number of GameObject create on start for the sound", InfoMessageType.None)]
