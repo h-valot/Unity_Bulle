@@ -1,6 +1,7 @@
 using UnityEngine;
 using Sirenix.OdinInspector;
 using System;
+using System.Linq;
 
 public class Interactable : MonoBehaviour
 {
@@ -13,10 +14,11 @@ public class Interactable : MonoBehaviour
     [ShowIf("m_type", InteractType.SPAWN)][SerializeField] private Interactable m_pfItemSpawned;
     [ShowIf("m_type", InteractType.SPAWN)][SerializeField] private Transform m_spawnPosition;
 	// PLACE
-    [ShowIf("m_type", InteractType.PLACE)][SerializeField] private ItemType m_itemRequiered;
+	[ShowIf("m_type", InteractType.PLACE)][SerializeField] private ItemType m_itemRequiered;
     [ShowIf("m_type", InteractType.PLACE)][SerializeField] private Transform m_placePosition;
 	// PICKUP
-    [ShowIf("m_type", InteractType.PICKUP)][SerializeField] private ItemType m_pickupType;
+	[ShowIf("m_type", InteractType.PICKUP)][SerializeField] private ItemType m_pickupType;
+	[ShowIf("m_type", InteractType.PICKUP), ShowIf("m_pickupType", ItemType.BOOT)][SerializeField] private Transform m_marketTravelPosition;
 
 
 	[SerializeField] private bool m_displayGizmos;
@@ -28,6 +30,8 @@ public class Interactable : MonoBehaviour
 	[FoldoutGroup("Scriptable")][SerializeField] private RSE_PickupItem m_rsePickupItem;
 	[FoldoutGroup("Scriptable")][SerializeField] private RSE_PlaceItem m_rsePlaceItem;
 	[FoldoutGroup("Scriptable")][SerializeField] private RSE_SetCharacterPosition m_rseSetCharacterPosition;
+	[FoldoutGroup("Scriptable")][SerializeField] private RSO_ToggleDivingSuit m_rsoToggleDivingSuit;
+	[FoldoutGroup("Scriptable")][SerializeField] private RSO_ToggleMitigedGravity m_rsoToggleMitigedGravity;
 
 	public Action OnInteracted;
 	public Action<CharacterInteract> OnInteractedWithRef;
@@ -110,6 +114,21 @@ public class Interactable : MonoBehaviour
 					m_rsoCurrentItem.Value = m_pickupType;
 					m_rsePickupItem.Call(transform);
 				}
+				else if (m_rsoCurrentItem.Value == ItemType.DIVING_SUIT)
+				{
+					m_rsoToggleDivingSuit.Value = true;
+				}
+				else if (m_rsoCurrentItem.Value == ItemType.BOOT)
+				{
+					m_rsoToggleDivingSuit.Value = false;
+					m_rsoCurrentPanel.Value = PanelType.MARKET;
+					m_rseSetCharacterPosition.Call(m_marketTravelPosition.position);
+				}
+				else if (m_rsoCurrentItem.Value == ItemType.GRANNY)
+				{
+					// TODO Update Granny's amant dialogue
+					m_rsoToggleMitigedGravity.Value = true;
+				}
 				break;
 		}
 	}
@@ -154,6 +173,7 @@ public class Interactable : MonoBehaviour
 				break;
 
 			case ItemType.GRANNY:
+				m_rsoToggleMitigedGravity.Value = false;
 				// TODO Update Granny sprite
 				// TODO Update Grandpa dialogue 
 				// TODO Starts end game cinematic
