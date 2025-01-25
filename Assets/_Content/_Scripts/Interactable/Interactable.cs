@@ -1,6 +1,7 @@
 using UnityEngine;
 using Sirenix.OdinInspector;
 using System;
+using System.Linq;
 
 public class Interactable : MonoBehaviour
 {
@@ -61,6 +62,8 @@ public class Interactable : MonoBehaviour
 	[FoldoutGroup("Scriptable")][SerializeField] private RSE_PickupItem m_rsePickupItem;
 	[FoldoutGroup("Scriptable")][SerializeField] private RSE_PlaceItem m_rsePlaceItem;
 	[FoldoutGroup("Scriptable")][SerializeField] private RSE_SetCharacterPosition m_rseSetCharacterPosition;
+	[FoldoutGroup("Scriptable")][SerializeField] private RSO_ToggleDivingSuit m_rsoToggleDivingSuit;
+	[FoldoutGroup("Scriptable")][SerializeField] private RSO_ToggleMitigedGravity m_rsoToggleMitigedGravity;
 
 	public Action OnInteracted;
 	public Action<CharacterInteract> OnInteractedWithRef;
@@ -143,6 +146,21 @@ public class Interactable : MonoBehaviour
 					m_rsoCurrentItem.Value = m_pickupType;
 					m_rsePickupItem.Call(transform);
 				}
+				else if (m_rsoCurrentItem.Value == ItemType.DIVING_SUIT)
+				{
+					m_rsoToggleDivingSuit.Value = true;
+				}
+				else if (m_rsoCurrentItem.Value == ItemType.BOOT)
+				{
+					m_rsoToggleDivingSuit.Value = false;
+					m_rsoCurrentPanel.Value = PanelType.MARKET;
+					m_rseSetCharacterPosition.Call(m_marketTravelPosition.position);
+				}
+				else if (m_rsoCurrentItem.Value == ItemType.GRANNY)
+				{
+					// TODO Update Granny's amant dialogue
+					m_rsoToggleMitigedGravity.Value = true;
+				}
 				break;
 		}
 	}
@@ -191,6 +209,7 @@ public class Interactable : MonoBehaviour
 				break;
 
 			case ItemType.GRANNY:
+				m_rsoToggleMitigedGravity.Value = false;
 				m_grannyRenderer.sprite = m_grannySprite;
 				m_grandpaBubbleRenderer.sprite = m_balconyTravel.m_grandpaBubble;
 				// TODO Starts end game cinematic

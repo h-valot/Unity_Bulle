@@ -20,9 +20,10 @@ public class CharacterInteract : MonoBehaviour
 		m_rseInteract.Action -= Interact;
 	}
 
-	private void Interact()
+	private void Interact(bool isEnabled)
 	{
 		// Assertion
+		if (!isEnabled) return;
 		if (m_interactables.Count <= 0) return;
 
 		m_interactables.FirstOrDefault(i => i.IsValid)?.Interact();

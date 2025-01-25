@@ -12,11 +12,15 @@ public class InputManager : MonoBehaviour
 
 	private Vector2 m_move;
 	private bool m_jump;
+	private bool m_interact;
 
 	private void Start()
 	{
 		m_jump = false;
 		m_rseJump.Call(false);
+
+		m_interact = false;
+		m_rseInteract.Call(false);
 	}
 
 	private void OnApplicationFocus(bool hasFocus)
@@ -32,7 +36,8 @@ public class InputManager : MonoBehaviour
 
 	public void OnInteract(InputValue value)
 	{
-		m_rseInteract.Call();
+		m_interact = value.isPressed;
+		m_rseInteract.Call(m_interact);
 	}
 
 	public void OnJump(InputValue value)

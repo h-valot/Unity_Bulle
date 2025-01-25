@@ -52,11 +52,12 @@ MonoBehaviour:
   m_rigidbody2D: {fileID: 1112500034327644085}
   m_itemAnchor: {fileID: 1814359883263169399}
   m_ssoCharacter: {fileID: 11400000, guid: 4d72b7f9f302f63478716a3a4dc8fec5, type: 2}
-  m_rsoCurrentPosition: {fileID: 11400000, guid: ded93db3c6beea9409520de0f320dfef, type: 2}
   m_rseMove: {fileID: 11400000, guid: 2ae46e52cfd6af14ab8189d45844ac82, type: 2}
   m_rseJump: {fileID: 11400000, guid: 7892fbf9c0a7865479fa6ea8add75035, type: 2}
   m_rseSetCharacterPosition: {fileID: 11400000, guid: 7b802547d3b5b8c4a89b1e007838a868, type: 2}
   m_rsePickupItem: {fileID: 11400000, guid: d2840920dd3679a48a8dba66204b9271, type: 2}
+  m_rsoCurrentPosition: {fileID: 11400000, guid: ded93db3c6beea9409520de0f320dfef, type: 2}
+  m_rsoToggleMitigedGravity: {fileID: 11400000, guid: b5590c81bde1121408d1ebe3958c2a79, type: 2}
 --- !u!114 &5952477918962114214
 MonoBehaviour:
   m_ObjectHideFlags: 0

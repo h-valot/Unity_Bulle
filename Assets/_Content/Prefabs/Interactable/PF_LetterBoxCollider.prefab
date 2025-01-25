@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5775256860904131518
+--- !u!1 &6264334759012030327
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,23 +8,23 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 702451055649555671}
-  - component: {fileID: 1324187087967687981}
-  - component: {fileID: 3507706488641018676}
+  - component: {fileID: 7348080946763467406}
+  - component: {fileID: 1795220742566264860}
+  - component: {fileID: 2493089816823411730}
   m_Layer: 7
-  m_Name: PF_Interactable
+  m_Name: PF_LetterBoxCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &702451055649555671
+--- !u!4 &7348080946763467406
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5775256860904131518}
+  m_GameObject: {fileID: 6264334759012030327}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -33,44 +33,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1324187087967687981
+--- !u!114 &1795220742566264860
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5775256860904131518}
+  m_GameObject: {fileID: 6264334759012030327}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 880c595841e67a941a0e8ae236dfd9c8, type: 3}
+  m_Script: {fileID: 11500000, guid: c81a5e1068599a94d94729ec75c45567, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_type: 0
-  m_travelTo: 0
-  m_travelPosition: {fileID: 0}
-  m_pfItemSpawned: {fileID: 0}
-  m_spawnPosition: {fileID: 0}
-  m_itemRequiered: 0
-  m_placePosition: {fileID: 0}
-  m_pickupType: 0
-  m_marketTravelPosition: {fileID: 0}
-  m_displayGizmos: 1
-  m_boxCollider2D: {fileID: 3507706488641018676}
-  m_rsoCurrentItem: {fileID: 11400000, guid: e8991317bb976804d94292a461f5aa99, type: 2}
-  m_rsoCurrentPanel: {fileID: 11400000, guid: 1eac95a65c5c4db489562d2ca876dbb4, type: 2}
-  m_rsePickupItem: {fileID: 11400000, guid: d2840920dd3679a48a8dba66204b9271, type: 2}
-  m_rsePlaceItem: {fileID: 11400000, guid: 731ea32a8ea55244e9f8e941b5857240, type: 2}
-  m_rseSetCharacterPosition: {fileID: 11400000, guid: 7b802547d3b5b8c4a89b1e007838a868, type: 2}
-  m_rsoToggleDivingSuit: {fileID: 11400000, guid: 24646f10bb926d942b72c6ab01acea91, type: 2}
-  m_rsoToggleMitigedGravity: {fileID: 11400000, guid: b5590c81bde1121408d1ebe3958c2a79, type: 2}
-  IsValid: 1
---- !u!61 &3507706488641018676
+  m_letterBubble: {fileID: 0}
+  m_fishermanDivingSuitBubble: {fileID: 0}
+  m_fishermanDivingSuitInteractable: {fileID: 0}
+--- !u!61 &2493089816823411730
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5775256860904131518}
+  m_GameObject: {fileID: 6264334759012030327}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
