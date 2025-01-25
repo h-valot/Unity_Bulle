@@ -18,6 +18,39 @@ public class Interactable : MonoBehaviour
 	// PICKUP
     [ShowIf("m_type", InteractType.PICKUP)][SerializeField] private ItemType m_pickupType;
 
+	#region pickup cases
+	// BOOT
+	[ShowIf("m_pickupType", ItemType.BOOT)][SerializeField] private Sprite m_fishermanSprite;
+	[ShowIf("m_pickupType", ItemType.BOOT)][SerializeField] private SpriteRenderer m_fishermanRenderer;
+	[ShowIf("m_pickupType", ItemType.BOOT)][SerializeField] private Sprite m_fishermanFishBubble;
+	[ShowIf("m_pickupType", ItemType.BOOT)][SerializeField] private SpriteRenderer m_fishBubbleRenderer;
+	[ShowIf("m_pickupType", ItemType.BOOT)][SerializeField] private Interactable m_fishSpawner;
+
+	// FISH
+	[ShowIf("m_pickupType", ItemType.FISH)][SerializeField] private Sprite m_doorSprite;
+	[ShowIf("m_pickupType", ItemType.FISH)][SerializeField] private SpriteRenderer m_doorRenderer;
+	[ShowIf("m_pickupType", ItemType.FISH)][SerializeField] private Interactable m_rainTravel;
+
+	// KEY
+	[ShowIf("m_pickupType", ItemType.KEY)][SerializeField] private Interactable m_houseTravel;
+	[ShowIf("m_pickupType", ItemType.FISH)][SerializeField] private Sprite m_houseDoorSprite;
+	[ShowIf("m_pickupType", ItemType.FISH)][SerializeField] private SpriteRenderer m_houseDoorRenderer;
+
+	// LADDER
+	[ShowIf("m_pickupType", ItemType.LADDER)][SerializeField] private GameObject m_pfLadderLong;
+	[ShowIf("m_pickupType", ItemType.LADDER)][SerializeField] private Interactable m_balconyTravel;
+
+	// PLANT
+	[ShowIf("m_pickupType", ItemType.PLANT)][SerializeField] private GameObject m_pfPlantLong;
+	[ShowIf("m_pickupType", ItemType.PLANT)][SerializeField] private Interactable m_lightTopTravel;
+
+	// GRANNY
+	[ShowIf("m_pickupType", ItemType.GRANNY)][SerializeField] private Sprite m_grannySprite;
+	[ShowIf("m_pickupType", ItemType.GRANNY)][SerializeField] private SpriteRenderer m_grannyRenderer;
+	[ShowIf("m_pickupType", ItemType.GRANNY)][SerializeField] private Sprite m_grandpaBubble;
+	[ShowIf("m_pickupType", ItemType.GRANNY)][SerializeField] private SpriteRenderer m_grandpaBubbleRenderer;
+
+	#endregion
 
 	[SerializeField] private bool m_displayGizmos;
 
@@ -126,36 +159,40 @@ public class Interactable : MonoBehaviour
 		switch (m_pickupType)
 		{
 			case ItemType.BOOT:
-				// TODO Update fisherman sprite (with boot in feet)
-				// TODO Update fisherman dialogue 
-				// TODO Enable interactable to spawn fish
-				// TODO Destroy this game object
+				m_fishBubbleRenderer.sprite = m_fishermanSprite;
+				m_fishBubbleRenderer.sprite = m_fishermanFishBubble;
+				m_fishSpawner.gameObject.SetActive(true);
+				Destroy(gameObject);
 				break;
 
 			case ItemType.FISH:
-				// TODO Update door sprite
-				// TODO Enable interactable travel to Rain
+				m_doorRenderer.sprite = m_doorSprite;
+				m_rainTravel.gameObject.SetActive(true);
 				break;
 
 			case ItemType.KEY:
-				// TODO Enable interactable travel to House
+				m_houseDoorRenderer.sprite = m_houseDoorSprite;
+				m_houseTravel.gameObject.SetActive(true);
+				Destroy(gameObject);
 				break;
 
 			case ItemType.LADDER:
-				// TODO Instantiate ladder prefab
-				// TODO Enable interactable travel to Rain-Balcony
-				// TODO Destroy this game object
+				Instantiate(m_pfLadderLong, transform.position, Quaternion.identity);
+				// TODO Temp ? Maybe only activate on complete of ladder prefab animation
+				m_balconyTravel.gameObject.SetActive(true);
+				Destroy(gameObject);
 				break;
 
 			case ItemType.PLANT:
-				// TODO Instantiate plant prefab
-				// TODO Enable interactable travel to Lighthouse Top
-				// TODO Destroy this game object
+				Instantiate(m_pfPlantLong, transform.position, Quaternion.identity);
+				// TODO Temp ? Maybe only activate on complete of plant prefab animation
+				m_lightTopTravel.gameObject.SetActive(true);
+				Destroy(gameObject);
 				break;
 
 			case ItemType.GRANNY:
-				// TODO Update Granny sprite
-				// TODO Update Grandpa dialogue 
+				m_grannyRenderer.sprite = m_grannySprite;
+				m_grandpaBubbleRenderer.sprite = m_balconyTravel.m_grandpaBubble;
 				// TODO Starts end game cinematic
 				break;
 		}
