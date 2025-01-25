@@ -1,59 +1,57 @@
 using UnityEngine;
 using Sirenix.OdinInspector;
 using System;
-using System.Linq;
 
 public class Interactable : MonoBehaviour
 {
     [Title("Tweakable values")]
+	[OnValueChanged("ResetSerializedTypes")]
     [SerializeField] private InteractType m_type;
+
 	// TRAVEL
     [ShowIf("m_type", InteractType.TRAVEL)][SerializeField] private PanelType m_travelTo;
     [ShowIf("m_type", InteractType.TRAVEL)][SerializeField] private Transform m_travelPosition;
+
+
 	// SPAWN
     [ShowIf("m_type", InteractType.SPAWN)][SerializeField] private Interactable m_pfItemSpawned;
     [ShowIf("m_type", InteractType.SPAWN)][SerializeField] private Transform m_spawnPosition;
+
+
+	// PICKUP
+    [ShowIf("m_type", InteractType.PICKUP)][SerializeField] private ItemType m_pickupType;
+	[ShowIf("m_pickupType", ItemType.BOOT)][SerializeField] private Transform m_marketTravelPosition;
+
+
 	// PLACE
 	[ShowIf("m_type", InteractType.PLACE)][SerializeField] private Transform m_placePosition;
 	[ShowIf("m_type", InteractType.PLACE)][SerializeField] private ItemType m_itemRequiered;
-	// PICKUP
-    [ShowIf("m_type", InteractType.PICKUP)][SerializeField] private ItemType m_pickupType;
 
-	#region pickup cases
-	// BOOT
+	[ShowIf("m_itemRequiered", ItemType.BOOT)][SerializeField] private Interactable m_fishSpawner;
 	[ShowIf("m_itemRequiered", ItemType.BOOT)][SerializeField] private Sprite m_fishermanSprite;
 	[ShowIf("m_itemRequiered", ItemType.BOOT)][SerializeField] private SpriteRenderer m_fishermanRenderer;
 	[ShowIf("m_itemRequiered", ItemType.BOOT)][SerializeField] private Sprite m_fishermanFishBubble;
 	[ShowIf("m_itemRequiered", ItemType.BOOT)][SerializeField] private SpriteRenderer m_fishBubbleRenderer;
-	[ShowIf("m_itemRequiered", ItemType.BOOT)][SerializeField] private Interactable m_fishSpawner;
 
-	// FISH
-	[ShowIf("m_itemRequiered", ItemType.FISH)][SerializeField] private Sprite m_doorSprite;
-	[ShowIf("m_itemRequiered", ItemType.FISH)][SerializeField] private SpriteRenderer m_doorRenderer;
 	[ShowIf("m_itemRequiered", ItemType.FISH)][SerializeField] private Interactable m_rainTravel;
+	[ShowIf("m_itemRequiered", ItemType.FISH)][SerializeField] private SpriteRenderer m_doorRenderer;
+	[ShowIf("m_itemRequiered", ItemType.FISH)][SerializeField] private Sprite m_doorSprite;
 
-	// KEY
 	[ShowIf("m_itemRequiered", ItemType.KEY)][SerializeField] private Interactable m_houseTravel;
-	[ShowIf("m_itemRequiered", ItemType.KEY)][SerializeField] private Sprite m_houseDoorSprite;
 	[ShowIf("m_itemRequiered", ItemType.KEY)][SerializeField] private SpriteRenderer m_houseDoorRenderer;
+	[ShowIf("m_itemRequiered", ItemType.KEY)][SerializeField] private Sprite m_houseDoorSprite;
 
-	// LADDER
-	[ShowIf("m_itemRequiered", ItemType.LADDER)][SerializeField] private GameObject m_pfLadderLong;
 	[ShowIf("m_itemRequiered", ItemType.LADDER)][SerializeField] private Interactable m_balconyTravel;
+	[ShowIf("m_itemRequiered", ItemType.LADDER)][SerializeField] private GameObject m_pfLadderLong;
 
-	// PLANT
-	[ShowIf("m_itemRequiered", ItemType.PLANT)][SerializeField] private GameObject m_pfPlantLong;
 	[ShowIf("m_itemRequiered", ItemType.PLANT)][SerializeField] private Interactable m_lightTopTravel;
+	[ShowIf("m_itemRequiered", ItemType.PLANT)][SerializeField] private GameObject m_pfPlantLong;
 
-	// GRANNY
 	[ShowIf("m_itemRequiered", ItemType.GRANNY)][SerializeField] private Sprite m_grannySprite;
 	[ShowIf("m_itemRequiered", ItemType.GRANNY)][SerializeField] private SpriteRenderer m_grannyRenderer;
 	[ShowIf("m_itemRequiered", ItemType.GRANNY)][SerializeField] private Sprite m_grandpaBubble;
 	[ShowIf("m_itemRequiered", ItemType.GRANNY)][SerializeField] private SpriteRenderer m_grandpaBubbleRenderer;
 
-	#endregion
-
-	[SerializeField] private bool m_displayGizmos;
 
     [FoldoutGroup("Internal references")][SerializeField] private BoxCollider2D m_boxCollider2D;
 
@@ -64,6 +62,8 @@ public class Interactable : MonoBehaviour
 	[FoldoutGroup("Scriptable")][SerializeField] private RSE_SetCharacterPosition m_rseSetCharacterPosition;
 	[FoldoutGroup("Scriptable")][SerializeField] private RSO_ToggleDivingSuit m_rsoToggleDivingSuit;
 	[FoldoutGroup("Scriptable")][SerializeField] private RSO_ToggleMitigedGravity m_rsoToggleMitigedGravity;
+
+	[SerializeField] private bool m_displayGizmos;
 
 	public Action OnInteracted;
 	public Action<CharacterInteract> OnInteractedWithRef;
@@ -79,6 +79,12 @@ public class Interactable : MonoBehaviour
 	private void OnDisable()
 	{
 		if (m_type == InteractType.PICKUP) m_rsePlaceItem.Action -= PlaceItem;
+	}
+
+	private void ResetSerializedTypes()
+	{
+		m_pickupType = ItemType.NONE;
+		m_itemRequiered = ItemType.NONE;
 	}
 
 	/// <summary>
