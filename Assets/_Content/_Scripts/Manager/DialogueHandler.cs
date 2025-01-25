@@ -12,7 +12,7 @@ public class DialogueHandler : MonoBehaviour
     [SerializeField] private bool isSatisfied = false;
 
 
-    void OnTriggerStay(Collider collision)
+    void OnTriggerStay2D(Collider2D collision)
     {
         Debug.Log(collision.ToString());
         if (collision.gameObject.tag == "Player")
@@ -31,7 +31,7 @@ public class DialogueHandler : MonoBehaviour
             }
     }
 
-    void OnTriggerExit(Collider collision)
+    void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
