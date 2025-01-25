@@ -5,11 +5,16 @@ using UnityEngine;
 public class CharacterMotor : MonoBehaviour
 {
 	[FoldoutGroup("Internal references")][SerializeField] private Rigidbody2D m_rigidbody2D;
+	[FoldoutGroup("Internal references")] public GameObject ItemAnchor;
 
 	[FoldoutGroup("Scriptable")][SerializeField] private SSO_Character m_ssoCharacter;
 	[FoldoutGroup("Scriptable")][SerializeField] private RSO_CurrentPosition m_rsoCurrentPosition;
 	[FoldoutGroup("Scriptable")][SerializeField] private RSE_Move m_rseMove;
 	[FoldoutGroup("Scriptable")][SerializeField] private RSE_Jump m_rseJump;
+
+	// PRIVATE VARIABLES
+	// Interact
+
 
 	private Vector2 m_moveInput;
 	private bool m_isGrounded;

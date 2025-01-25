@@ -1,5 +1,6 @@
 public enum ItemType
 {
+    NONE,
 	DIVING_SUIT,
     BOOT,
     FISH,
