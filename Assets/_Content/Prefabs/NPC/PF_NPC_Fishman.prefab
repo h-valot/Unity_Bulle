@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1337750260222717937, guid: 0aac3e8917642b147adcc23458662a7a, type: 3}
       propertyPath: m_Name
-      value: PF_NPC
+      value: PF_NPC_Fishman
       objectReference: {fileID: 0}
     - target: {fileID: 2765971675067067713, guid: 0aac3e8917642b147adcc23458662a7a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -51,6 +51,10 @@ PrefabInstance:
     - target: {fileID: 2765971675067067713, guid: 0aac3e8917642b147adcc23458662a7a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8428896361334244951, guid: 0aac3e8917642b147adcc23458662a7a, type: 3}
+      propertyPath: dialogue1
+      value: J'ai perdu ma botte, mais je ne rentre plus dans mon scaphandre
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
