@@ -7,15 +7,15 @@ public class Interactable : MonoBehaviour
     [Title("Tweakable values")]
     [SerializeField] private InteractType m_type;
 	// TRAVEL
-    [ShowIf("m_type", InteractType.TRAVEL)][SerializeField] private PanelType m_travelPanel;
-    [ShowIf("m_type", InteractType.TRAVEL)][SerializeField] private Vector3 m_travelPosition;
+    [ShowIf("m_type", InteractType.TRAVEL)][SerializeField] private PanelType m_travelTo;
+    [ShowIf("m_type", InteractType.TRAVEL)][SerializeField] private Transform m_travelPosition;
 	// SPAWN
-    [ShowIf("m_type", InteractType.SPAWN)][SerializeField] private GameObject m_itemSpawnedPF;
-    [ShowIf("m_type", InteractType.SPAWN)][SerializeField] private Vector3 m_spawnPosition;
+    [ShowIf("m_type", InteractType.SPAWN)][SerializeField] private GameObject m_pfItemSpawned;
+    [ShowIf("m_type", InteractType.SPAWN)][SerializeField] private Transform m_spawnPosition;
 	// PLACE
     [ShowIf("m_type", InteractType.PLACE)][SerializeField] private ItemType m_itemRecievedType;
-    [ShowIf("m_type", InteractType.PLACE)][SerializeField] private GameObject m_itemRecievedPF;
-    [ShowIf("m_type", InteractType.PLACE)][SerializeField] private Vector3 m_placePosition;
+    [ShowIf("m_type", InteractType.PLACE)][SerializeField] private GameObject m_pfItemRecieved;
+    [ShowIf("m_type", InteractType.PLACE)][SerializeField] private Transform m_placePosition;
 	// PICKUP
     [ShowIf("m_type", InteractType.PICKUP)][SerializeField] private ItemType m_pickupType;
 
@@ -28,10 +28,11 @@ public class Interactable : MonoBehaviour
 	[FoldoutGroup("Scriptable")][SerializeField] private RSO_CurrentPanel m_rsoCurrentPanel;
 	[FoldoutGroup("Scriptable")][SerializeField] private RSE_PickupItem m_rsePickupItem;
 	[FoldoutGroup("Scriptable")][SerializeField] private RSE_PlaceItem m_rsePlaceItem;
+	[FoldoutGroup("Scriptable")][SerializeField] private RSE_SetCharacterPosition m_rseSetCharacterPosition;
 
 	public Action OnInteracted;
 	public Action<CharacterInteract> OnInteractedWithRef;
-	public bool IsValid { get; set; }
+	public bool IsValid = true;
 
 	private CharacterInteract m_characterInteract;
 
@@ -89,30 +90,30 @@ public class Interactable : MonoBehaviour
 	{
 		switch(m_type)
 		{
-			case(InteractType.TRAVEL):
-				m_characterInteract.transform.position = m_travelPosition;
-				m_rsoCurrentPanel.Value = m_travelPanel;
+			case InteractType.TRAVEL:
+				m_rseSetCharacterPosition.Call(m_travelPosition.position);
+				m_rsoCurrentPanel.Value = m_travelTo;
 				break;
 
-			case(InteractType.SPAWN):
+			case InteractType.SPAWN:
 				IsValid = false;
-				Interactable spawnedItem = Instantiate(m_itemSpawnedPF, m_spawnPosition, Quaternion.identity).GetComponent<Interactable>();
+				Interactable spawnedItem = Instantiate(m_pfItemSpawned, m_spawnPosition.position, Quaternion.identity).GetComponent<Interactable>();
 				spawnedItem.IsValid = true;
 				m_characterInteract.Remove(this);
 				m_characterInteract = null;
 				break;
 
-			case(InteractType.PLACE):
-				if(m_rsoCurrentItem.Value == m_itemRecievedType) 
+			case InteractType.PLACE:
+				if (m_rsoCurrentItem.Value == m_itemRecievedType) 
 				{
 					IsValid = false;
-					m_rsePlaceItem.Call(m_placePosition);
+					m_rsePlaceItem.Call(m_placePosition.position);
 					m_characterInteract.Remove(this);
 					m_characterInteract = null;
 				}
 				break;
 
-			case(InteractType.PICKUP):
+			case InteractType.PICKUP:
 				if(m_rsoCurrentItem.Value != ItemType.NONE) return;
 				m_rsePickupItem.Call(gameObject);
 				IsValid = false;

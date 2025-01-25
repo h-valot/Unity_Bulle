@@ -1,5 +1,4 @@
 using Sirenix.OdinInspector;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class CharacterMotor : MonoBehaviour
@@ -11,10 +10,7 @@ public class CharacterMotor : MonoBehaviour
 	[FoldoutGroup("Scriptable")][SerializeField] private RSO_CurrentPosition m_rsoCurrentPosition;
 	[FoldoutGroup("Scriptable")][SerializeField] private RSE_Move m_rseMove;
 	[FoldoutGroup("Scriptable")][SerializeField] private RSE_Jump m_rseJump;
-
-	// PRIVATE VARIABLES
-	// Interact
-
+	[FoldoutGroup("Scriptable")][SerializeField] private RSE_SetCharacterPosition m_rseSetCharacterPosition;
 
 	private Vector2 m_moveInput;
 	private bool m_isGrounded;
@@ -24,12 +20,16 @@ public class CharacterMotor : MonoBehaviour
 
 	private void OnEnable()
 	{
+		m_rseSetCharacterPosition.Action += SetCharacterPosition;
+
 		m_rseMove.Action += UpdateMoveInput;
 		m_rseJump.Action += UpdateJumpInput;
 	}
 
 	private void OnDisable()
 	{
+		m_rseSetCharacterPosition.Action -= SetCharacterPosition;
+
 		m_rseMove.Action -= UpdateMoveInput;
 		m_rseJump.Action -= UpdateJumpInput;
 	}
@@ -55,6 +55,13 @@ public class CharacterMotor : MonoBehaviour
 		if (!isPressed) return;
 
 		m_jumpTimer = m_ssoCharacter.JumpDuration;
+	}
+
+	private void SetCharacterPosition(Vector2 position)
+	{
+		m_rigidbody2D.velocity = Vector2.zero;
+		m_rigidbody2D.position = position;
+		m_rsoCurrentPosition.Value = transform.position;
 	}
 
 	private void CheckGround()
