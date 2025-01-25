@@ -2453,12 +2453,13 @@ Transform:
   m_GameObject: {fileID: 420761918}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -11, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 641132116}
   - {fileID: 1773306073}
+  - {fileID: 641132116}
+  - {fileID: 1635271362}
   - {fileID: 390320429}
   m_Father: {fileID: 54042449}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3324,25 +3325,22 @@ PrefabInstance:
     - target: {fileID: 1324187087967687981, guid: 0ae7481950a1f434287bd51e59af370d, type: 3}
       propertyPath: m_placePosition
       value: 
-      objectReference: {fileID: 2033369344}
+      objectReference: {fileID: 1773306073}
     - target: {fileID: 1324187087967687981, guid: 0ae7481950a1f434287bd51e59af370d, type: 3}
       propertyPath: m_spawnPosition
       value: 
-      objectReference: {fileID: 2033369344}
+      objectReference: {fileID: 0}
     - target: {fileID: 5775256860904131518, guid: 0ae7481950a1f434287bd51e59af370d, type: 3}
       propertyPath: m_Name
-      value: PF_Interactable Fisherman (1)
+      value: PF_Interactable FishermanReceiveBoot
       objectReference: {fileID: 0}
     - target: {fileID: 5775256860904131518, guid: 0ae7481950a1f434287bd51e59af370d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 702451055649555671, guid: 0ae7481950a1f434287bd51e59af370d, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2033369344}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ae7481950a1f434287bd51e59af370d, type: 3}
 --- !u!1 &553732718
@@ -5665,6 +5663,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1324187087967687981, guid: 521c950036d67534ebdffffbacd08623, type: 3}
+      propertyPath: m_fishInteractable
+      value: 
+      objectReference: {fileID: 1984167522}
+    - target: {fileID: 1324187087967687981, guid: 521c950036d67534ebdffffbacd08623, type: 3}
       propertyPath: m_marketTravelPosition
       value: 
       objectReference: {fileID: 1178227207}
@@ -6331,6 +6333,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1512109371416605414, guid: 46b83f12ab1f3214fbb8f11564158a96, type: 3}
   m_PrefabInstance: {fileID: 1154704618}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &987920694
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 987920695}
+  m_Layer: 7
+  m_Name: Waypoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &987920695
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 987920694}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.48, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1635271362}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1002922043
 GameObject:
   m_ObjectHideFlags: 0
@@ -6541,7 +6574,7 @@ Transform:
   m_GameObject: {fileID: 1016223901}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -14, y: 0, z: 0}
+  m_LocalPosition: {x: -3.29, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10489,6 +10522,103 @@ Transform:
   - {fileID: 883011708}
   m_Father: {fileID: 71668099}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1635271361
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 420761919}
+    m_Modifications:
+    - target: {fileID: 702451055649555671, guid: 0ae7481950a1f434287bd51e59af370d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.39
+      objectReference: {fileID: 0}
+    - target: {fileID: 702451055649555671, guid: 0ae7481950a1f434287bd51e59af370d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.74
+      objectReference: {fileID: 0}
+    - target: {fileID: 702451055649555671, guid: 0ae7481950a1f434287bd51e59af370d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 702451055649555671, guid: 0ae7481950a1f434287bd51e59af370d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 702451055649555671, guid: 0ae7481950a1f434287bd51e59af370d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 702451055649555671, guid: 0ae7481950a1f434287bd51e59af370d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 702451055649555671, guid: 0ae7481950a1f434287bd51e59af370d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 702451055649555671, guid: 0ae7481950a1f434287bd51e59af370d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 702451055649555671, guid: 0ae7481950a1f434287bd51e59af370d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 702451055649555671, guid: 0ae7481950a1f434287bd51e59af370d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1324187087967687981, guid: 0ae7481950a1f434287bd51e59af370d, type: 3}
+      propertyPath: m_type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1324187087967687981, guid: 0ae7481950a1f434287bd51e59af370d, type: 3}
+      propertyPath: IsValid
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1324187087967687981, guid: 0ae7481950a1f434287bd51e59af370d, type: 3}
+      propertyPath: m_fishSpawner
+      value: 
+      objectReference: {fileID: 1324187087967687981, guid: c39ecf5a60323cc48bc9a680edd3d203, type: 3}
+    - target: {fileID: 1324187087967687981, guid: 0ae7481950a1f434287bd51e59af370d, type: 3}
+      propertyPath: m_itemRequiered
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1324187087967687981, guid: 0ae7481950a1f434287bd51e59af370d, type: 3}
+      propertyPath: m_pfItemSpawned
+      value: 
+      objectReference: {fileID: 1324187087967687981, guid: c39ecf5a60323cc48bc9a680edd3d203, type: 3}
+    - target: {fileID: 1324187087967687981, guid: 0ae7481950a1f434287bd51e59af370d, type: 3}
+      propertyPath: m_placePosition
+      value: 
+      objectReference: {fileID: 987920695}
+    - target: {fileID: 1324187087967687981, guid: 0ae7481950a1f434287bd51e59af370d, type: 3}
+      propertyPath: m_spawnPosition
+      value: 
+      objectReference: {fileID: 987920695}
+    - target: {fileID: 5775256860904131518, guid: 0ae7481950a1f434287bd51e59af370d, type: 3}
+      propertyPath: m_Name
+      value: PF_Interactable FishermanGiveFish
+      objectReference: {fileID: 0}
+    - target: {fileID: 5775256860904131518, guid: 0ae7481950a1f434287bd51e59af370d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 702451055649555671, guid: 0ae7481950a1f434287bd51e59af370d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 987920695}
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0ae7481950a1f434287bd51e59af370d, type: 3}
+--- !u!4 &1635271362 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 702451055649555671, guid: 0ae7481950a1f434287bd51e59af370d, type: 3}
+  m_PrefabInstance: {fileID: 1635271361}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1644423933
 GameObject:
   m_ObjectHideFlags: 0
@@ -11123,7 +11253,7 @@ PrefabInstance:
       objectReference: {fileID: 1016223902}
     - target: {fileID: 5775256860904131518, guid: 0ae7481950a1f434287bd51e59af370d, type: 3}
       propertyPath: m_Name
-      value: PF_Interactable Fisherman
+      value: PF_Interactable FishermanGiveDivingSUit
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -13052,6 +13182,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1984167522 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1324187087967687981, guid: 0ae7481950a1f434287bd51e59af370d, type: 3}
+  m_PrefabInstance: {fileID: 550244765}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 880c595841e67a941a0e8ae236dfd9c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1991923891
 GameObject:
   m_ObjectHideFlags: 0
@@ -13335,37 +13476,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 915795831}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2033369343
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2033369344}
-  m_Layer: 7
-  m_Name: Waypoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2033369344
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2033369343}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.46, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1773306073}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2038863894
 GameObject:
