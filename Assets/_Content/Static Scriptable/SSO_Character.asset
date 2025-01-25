@@ -13,3 +13,11 @@ MonoBehaviour:
   m_Name: SSO_Character
   m_EditorClassIdentifier: 
   Speed: 5
+  JumpForce: 20
+  JumpDuration: 1
+  GravityForce: 9.8
+  GravityScalar: 1
+  GroundLength: 1.1
+  GroundLayerToInclude:
+    serializedVersion: 2
+    m_Bits: 1
