@@ -6,7 +6,6 @@ public enum ItemType
     FISH,
     KEY,
     LADDER,
-    PLANT_SMALL,
-    PLANT_BIG,
+    PLANT,
     GRANNY
 }

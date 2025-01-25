@@ -50,8 +50,7 @@ MonoBehaviour:
   m_travelPosition: {fileID: 0}
   m_pfItemSpawned: {fileID: 0}
   m_spawnPosition: {fileID: 0}
-  m_itemRecievedType: 0
-  m_pfItemRecieved: {fileID: 0}
+  m_itemRequiered: 0
   m_placePosition: {fileID: 0}
   m_pickupType: 3
   m_displayGizmos: 1

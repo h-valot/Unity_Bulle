@@ -119,8 +119,47 @@ public class Interactable : MonoBehaviour
 		// Assertion
 		if (m_rsoCurrentItem.Value != m_pickupType) return;
 
-		transform.parent = null;
+		// TODO DOJump towards destination
 		transform.position = destination;
+		transform.parent = null;
+
+		switch (m_pickupType)
+		{
+			case ItemType.BOOT:
+				// TODO Update fisherman sprite (with boot in feet)
+				// TODO Update fisherman dialogue 
+				// TODO Enable interactable to spawn fish
+				// TODO Destroy this game object
+				break;
+
+			case ItemType.FISH:
+				// TODO Update door sprite
+				// TODO Enable interactable travel to Rain
+				break;
+
+			case ItemType.KEY:
+				// TODO Enable interactable travel to House
+				break;
+
+			case ItemType.LADDER:
+				// TODO Instantiate ladder prefab
+				// TODO Enable interactable travel to Rain-Balcony
+				// TODO Destroy this game object
+				break;
+
+			case ItemType.PLANT:
+				// TODO Instantiate plant prefab
+				// TODO Enable interactable travel to Lighthouse Top
+				// TODO Destroy this game object
+				break;
+
+			case ItemType.GRANNY:
+				// TODO Update Granny sprite
+				// TODO Update Grandpa dialogue 
+				// TODO Starts end game cinematic
+				break;
+		}
+
 		m_rsoCurrentItem.Value = ItemType.NONE;
 	}
 
