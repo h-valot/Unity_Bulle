@@ -1,0 +1,11 @@
+public enum CharacterType
+{
+	NONE = 0,
+	LETTER,
+	FISHERMAN,
+	FISHMONGER,
+	COAST_GUARD,
+	SINGER,
+	LOVER,
+	GRANDPA,
+}

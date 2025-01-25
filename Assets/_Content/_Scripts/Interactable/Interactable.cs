@@ -62,6 +62,7 @@ public class Interactable : MonoBehaviour
 	[FoldoutGroup("Scriptable")][SerializeField] private RSE_SetCharacterPosition m_rseSetCharacterPosition;
 	[FoldoutGroup("Scriptable")][SerializeField] private RSO_ToggleDivingSuit m_rsoToggleDivingSuit;
 	[FoldoutGroup("Scriptable")][SerializeField] private RSO_ToggleMitigedGravity m_rsoToggleMitigedGravity;
+	[FoldoutGroup("Scriptable")][SerializeField] private RSE_SetBubble m_rseSetBubble;
 
 	[SerializeField] private bool m_displayGizmos;
 
@@ -164,7 +165,7 @@ public class Interactable : MonoBehaviour
 				}
 				else if (m_rsoCurrentItem.Value == ItemType.GRANNY)
 				{
-					// TODO Update Granny's amant dialogue
+					m_rseSetBubble.Call(CharacterType.LOVER, 1);
 					m_rsoToggleMitigedGravity.Value = true;
 				}
 				break;

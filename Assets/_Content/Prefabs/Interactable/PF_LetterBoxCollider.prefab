@@ -45,9 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c81a5e1068599a94d94729ec75c45567, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_letterBubble: {fileID: 0}
-  m_fishermanDivingSuitBubble: {fileID: 0}
   m_fishermanDivingSuitInteractable: {fileID: 0}
+  m_rseSetBubble: {fileID: 11400000, guid: 7b45e7d949ee54e4bacc83755120db66, type: 2}
 --- !u!61 &2493089816823411730
 BoxCollider2D:
   m_ObjectHideFlags: 0
