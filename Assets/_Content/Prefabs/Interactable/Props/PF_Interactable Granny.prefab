@@ -50,16 +50,40 @@ MonoBehaviour:
   m_travelPosition: {fileID: 0}
   m_pfItemSpawned: {fileID: 0}
   m_spawnPosition: {fileID: 0}
-  m_itemRequiered: 0
-  m_placePosition: {fileID: 0}
   m_pickupType: 8
-  m_displayGizmos: 1
+  m_marketTravelPosition: {fileID: 0}
+  m_abyssTravelPosition: {x: 0, y: 0}
+  m_placePosition: {fileID: 0}
+  m_itemRequiered: 0
+  m_fishSpawner: {fileID: 0}
+  m_fishermanSprite: {fileID: 0}
+  m_fishermanRenderer: {fileID: 0}
+  m_fishermanFishBubble: {fileID: 0}
+  m_fishBubbleRenderer: {fileID: 0}
+  m_rainTravel: {fileID: 0}
+  m_doorRenderer: {fileID: 0}
+  m_doorSprite: {fileID: 0}
+  m_houseTravel: {fileID: 0}
+  m_houseDoorRenderer: {fileID: 0}
+  m_houseDoorSprite: {fileID: 0}
+  m_balconyTravel: {fileID: 0}
+  m_pfLadderLong: {fileID: 0}
+  m_lightTopTravel: {fileID: 0}
+  m_pfPlantLong: {fileID: 0}
+  m_grannySprite: {fileID: 0}
+  m_grannyRenderer: {fileID: 0}
+  m_grandpaBubble: {fileID: 0}
+  m_grandpaBubbleRenderer: {fileID: 0}
   m_boxCollider2D: {fileID: 3507706488641018676}
   m_rsoCurrentItem: {fileID: 11400000, guid: e8991317bb976804d94292a461f5aa99, type: 2}
   m_rsoCurrentPanel: {fileID: 11400000, guid: 1eac95a65c5c4db489562d2ca876dbb4, type: 2}
   m_rsePickupItem: {fileID: 11400000, guid: d2840920dd3679a48a8dba66204b9271, type: 2}
   m_rsePlaceItem: {fileID: 11400000, guid: 731ea32a8ea55244e9f8e941b5857240, type: 2}
   m_rseSetCharacterPosition: {fileID: 11400000, guid: 7b802547d3b5b8c4a89b1e007838a868, type: 2}
+  m_rsoToggleDivingSuit: {fileID: 11400000, guid: 24646f10bb926d942b72c6ab01acea91, type: 2}
+  m_rsoToggleMitigedGravity: {fileID: 11400000, guid: b5590c81bde1121408d1ebe3958c2a79, type: 2}
+  m_rseSetBubble: {fileID: 11400000, guid: 7b45e7d949ee54e4bacc83755120db66, type: 2}
+  m_displayGizmos: 1
   IsValid: 1
 --- !u!61 &3507706488641018676
 BoxCollider2D:

@@ -21,6 +21,7 @@ public class Interactable : MonoBehaviour
 	// PICKUP
     [ShowIf("m_type", InteractType.PICKUP)][SerializeField] private ItemType m_pickupType;
 	[ShowIf("m_pickupType", ItemType.BOOT)][SerializeField] private Transform m_marketTravelPosition;
+	[ShowIf("m_pickupType", ItemType.DIVING_SUIT)][SerializeField] private Vector2 m_abyssTravelPosition;
 
 
 	// PLACE
@@ -147,26 +148,28 @@ public class Interactable : MonoBehaviour
 				break;
 
 			case InteractType.PICKUP:
-				if (m_rsoCurrentItem.Value == ItemType.NONE) 
-				{
-					IsValid = false;
-					m_rsoCurrentItem.Value = m_pickupType;
-					m_rsePickupItem.Call(transform);
-				}
-				else if (m_rsoCurrentItem.Value == ItemType.DIVING_SUIT)
+				if (m_rsoCurrentItem.Value == ItemType.NONE && m_pickupType == ItemType.DIVING_SUIT)
 				{
 					m_rsoToggleDivingSuit.Value = true;
+					m_rsoCurrentPanel.Value = PanelType.ABYSS;
+					m_rseSetCharacterPosition.Call(m_abyssTravelPosition);
 				}
-				else if (m_rsoCurrentItem.Value == ItemType.BOOT)
+				else if (m_rsoCurrentItem.Value == ItemType.NONE && m_pickupType == ItemType.BOOT)
 				{
 					m_rsoToggleDivingSuit.Value = false;
 					m_rsoCurrentPanel.Value = PanelType.MARKET;
 					m_rseSetCharacterPosition.Call(m_marketTravelPosition.position);
 				}
-				else if (m_rsoCurrentItem.Value == ItemType.GRANNY)
+				else if (m_rsoCurrentItem.Value == ItemType.NONE && m_pickupType == ItemType.GRANNY)
 				{
 					m_rseSetBubble.Call(CharacterType.LOVER, 1);
 					m_rsoToggleMitigedGravity.Value = true;
+				}
+				else if (m_rsoCurrentItem.Value == ItemType.NONE)
+				{
+					IsValid = false;
+					m_rsoCurrentItem.Value = m_pickupType;
+					m_rsePickupItem.Call(transform);
 				}
 				break;
 		}

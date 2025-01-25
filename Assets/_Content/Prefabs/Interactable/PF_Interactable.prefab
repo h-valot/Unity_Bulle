@@ -81,6 +81,8 @@ MonoBehaviour:
   m_rseSetCharacterPosition: {fileID: 11400000, guid: 7b802547d3b5b8c4a89b1e007838a868, type: 2}
   m_rsoToggleDivingSuit: {fileID: 11400000, guid: 24646f10bb926d942b72c6ab01acea91, type: 2}
   m_rsoToggleMitigedGravity: {fileID: 11400000, guid: b5590c81bde1121408d1ebe3958c2a79, type: 2}
+  m_rseSetBubble: {fileID: 11400000, guid: 7b45e7d949ee54e4bacc83755120db66, type: 2}
+  m_rsfGetWaypoint: {fileID: 11400000, guid: d03058e158a83c247bd3e18e9d121ec9, type: 2}
   m_displayGizmos: 1
   IsValid: 1
 --- !u!61 &3507706488641018676
