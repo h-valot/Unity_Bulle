@@ -8,8 +8,16 @@ public class InputManager : MonoBehaviour
 
 	[FoldoutGroup("Scriptable")][SerializeField] private RSE_Move m_rseMove;
 	[FoldoutGroup("Scriptable")][SerializeField] private RSE_Interact m_rseInteract;
+	[FoldoutGroup("Scriptable")][SerializeField] private RSE_Jump m_rseJump;
 
 	private Vector2 m_move;
+	private bool m_jump;
+
+	private void Start()
+	{
+		m_jump = false;
+		m_rseJump.Call(false);
+	}
 
 	private void OnApplicationFocus(bool hasFocus)
 	{
@@ -25,5 +33,11 @@ public class InputManager : MonoBehaviour
 	public void OnInteract(InputValue value)
 	{
 		m_rseInteract.Call();
+	}
+
+	public void OnJump(InputValue value)
+	{
+		m_jump = value.isPressed;
+		m_rseJump.Call(m_jump);
 	}
 }
