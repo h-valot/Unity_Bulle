@@ -26,6 +26,6 @@ public class BubbleManager : MonoBehaviour
 
 	private void SetBubble(CharacterType type, int index)
 	{
-		m_bubbles.FirstOrDefault(b => b.Type == type).SetIndex(index);
+		m_bubbles.FirstOrDefault(b => b.Type == type)?.SetIndex(index);
 	}
 }

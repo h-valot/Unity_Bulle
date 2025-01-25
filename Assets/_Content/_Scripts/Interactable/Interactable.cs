@@ -1,6 +1,7 @@
 using UnityEngine;
 using Sirenix.OdinInspector;
 using System;
+using Unity.VisualScripting;
 
 public class Interactable : MonoBehaviour
 {
@@ -16,33 +17,35 @@ public class Interactable : MonoBehaviour
 	// SPAWN
     [ShowIf("m_type", InteractType.SPAWN)][SerializeField] private Interactable m_pfItemSpawned;
     [ShowIf("m_type", InteractType.SPAWN)][SerializeField] private Transform m_spawnPosition;
+	[ShowIf("@m_pfItemSpawned.PickupType == ItemType.DIVING_SUIT")][SerializeField] private Interactable m_interactableFishermanBoot;
 
 
 	// PICKUP
-    [ShowIf("m_type", InteractType.PICKUP)][SerializeField] private ItemType m_pickupType;
-	[ShowIf("m_pickupType", ItemType.BOOT)][SerializeField] private Transform m_marketTravelPosition;
-	[ShowIf("m_pickupType", ItemType.BOOT)][SerializeField] private Interactable m_fishInteractable;
-	[ShowIf("m_pickupType", ItemType.DIVING_SUIT)][SerializeField] private Vector2 m_abyssTravelPosition;
+	[ShowIf("m_type", InteractType.PICKUP)][SerializeField] public ItemType PickupType;
+
+	[ShowIf("PickupType", ItemType.BOOT)][SerializeField] private Transform m_marketTravelPosition;
+	[ShowIf("PickupType", ItemType.BOOT)][SerializeField] private Interactable m_interactableFishermanFish;
+
+	[ShowIf("PickupType", ItemType.DIVING_SUIT)][SerializeField] private Vector2 m_abyssTravelPosition;
+
+	[ShowIf("PickupType", ItemType.LADDER)][SerializeField] private GameObject m_pfLadderLong;
+
+	[ShowIf("PickupType", ItemType.PLANT)][SerializeField] private GameObject m_pfPlantLong;
 
 
 	// PLACE
 	[ShowIf("m_type", InteractType.PLACE)][SerializeField] private Transform m_placePosition;
 	[ShowIf("m_type", InteractType.PLACE)][SerializeField] private ItemType m_itemRequiered;
 
-
 	[ShowIf("m_itemRequiered", ItemType.FISH)][SerializeField] private Interactable m_rainTravel;
-	[ShowIf("m_itemRequiered", ItemType.FISH)][SerializeField] private SpriteRenderer m_doorRenderer;
-	[ShowIf("m_itemRequiered", ItemType.FISH)][SerializeField] private Sprite m_doorSprite;
+	[ShowIf("m_itemRequiered", ItemType.FISH)][SerializeField] private GameObject m_rainDoor;
 
-	[ShowIf("m_itemRequiered", ItemType.KEY)][SerializeField] private Interactable m_houseTravel;
-	[ShowIf("m_itemRequiered", ItemType.KEY)][SerializeField] private SpriteRenderer m_houseDoorRenderer;
-	[ShowIf("m_itemRequiered", ItemType.KEY)][SerializeField] private Sprite m_houseDoorSprite;
+	[ShowIf("m_itemRequiered", ItemType.KEY)][SerializeField] private Interactable m_TravelToHouse;
+	[ShowIf("m_itemRequiered", ItemType.KEY)][SerializeField] private Transform m_waypointToHouse;
 
 	[ShowIf("m_itemRequiered", ItemType.LADDER)][SerializeField] private Interactable m_balconyTravel;
-	[ShowIf("m_itemRequiered", ItemType.LADDER)][SerializeField] private GameObject m_pfLadderLong;
 
 	[ShowIf("m_itemRequiered", ItemType.PLANT)][SerializeField] private Interactable m_lightTopTravel;
-	[ShowIf("m_itemRequiered", ItemType.PLANT)][SerializeField] private GameObject m_pfPlantLong;
 
 	[ShowIf("m_itemRequiered", ItemType.GRANNY)][SerializeField] private Sprite m_grannySprite;
 	[ShowIf("m_itemRequiered", ItemType.GRANNY)][SerializeField] private SpriteRenderer m_grannyRenderer;
@@ -81,7 +84,7 @@ public class Interactable : MonoBehaviour
 
 	private void ResetSerializedTypes()
 	{
-		m_pickupType = ItemType.NONE;
+		PickupType = ItemType.NONE;
 		m_itemRequiered = ItemType.NONE;
 	}
 
@@ -133,11 +136,38 @@ public class Interactable : MonoBehaviour
 			case InteractType.SPAWN:
 				IsValid = false;
 				Instantiate(m_pfItemSpawned, m_spawnPosition.position, Quaternion.identity);
+
+				if (m_pfItemSpawned.PickupType == ItemType.DIVING_SUIT)
+				{
+					m_interactableFishermanBoot.IsValid = true;
+				}
 				break;
 
 			case InteractType.PLACE:
 				if (m_rsoCurrentItem.Value == m_itemRequiered) 
 				{
+					if (m_itemRequiered == ItemType.PLANT)
+					{
+						m_lightTopTravel.IsValid = true;
+					}
+					else if (m_itemRequiered == ItemType.LADDER)
+					{
+						m_balconyTravel.IsValid = true;
+					}
+					else if (m_itemRequiered == ItemType.FISH)
+					{
+						// TODO Animate door
+						m_rainDoor.SetActive(true);
+						m_rainTravel.IsValid = true;
+					}
+					else if (m_itemRequiered == ItemType.KEY)
+					{
+						// TODO Animate door
+						m_TravelToHouse.IsValid = true;
+						m_rsoCurrentPanel.Value = PanelType.HOUSE;
+						m_rseSetCharacterPosition.Call(m_waypointToHouse.position);
+					}
+
 					IsValid = false;
 					m_rsePlaceItem.Call(m_placePosition.position);
 				}
@@ -145,39 +175,39 @@ public class Interactable : MonoBehaviour
 
 			case InteractType.PICKUP:
 				if (m_rsoCurrentItem.Value == ItemType.NONE 
-				&& m_pickupType == ItemType.DIVING_SUIT)
+				&& PickupType == ItemType.DIVING_SUIT)
 				{
-					m_rsoCurrentPanel.Value = PanelType.ABYSS;
 					m_rsoToggleDivingSuit.Value = true;
+					m_rsoCurrentPanel.Value = PanelType.ABYSS;
 					m_rseSetCharacterPosition.Call(m_abyssTravelPosition);
 
 					Destroy(gameObject);
 				}
 				else if (m_rsoCurrentItem.Value == ItemType.NONE 
-				&& m_pickupType == ItemType.BOOT)
+				&& PickupType == ItemType.BOOT)
 				{
-					m_rsoCurrentPanel.Value = PanelType.MARKET;
 					m_rsoToggleDivingSuit.Value = false;
+					m_rsoCurrentPanel.Value = PanelType.MARKET;
 					m_rseSetCharacterPosition.Call(m_marketTravelPosition.position);
 
 					IsValid = false;
-					m_rsoCurrentItem.Value = m_pickupType;
+					m_rsoCurrentItem.Value = PickupType;
 					m_rsePickupItem.Call(transform);
 				}
 				else if (m_rsoCurrentItem.Value == ItemType.NONE
-				&& m_pickupType == ItemType.GRANNY)
+				&& PickupType == ItemType.GRANNY)
 				{
 					m_rsoToggleMitigedGravity.Value = true;
 					m_rseSetBubble.Call(CharacterType.LOVER, 1);
 
 					IsValid = false;
-					m_rsoCurrentItem.Value = m_pickupType;
+					m_rsoCurrentItem.Value = PickupType;
 					m_rsePickupItem.Call(transform);
 				}
 				else if (m_rsoCurrentItem.Value == ItemType.NONE)
 				{
 					IsValid = false;
-					m_rsoCurrentItem.Value = m_pickupType;
+					m_rsoCurrentItem.Value = PickupType;
 					m_rsePickupItem.Call(transform);
 				}
 				break;
@@ -187,7 +217,7 @@ public class Interactable : MonoBehaviour
 	private void PlaceItem(Vector3 destination)
 	{
 		// Assertion
-		if (m_rsoCurrentItem.Value != m_pickupType) return;
+		if (m_rsoCurrentItem.Value != PickupType) return;
 
 		m_rsoCurrentItem.Value = ItemType.NONE;
 
@@ -195,43 +225,32 @@ public class Interactable : MonoBehaviour
 		transform.position = destination;
 		transform.parent = null;
 
-		switch (m_pickupType)
+		switch (PickupType)
 		{
 			case ItemType.BOOT:
 				m_rseSetBubble.Call(CharacterType.FISHERMAN, 1);
-				m_fishInteractable.IsValid = true;
+				m_interactableFishermanFish.IsValid = true;
 				Destroy(gameObject);
 				break;
 
-			case ItemType.FISH:
-				m_doorRenderer.sprite = m_doorSprite;
-				m_rainTravel.gameObject.SetActive(true);
-				break;
-
 			case ItemType.KEY:
-				m_houseDoorRenderer.sprite = m_houseDoorSprite;
-				m_houseTravel.gameObject.SetActive(true);
 				Destroy(gameObject);
 				break;
 
 			case ItemType.LADDER:
 				Instantiate(m_pfLadderLong, transform.position, Quaternion.identity);
 				// TODO Temp ? Maybe only activate on complete of ladder prefab animation
-				m_balconyTravel.gameObject.SetActive(true);
 				Destroy(gameObject);
 				break;
 
 			case ItemType.PLANT:
 				Instantiate(m_pfPlantLong, transform.position, Quaternion.identity);
 				// TODO Temp ? Maybe only activate on complete of plant prefab animation
-				m_lightTopTravel.gameObject.SetActive(true);
 				Destroy(gameObject);
 				break;
 
 			case ItemType.GRANNY:
 				m_rsoToggleMitigedGravity.Value = false;
-				m_grannyRenderer.sprite = m_grannySprite;
-				m_grandpaBubbleRenderer.sprite = m_balconyTravel.m_grandpaBubble;
 				// TODO Starts end game cinematic
 				break;
 		}

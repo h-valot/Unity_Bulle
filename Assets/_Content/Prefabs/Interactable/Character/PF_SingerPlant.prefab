@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1324187087967687981}
   - component: {fileID: 3507706488641018676}
   m_Layer: 7
-  m_Name: PF_Interactable Granny
+  m_Name: PF_SingerPlant
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,16 +45,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 880c595841e67a941a0e8ae236dfd9c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_type: 3
+  m_type: 2
   m_travelTo: 0
   m_travelPosition: {fileID: 0}
   m_pfItemSpawned: {fileID: 0}
   m_spawnPosition: {fileID: 0}
-  m_pickupType: 8
+  m_pickupType: 0
   m_marketTravelPosition: {fileID: 0}
   m_abyssTravelPosition: {x: 0, y: 0}
   m_placePosition: {fileID: 0}
-  m_itemRequiered: 0
+  m_itemRequiered: 6
   m_fishSpawner: {fileID: 0}
   m_fishermanSprite: {fileID: 0}
   m_fishermanRenderer: {fileID: 0}

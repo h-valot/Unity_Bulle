@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1324187087967687981}
   - component: {fileID: 3507706488641018676}
   m_Layer: 7
-  m_Name: PF_Interactable
+  m_Name: PF_FishermanFish
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,15 +45,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 880c595841e67a941a0e8ae236dfd9c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_type: 0
+  m_type: 1
   m_travelTo: 0
   m_travelPosition: {fileID: 0}
-  m_pfItemSpawned: {fileID: 0}
+  m_pfItemSpawned: {fileID: 1324187087967687981, guid: c39ecf5a60323cc48bc9a680edd3d203, type: 3}
   m_spawnPosition: {fileID: 0}
-  m_interactableFishermanBoot: {fileID: 0}
+  m_fishermanInteractableReceiveBoot: {fileID: 0}
   PickupType: 0
   m_marketTravelPosition: {fileID: 0}
-  m_interactableFishermanFish: {fileID: 0}
+  m_fishInteractable: {fileID: 0}
   m_abyssTravelPosition: {x: 0, y: 0}
   m_placePosition: {fileID: 0}
   m_itemRequiered: 0
@@ -80,7 +80,7 @@ MonoBehaviour:
   m_rsoToggleDivingSuit: {fileID: 11400000, guid: 24646f10bb926d942b72c6ab01acea91, type: 2}
   m_rsoToggleMitigedGravity: {fileID: 11400000, guid: b5590c81bde1121408d1ebe3958c2a79, type: 2}
   m_rseSetBubble: {fileID: 11400000, guid: 7b45e7d949ee54e4bacc83755120db66, type: 2}
-  IsValid: 1
+  IsValid: 0
   m_displayGizmos: 1
 --- !u!61 &3507706488641018676
 BoxCollider2D:
