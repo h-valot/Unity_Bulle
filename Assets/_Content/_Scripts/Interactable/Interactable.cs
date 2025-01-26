@@ -264,7 +264,7 @@ public class Interactable : MonoBehaviour
 			case ItemType.GRANNY:
 				m_rsoToggleMitigedGravity.Value = false;
 				// TODO Starts end game cinematic
-				print("the end");
+				Application.Quit();
 				break;
 		}
 	}
