@@ -20,7 +20,7 @@ MonoBehaviour:
   GravityForce: 9.8
   GravityScalar: 1
   GravityMitigedScalar: 0.33
-  GroundLength: 1.1
+  GroundLength: 1.5
   GroundLayerToInclude:
     serializedVersion: 2
     m_Bits: 1
