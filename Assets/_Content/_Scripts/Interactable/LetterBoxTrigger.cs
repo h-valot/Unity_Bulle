@@ -10,8 +10,6 @@ public class LetterBoxTrigger : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D collider)
 	{
-		print($"enter {name}");
-
 		// Assertion
 		if (!collider.TryGetComponent<CharacterMotor>(out var character)) return;
 

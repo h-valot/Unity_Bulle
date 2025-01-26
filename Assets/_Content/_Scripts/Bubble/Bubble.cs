@@ -11,7 +11,7 @@ public class Bubble : MonoBehaviour
     [FoldoutGroup("Internal references")][SerializeField] private GameObject m_graphicsParent;
 	[FoldoutGroup("Internal references")][SerializeField] private SpriteRenderer m_spriteRenderer;
 
-	private int m_currentIndex = -1;
+	[ReadOnly] public int Index = -1;
 
 	private void Start()
 	{
@@ -36,16 +36,16 @@ public class Bubble : MonoBehaviour
 
 	public void SetIndex(int index)
 	{
-		m_currentIndex = index;
-		m_currentIndex = Mathf.Clamp(m_currentIndex, -1, m_sprites.Count - 1);
+		Index = index;
+		Index = Mathf.Clamp(Index, -1, m_sprites.Count - 1);
 		
-		if (m_currentIndex == -1
+		if (Index == -1
 		|| m_sprites.Count <= 0)
 		{
 			m_graphicsParent.SetActive(false);
 			return;
 		}
 
-		m_spriteRenderer.sprite = m_sprites[m_currentIndex];
+		m_spriteRenderer.sprite = m_sprites[Index];
 	}
 }
