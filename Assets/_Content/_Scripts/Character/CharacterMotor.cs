@@ -19,6 +19,7 @@ public class CharacterMotor : MonoBehaviour
 	private float m_jumpTimer;
 	private float m_gravityScalar;
 	private float m_speedScalar;
+	private bool m_isMitiged;
 
 	private bool IsJumping => m_jumpTimer > 0f;
 
@@ -42,13 +43,6 @@ public class CharacterMotor : MonoBehaviour
 		m_rseJump.Action -= UpdateJumpInput;
 	}
 
-
-	private void ToggleMitigedGravity(bool isEnabled)
-	{
-		m_speedScalar = isEnabled ? m_ssoCharacter.SpeedMitigedScalar : m_ssoCharacter.SpeedScalar;
-		m_gravityScalar = isEnabled ? m_ssoCharacter.GravityMitigedScalar : m_ssoCharacter.GravityScalar;
-	}
-
 	private void FixedUpdate()
 	{
 		CheckGround();
@@ -70,6 +64,11 @@ public class CharacterMotor : MonoBehaviour
 		if (!isPressed) return;
 
 		m_jumpTimer = m_ssoCharacter.JumpDuration;
+	}
+
+	private void ToggleMitigedGravity(bool isEnabled)
+	{
+		m_isMitiged = isEnabled;
 	}
 
 	private void SetCharacterPosition(Vector2 position)
@@ -104,10 +103,12 @@ public class CharacterMotor : MonoBehaviour
 
 	private void HandleMove()
 	{
+		m_gravityScalar = m_isMitiged && !m_isGrounded ? m_ssoCharacter.GravityMitigedScalar : m_ssoCharacter.GravityScalar;
 		Vector2 gravity = !m_isGrounded 
 			? Vector2.down * m_ssoCharacter.GravityForce * m_gravityScalar * Time.fixedDeltaTime 
 			: Vector2.zero;
 		
+		m_speedScalar = m_isMitiged && !m_isGrounded ? m_ssoCharacter.SpeedMitigedScalar : m_ssoCharacter.SpeedScalar;
 		Vector2 input = m_moveInput != Vector2.zero 
 			? m_moveInput * m_ssoCharacter.Speed * m_speedScalar * Time.fixedDeltaTime 
 			: Vector2.zero;
