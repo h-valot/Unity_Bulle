@@ -136,6 +136,7 @@ public class Interactable : MonoBehaviour
 
 				if (m_pfItemSpawned.PickupType == ItemType.DIVING_SUIT)
 				{
+					// Enable fisherman interactable place
 					m_interactableFishermanBoot.IsValid = true;
 				}
 				break;
