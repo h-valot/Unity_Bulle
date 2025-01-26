@@ -14,12 +14,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1337750260222717937, guid: 0aac3e8917642b147adcc23458662a7a, type: 3}
       propertyPath: m_Name
-      value: PF_NPC_Fishmonger2
+      value: PF_NPC_FishmongerB
       objectReference: {fileID: 0}
     - target: {fileID: 1337750260222717937, guid: 0aac3e8917642b147adcc23458662a7a, type: 3}
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 1403957127961322583, guid: 0aac3e8917642b147adcc23458662a7a, type: 3}
+      propertyPath: m_defaultSprites.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1403957127961322583, guid: 0aac3e8917642b147adcc23458662a7a, type: 3}
+      propertyPath: m_defaultSprites.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 0e6e561e4850f2b4990f7b181c4aa6b7, type: 3}
+    - target: {fileID: 1403957127961322583, guid: 0aac3e8917642b147adcc23458662a7a, type: 3}
+      propertyPath: m_defaultSprites.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: 1b5aea0f3d4dde24ba15bc820f8bee63, type: 3}
     - target: {fileID: 2765971675067067713, guid: 0aac3e8917642b147adcc23458662a7a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -68,6 +80,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 4812670931241616591, guid: 0aac3e8917642b147adcc23458662a7a, type: 3}
+      propertyPath: m_FlipX
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4812670931241616591, guid: 0aac3e8917642b147adcc23458662a7a, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 0e6e561e4850f2b4990f7b181c4aa6b7, type: 3}
     - target: {fileID: 5622088996659348210, guid: 0aac3e8917642b147adcc23458662a7a, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -79,6 +99,10 @@ PrefabInstance:
     - target: {fileID: 7351224461288424050, guid: 0aac3e8917642b147adcc23458662a7a, type: 3}
       propertyPath: m_Layer
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8428896361334244951, guid: 0aac3e8917642b147adcc23458662a7a, type: 3}
+      propertyPath: Type
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8428896361334244951, guid: 0aac3e8917642b147adcc23458662a7a, type: 3}
       propertyPath: dialogue1
