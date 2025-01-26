@@ -13,12 +13,15 @@ public class CharacterMotor : MonoBehaviour
 	[FoldoutGroup("Scriptable")][SerializeField] private RSE_PickupItem m_rsePickupItem;
 	[FoldoutGroup("Scriptable")][SerializeField] private RSO_CurrentPosition m_rsoCurrentPosition;
 	[FoldoutGroup("Scriptable")][SerializeField] private RSO_ToggleMitigedGravity m_rsoToggleMitigedGravity;
+	[FoldoutGroup("Scriptable")][SerializeField] private RSO_CharacterVelocity m_rsoCharacterVelocity;
 
 	private Vector2 m_moveInput;
 	private bool m_isGrounded;
 	private float m_jumpTimer;
 	private float m_gravityScalar;
 	private float m_speedScalar;
+	private bool m_isMitiged;
+	private Vector2 m_previousPosition;
 
 	private bool IsJumping => m_jumpTimer > 0f;
 
@@ -42,13 +45,6 @@ public class CharacterMotor : MonoBehaviour
 		m_rseJump.Action -= UpdateJumpInput;
 	}
 
-
-	private void ToggleMitigedGravity(bool isEnabled)
-	{
-		m_speedScalar = isEnabled ? m_ssoCharacter.SpeedMitigedScalar : m_ssoCharacter.SpeedScalar;
-		m_gravityScalar = isEnabled ? m_ssoCharacter.GravityMitigedScalar : m_ssoCharacter.GravityScalar;
-	}
-
 	private void FixedUpdate()
 	{
 		CheckGround();
@@ -56,7 +52,9 @@ public class CharacterMotor : MonoBehaviour
 		HandleJump();
 		HandleMove();
 
+		m_previousPosition = m_rsoCurrentPosition.Value;
 		m_rsoCurrentPosition.Value = m_rigidbody2D.position;
+		m_rsoCharacterVelocity.Value = m_rsoCurrentPosition.Value - m_previousPosition;
 	}
 
 	private void UpdateMoveInput(Vector2 moveInput)
@@ -70,6 +68,11 @@ public class CharacterMotor : MonoBehaviour
 		if (!isPressed) return;
 
 		m_jumpTimer = m_ssoCharacter.JumpDuration;
+	}
+
+	private void ToggleMitigedGravity(bool isEnabled)
+	{
+		m_isMitiged = isEnabled;
 	}
 
 	private void SetCharacterPosition(Vector2 position)
@@ -104,10 +107,12 @@ public class CharacterMotor : MonoBehaviour
 
 	private void HandleMove()
 	{
+		m_gravityScalar = m_isMitiged && !m_isGrounded ? m_ssoCharacter.GravityMitigedScalar : m_ssoCharacter.GravityScalar;
 		Vector2 gravity = !m_isGrounded 
 			? Vector2.down * m_ssoCharacter.GravityForce * m_gravityScalar * Time.fixedDeltaTime 
 			: Vector2.zero;
 		
+		m_speedScalar = m_isMitiged && !m_isGrounded ? m_ssoCharacter.SpeedMitigedScalar : m_ssoCharacter.SpeedScalar;
 		Vector2 input = m_moveInput != Vector2.zero 
 			? m_moveInput * m_ssoCharacter.Speed * m_speedScalar * Time.fixedDeltaTime 
 			: Vector2.zero;
