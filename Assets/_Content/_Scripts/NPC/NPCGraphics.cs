@@ -4,34 +4,35 @@ using UnityEngine;
 
 public class NPCGraphics : MonoBehaviour
 {
-	[Title("Tweakable values")]
-    [SerializeField] private float m_oscillationDuration;
-    [SerializeField] private List<Sprite> m_sprites = new List<Sprite>();
+	[FoldoutGroup("Tweakable values")][SerializeField] protected float m_oscillationDuration;
+	[FoldoutGroup("Tweakable values")][SerializeField] protected List<Sprite> m_defaultSprites = new List<Sprite>();
     
-	[FoldoutGroup("Internal references")][SerializeField] private SpriteRenderer m_spriteRenderer;
+	[FoldoutGroup("Internal references")][SerializeField] protected SpriteRenderer m_spriteRenderer;
 
-    private int m_currentIndex;
-    private float m_oscillationTimer;
+	protected List<Sprite> m_currentSprites = new List<Sprite>();
+	protected int m_currentIndex;
+	protected float m_oscillationTimer;
 
-	private void Start()
+	protected virtual void Start()
 	{
 		m_oscillationTimer = m_oscillationDuration;
+		m_currentSprites = m_defaultSprites;
 	}
 
-    private void Update()
+	protected virtual void Update()
 	{
 		UpdateSprites(); 
 		HandleOscillation();
 	}
 
-	private  void UpdateSprites()
+	protected virtual void UpdateSprites()
 	{
-		if (m_sprites.Count <= 0) return;
+		if (m_currentSprites.Count <= 0) return;
 
-		m_spriteRenderer.sprite = m_sprites[m_currentIndex];
+		m_spriteRenderer.sprite = m_currentSprites[m_currentIndex];
 	}
 
-	private void HandleOscillation()
+	protected virtual void HandleOscillation()
 	{
 		m_oscillationTimer -= Time.deltaTime;
 		if (m_oscillationTimer <= 0f)
@@ -39,7 +40,7 @@ public class NPCGraphics : MonoBehaviour
 			m_currentIndex++;
 			m_oscillationTimer = m_oscillationDuration;
 
-			if (m_currentIndex > m_sprites.Count - 1)
+			if (m_currentIndex > m_currentSprites.Count - 1)
 			{
 				m_currentIndex = 0;
 			}

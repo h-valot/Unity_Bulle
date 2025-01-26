@@ -13,6 +13,7 @@ public class CharacterMotor : MonoBehaviour
 	[FoldoutGroup("Scriptable")][SerializeField] private RSE_PickupItem m_rsePickupItem;
 	[FoldoutGroup("Scriptable")][SerializeField] private RSO_CurrentPosition m_rsoCurrentPosition;
 	[FoldoutGroup("Scriptable")][SerializeField] private RSO_ToggleMitigedGravity m_rsoToggleMitigedGravity;
+	[FoldoutGroup("Scriptable")][SerializeField] private RSO_CharacterVelocity m_rsoCharacterVelocity;
 
 	private Vector2 m_moveInput;
 	private bool m_isGrounded;
@@ -20,6 +21,7 @@ public class CharacterMotor : MonoBehaviour
 	private float m_gravityScalar;
 	private float m_speedScalar;
 	private bool m_isMitiged;
+	private Vector2 m_previousPosition;
 
 	private bool IsJumping => m_jumpTimer > 0f;
 
@@ -50,7 +52,9 @@ public class CharacterMotor : MonoBehaviour
 		HandleJump();
 		HandleMove();
 
+		m_previousPosition = m_rsoCurrentPosition.Value;
 		m_rsoCurrentPosition.Value = m_rigidbody2D.position;
+		m_rsoCharacterVelocity.Value = m_rsoCurrentPosition.Value - m_previousPosition;
 	}
 
 	private void UpdateMoveInput(Vector2 moveInput)

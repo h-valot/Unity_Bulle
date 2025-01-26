@@ -58,6 +58,7 @@ MonoBehaviour:
   m_rsePickupItem: {fileID: 11400000, guid: d2840920dd3679a48a8dba66204b9271, type: 2}
   m_rsoCurrentPosition: {fileID: 11400000, guid: ded93db3c6beea9409520de0f320dfef, type: 2}
   m_rsoToggleMitigedGravity: {fileID: 11400000, guid: b5590c81bde1121408d1ebe3958c2a79, type: 2}
+  m_rsoCharacterVelocity: {fileID: 11400000, guid: d16dba3fb7e60254d9f19ad16976d93d, type: 2}
 --- !u!114 &5952477918962114214
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -216,7 +217,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5484023281724045929, guid: b4f15ca4696fd1f44b9d867b88bdfaa2, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7027966166001191549, guid: b4f15ca4696fd1f44b9d867b88bdfaa2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

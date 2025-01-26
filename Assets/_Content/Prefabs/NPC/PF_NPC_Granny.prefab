@@ -92,8 +92,51 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: e7362e31f15a0b946b3b26bef65ef43d, type: 3}
-    m_RemovedComponents: []
+    - target: {fileID: 8428896361334244951, guid: 0aac3e8917642b147adcc23458662a7a, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 1403957127961322583, guid: 0aac3e8917642b147adcc23458662a7a, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1337750260222717937, guid: 0aac3e8917642b147adcc23458662a7a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2449950504724848922}
   m_SourcePrefab: {fileID: 100100000, guid: 0aac3e8917642b147adcc23458662a7a, type: 3}
+--- !u!1 &2775228551417648997 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1337750260222717937, guid: 0aac3e8917642b147adcc23458662a7a, type: 3}
+  m_PrefabInstance: {fileID: 3752399469770422420}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2449950504724848922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2775228551417648997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd77ab8dd1447444387686c2c6c4d095, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_oscillationDuration: 0.666
+  m_defaultSprites:
+  - {fileID: 21300000, guid: e7362e31f15a0b946b3b26bef65ef43d, type: 3}
+  - {fileID: 21300000, guid: 33521572ba6983c4f9e3e9e39d53fca0, type: 3}
+  m_spriteRenderer: {fileID: 8563939772044082267}
+  m_spritesCarried:
+  - {fileID: 21300000, guid: e0057d4afcd25a0449676435bdb0f1fa, type: 3}
+  - {fileID: 21300000, guid: ee1040c6f75b4934bbe6e9165e92373e, type: 3}
+  m_spritesFall:
+  - {fileID: 21300000, guid: 70d62b49f8f9921489d497b3c0ddfe59, type: 3}
+  - {fileID: 21300000, guid: a74915afc18acd0429591e1f7647390d, type: 3}
+  m_rsoCurrentItem: {fileID: 11400000, guid: e8991317bb976804d94292a461f5aa99, type: 2}
+  m_rsoCharacterVelocity: {fileID: 11400000, guid: d16dba3fb7e60254d9f19ad16976d93d, type: 2}
+--- !u!212 &8563939772044082267 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 4812670931241616591, guid: 0aac3e8917642b147adcc23458662a7a, type: 3}
+  m_PrefabInstance: {fileID: 3752399469770422420}
+  m_PrefabAsset: {fileID: 0}
