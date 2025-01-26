@@ -86,7 +86,8 @@ public class CharacterMotor : MonoBehaviour
 	private void PickUpItem(Transform pickupTransform)
 	{
 		pickupTransform.SetParent(m_itemAnchor);
-		pickupTransform.DOJump(m_itemAnchor.position, 1f, 1, 0.5f).SetEase(Ease.Linear).SetLink(this.gameObject);
+		pickupTransform.position = m_itemAnchor.position;
+		//pickupTransform.DOJump(m_itemAnchor.position, 1f, 1, 0.5f).SetEase(Ease.Linear).SetLink(gameObject);
 	}
 
 	private void CheckGround()

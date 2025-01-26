@@ -8,12 +8,6 @@ public class NPCFisherman : NPCGraphics
 
 	[FoldoutGroup("Internal references")][SerializeField] protected Bubble m_bubble;
 
-	protected override void Start()
-	{
-		base.Start();
-		m_currentIndex = 0;
-	}
-
 	protected override void Update()
 	{
 		UpdateSprites();
@@ -25,6 +19,6 @@ public class NPCFisherman : NPCGraphics
 			? m_defaultSprites
 			: m_spritesSatisfied;
 
-		base.UpdateSprites();
+		m_spriteRenderer.sprite = m_currentSprites[0];
 	}
 }
