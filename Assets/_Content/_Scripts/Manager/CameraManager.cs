@@ -14,7 +14,7 @@ public class CameraManager : MonoBehaviour
 	{
 		m_camera.transform.position = Vector3.SmoothDamp(
 			m_camera.transform.position,
-			new Vector3(m_rsoCurrentPosition.Value.x, m_rsoCurrentPosition.Value.y, -10),
+			new Vector3(m_rsoCurrentPosition.Value.x, m_rsoCurrentPosition.Value.y + 2, -10),
 			ref m_currentVelocity,
 			m_ssoCamera.SmoothTime
 		);

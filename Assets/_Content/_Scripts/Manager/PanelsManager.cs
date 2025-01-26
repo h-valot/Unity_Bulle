@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 
 public class PanelsManager : MonoBehaviour
@@ -12,21 +13,17 @@ public class PanelsManager : MonoBehaviour
     [SerializeField] private PanelType[] m_panelsType;
     [SerializeField] private bool[] m_arePanelsDiscovered;
 
-    // Start is called before the first frame update
-    void Start()
+	private void Start()
     {
         //Check what are the panel discovered at start
         for (int i = 0; i < m_panels.Length; i++)
         {
+			m_panels[i].transform.localScale = new Vector3(1, 0, 1);
             if (m_arePanelsDiscovered[i])
             {
                 RevealPanel(i);
-            }
-            else
-            {
-                m_panels[i].SetActive(false);
-            }
-        }    
+			}
+		}    
     }
 
     private void OnEnable()
@@ -63,7 +60,7 @@ public class PanelsManager : MonoBehaviour
 
     private void RevealPanel(int panelIndex)
     {
-        m_panels[panelIndex].SetActive(true);
+        m_panels[panelIndex].transform.DOScaleY(1f, 0.3f);
     }
 
     private void TogglePanelSpecialAction(PanelType panelType)
