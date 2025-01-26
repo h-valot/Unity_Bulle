@@ -28,52 +28,42 @@ public class AudioManager : MonoBehaviour
         switch (_currentPanel)
         {
             case PanelType.HARBOR:
-                Debug.Log(_currentPanel.ToString());
                 PlayMusic(_portMusic);
                 break;
             
             case PanelType.MARKET:
-                Debug.Log(_currentPanel.ToString());
                 PlayMusic(_marketMusic);
                 break;
             
             case PanelType.GARDEN:
-                Debug.Log(_currentPanel.ToString());
                 PlayMusic(_gardenMusic);
                 break;
             
             case PanelType.ABYSS:
-                Debug.Log(_currentPanel.ToString());
                 PlayMusic(_abyssMusic);
                 break;
             
             case PanelType.WHALE:
-                Debug.Log(_currentPanel.ToString());
                 PlayMusic(_whaleMusic);
                 break;
             
             case PanelType.RAIN:
-                Debug.Log(_currentPanel.ToString());
                 PlayMusic(_rainMusic);
                 break;
 
             case PanelType.LIGHTHOUSE_BOTTOM:
-                Debug.Log(_currentPanel.ToString());
                 PlayMusic(_lighthouseBottomMusic);
                 break;
 
             case PanelType.LIGHTHOUSE_TOP:
-                Debug.Log(_currentPanel.ToString());
                 PlayMusic(_lighthouseTopMusic);
                 break;
 
             case PanelType.HOUSE:
-                Debug.Log(_currentPanel.ToString());
                 PlayMusic(_houseMusic);
                 break;
 
             case PanelType.ALL:
-                Debug.Log(_currentPanel.ToString());
                 break;
         }
     }
