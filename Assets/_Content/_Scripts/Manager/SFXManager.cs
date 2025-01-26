@@ -1,4 +1,6 @@
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 
 public class SFXManager : MonoBehaviour
 {
@@ -26,7 +28,7 @@ public class SFXManager : MonoBehaviour
     
     private void DetermineSFX(InteractType interactType, ItemType itemType)
     {
-        AudioClip sfxClip = null;
+		AudioClip sfxClip = null;
 
         switch (interactType)
         {
@@ -89,8 +91,17 @@ public class SFXManager : MonoBehaviour
     }
 
     private void PlaySFX(AudioClip sfxClip)
-    {
-        m_SFXSource.PlayOneShot(sfxClip);
+	{
+		if (m_timer > 0f) return;
+
+		m_timer = 0.5f;
+		m_SFXSource.PlayOneShot(sfxClip);
     }
+
+	private float m_timer;
+	private void Update()
+	{
+		m_timer -= Time.deltaTime;
+	}
 }
 

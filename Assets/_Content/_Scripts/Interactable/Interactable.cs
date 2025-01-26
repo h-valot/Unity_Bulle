@@ -1,7 +1,6 @@
 using UnityEngine;
 using Sirenix.OdinInspector;
 using System;
-using Unity.VisualScripting;
 using DG.Tweening;
 
 public class Interactable : MonoBehaviour
@@ -141,7 +140,6 @@ public class Interactable : MonoBehaviour
 				spawnInteractable.transform.localScale = Vector3.zero;
 				spawnInteractable.transform.DOScale(InteractableScale, 1f).SetEase(Ease.OutBounce).SetLink(this.gameObject);
 				spawnInteractable.transform.DOJump(m_spawnPosition.position, 1f, 1, 0.5f).SetEase(Ease.Linear).SetLink(this.gameObject).OnComplete(() => { m_rsePlaySoundOfType.Call(m_type, m_pfItemSpawned.PickupType);});
-				m_rsePlaySoundOfType.Call(InteractType.SPAWN, m_pfItemSpawned.PickupType);
 
                 if (m_pfItemSpawned.PickupType == ItemType.DIVING_SUIT)
 				{
