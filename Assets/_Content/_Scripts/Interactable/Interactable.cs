@@ -157,6 +157,8 @@ public class Interactable : MonoBehaviour
 						// TODO Animate door
 						m_rainDoor.SetActive(true);
 						m_rainTravel.IsValid = true;
+						m_rseSetBubble.Call(CharacterType.FISHMONGER_SHORTKING, 1);
+						m_rseSetBubble.Call(CharacterType.FISHMONGER_TALL, 1);
 					}
 					else if (m_itemRequiered == ItemType.KEY)
 					{
