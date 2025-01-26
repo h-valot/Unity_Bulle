@@ -11,8 +11,9 @@ public class CharacterGraphics : MonoBehaviour
 	[FoldoutGroup("Scriptable")][SerializeField] private RSO_ToggleDivingSuit m_rsoToggleDivingSuit;
 	[FoldoutGroup("Scriptable")][SerializeField] private RSE_Move m_rseMove;
 	[FoldoutGroup("Scriptable")][SerializeField] private RSO_CurrentItem m_rsoCurrentItem;
+    [FoldoutGroup("Scriptable")][SerializeField] private RSE_SetCharacterScale m_rseSetCharacterScale;
 
-	private Vector2 m_moveInput;
+    private Vector2 m_moveInput;
 	private float m_oscillationTimer;
 	private List<Sprite> m_currentSprites = new List<Sprite>();
 	private int m_currentIndex;
@@ -20,19 +21,22 @@ public class CharacterGraphics : MonoBehaviour
 	private void Start()
 	{
 		m_rsoToggleDivingSuit.Value = false;
+		ScaleCharacterGraphics(m_ssoCharacter.GraphicsScaleBase);
 	}
 
 	private void OnEnable()
 	{
 		m_rsoToggleDivingSuit.OnChanged += ToggleDivingSuit;
 		m_rseMove.Action += UpdateMoveInput;
-	}
+		m_rseSetCharacterScale.Action += ScaleCharacterGraphics;
+    }
 
 	private void OnDisable()
 	{
 		m_rsoToggleDivingSuit.OnChanged -= ToggleDivingSuit;
 		m_rseMove.Action -= UpdateMoveInput;
-	}
+        m_rseSetCharacterScale.Action -= ScaleCharacterGraphics;
+    }
 
 	private void Update()
 	{
@@ -75,5 +79,10 @@ public class CharacterGraphics : MonoBehaviour
 				m_currentIndex = 0;
 			}
 		}
+	}
+
+	private void ScaleCharacterGraphics(float newScale)
+	{
+		transform.localScale = Vector3.one * newScale;
 	}
 }
