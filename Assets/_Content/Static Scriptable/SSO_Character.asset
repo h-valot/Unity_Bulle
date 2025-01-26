@@ -24,3 +24,14 @@ MonoBehaviour:
   GroundLayerToInclude:
     serializedVersion: 2
     m_Bits: 1
+  OscillationDuration: 0.333
+  CarryIdleDelay: 3
+  CarrySprites:
+  - {fileID: 21300000, guid: 8122bd9a9be1c3e4d8ed7e8025e5fb86, type: 3}
+  - {fileID: 21300000, guid: bdadc5c8a9f2f7a429e4671b4c247649, type: 3}
+  CarryWalkSprites:
+  - {fileID: 21300000, guid: 9daf7a2acbcd72c499007642be79ad1e, type: 3}
+  - {fileID: 21300000, guid: 63868722f024c1c4a9cb7209981a8bd0, type: 3}
+  WalkSprites:
+  - {fileID: 21300000, guid: 3e9894d90ca74f74cb6b07ebf3555286, type: 3}
+  - {fileID: 21300000, guid: 09c5275fba5bfa04b889b88d4f2e6386, type: 3}
