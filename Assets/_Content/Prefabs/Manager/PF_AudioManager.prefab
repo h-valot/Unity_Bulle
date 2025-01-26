@@ -79,14 +79,14 @@ MonoBehaviour:
   _rsoCurrentPanel: {fileID: 11400000, guid: 1eac95a65c5c4db489562d2ca876dbb4, type: 2}
   _audioSource: {fileID: 1277573823628545356}
   _portMusic: {fileID: 8300000, guid: d4c64fec91b1bd34294b5d355b7be4af, type: 3}
-  _abyssMusic: {fileID: 0}
+  _abyssMusic: {fileID: 8300000, guid: 0309749c76a5f124b8b960bdfeb75eb8, type: 3}
   _marketMusic: {fileID: 8300000, guid: a0ba545f4b608e3489a2959bccd4d02a, type: 3}
   _gardenMusic: {fileID: 8300000, guid: 570e9ba2ec369864aac7c859b6a88f21, type: 3}
-  _houseMusic: {fileID: 0}
-  _whaleMusic: {fileID: 0}
-  _rainMusic: {fileID: 0}
-  _lighthouseTopMusic: {fileID: 0}
-  _lighthouseBottomMusic: {fileID: 0}
+  _houseMusic: {fileID: 8300000, guid: b53a1e26bd71f844f9691a8dc91c2ea4, type: 3}
+  _whaleMusic: {fileID: 8300000, guid: 1c12b9cad50d27346826be110e2e4af2, type: 3}
+  _rainMusic: {fileID: 8300000, guid: 102dc1dd52d5cf44494b9157a0438a85, type: 3}
+  _lighthouseTopMusic: {fileID: 8300000, guid: daa61fc9990de76439fcf36ea8d43db4, type: 3}
+  _lighthouseBottomMusic: {fileID: 8300000, guid: 6583e7fdd79de274ead2639629344611, type: 3}
 --- !u!1 &5412352177381556886
 GameObject:
   m_ObjectHideFlags: 0
