@@ -98,7 +98,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: faaa97344ccd8404a9d05fe32bbfe787, type: 3}
     - target: {fileID: 5656731162987792008, guid: 0aac3e8917642b147adcc23458662a7a, type: 3}
       propertyPath: m_SortingOrder
-      value: 19
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6030850714902013665, guid: 0aac3e8917642b147adcc23458662a7a, type: 3}
       propertyPath: m_Layer
@@ -142,11 +142,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8714931105223621407, guid: 0aac3e8917642b147adcc23458662a7a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.01
+      value: 0.76
       objectReference: {fileID: 0}
     - target: {fileID: 8714931105223621407, guid: 0aac3e8917642b147adcc23458662a7a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.86
+      value: 3.01
       objectReference: {fileID: 0}
     - target: {fileID: 8714931105223621407, guid: 0aac3e8917642b147adcc23458662a7a, type: 3}
       propertyPath: m_ConstrainProportionsScale

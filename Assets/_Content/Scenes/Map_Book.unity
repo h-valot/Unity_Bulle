@@ -1240,11 +1240,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2189199495340607990, guid: b4a1700e45f87954da219d5c7a9002bb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 23.68
+      value: 24.3
       objectReference: {fileID: 0}
     - target: {fileID: 2189199495340607990, guid: b4a1700e45f87954da219d5c7a9002bb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -35.14
+      value: -34.95
       objectReference: {fileID: 0}
     - target: {fileID: 2189199495340607990, guid: b4a1700e45f87954da219d5c7a9002bb, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1942,17 +1942,33 @@ PrefabInstance:
       propertyPath: m_interactableFishermanDiving
       value: 
       objectReference: {fileID: 1887621737}
+    - target: {fileID: 2493089816823411730, guid: 2bda89b5782c6f1469cec9cef877ab8a, type: 3}
+      propertyPath: m_Size.x
+      value: 4.414139
+      objectReference: {fileID: 0}
+    - target: {fileID: 2493089816823411730, guid: 2bda89b5782c6f1469cec9cef877ab8a, type: 3}
+      propertyPath: m_Size.y
+      value: 3.8888893
+      objectReference: {fileID: 0}
+    - target: {fileID: 2493089816823411730, guid: 2bda89b5782c6f1469cec9cef877ab8a, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.44646454
+      objectReference: {fileID: 0}
+    - target: {fileID: 2493089816823411730, guid: 2bda89b5782c6f1469cec9cef877ab8a, type: 3}
+      propertyPath: m_Offset.y
+      value: -1.4444447
+      objectReference: {fileID: 0}
     - target: {fileID: 6264334759012030327, guid: 2bda89b5782c6f1469cec9cef877ab8a, type: 3}
       propertyPath: m_Name
       value: PF_LetterBoxCollider
       objectReference: {fileID: 0}
     - target: {fileID: 7348080946763467406, guid: 2bda89b5782c6f1469cec9cef877ab8a, type: 3}
       propertyPath: m_LocalScale.x
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7348080946763467406, guid: 2bda89b5782c6f1469cec9cef877ab8a, type: 3}
       propertyPath: m_LocalScale.y
-      value: 7
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7348080946763467406, guid: 2bda89b5782c6f1469cec9cef877ab8a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2344,6 +2360,11 @@ Transform:
   - {fileID: 1824065059}
   m_Father: {fileID: 160073426}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &359377739 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 2959216620025676814, guid: 75c5e82bd3458bc49a48ca9628c2e806, type: 3}
+  m_PrefabInstance: {fileID: 712855521}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &360813059
 GameObject:
   m_ObjectHideFlags: 0
@@ -4480,7 +4501,7 @@ Transform:
   m_GameObject: {fileID: 671537541}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.06, y: 9.93, z: 0}
+  m_LocalPosition: {x: 0.07, y: 4.95, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4755,6 +4776,18 @@ PrefabInstance:
       propertyPath: dialogue1
       value: J'ai perdu ma botte, mais je ne rentre plus dans mon scaphandre
       objectReference: {fileID: 0}
+    - target: {fileID: 2243428088639145622, guid: 75c5e82bd3458bc49a48ca9628c2e806, type: 3}
+      propertyPath: m_sprites.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2243428088639145622, guid: 75c5e82bd3458bc49a48ca9628c2e806, type: 3}
+      propertyPath: m_sprites.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 73c933f1a8cb24542920f60e2815075c, type: 3}
+    - target: {fileID: 2243428088639145622, guid: 75c5e82bd3458bc49a48ca9628c2e806, type: 3}
+      propertyPath: m_sprites.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: 78f37fac844a16946a8c7ecf91be6fa9, type: 3}
     - target: {fileID: 2728786954489561651, guid: 75c5e82bd3458bc49a48ca9628c2e806, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -4819,6 +4852,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5701033829292865210, guid: 75c5e82bd3458bc49a48ca9628c2e806, type: 3}
+      propertyPath: m_spriteRenderer
+      value: 
+      objectReference: {fileID: 359377739}
     - target: {fileID: 5951333613458531163, guid: 75c5e82bd3458bc49a48ca9628c2e806, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -5160,8 +5197,8 @@ Transform:
   m_GameObject: {fileID: 731324951}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 41.88066, y: -39.55595, z: 0}
-  m_LocalScale: {x: 17.563, y: 1.7125, z: 1}
+  m_LocalPosition: {x: 41.88066, y: -39.7272, z: 0}
+  m_LocalScale: {x: 17.563, y: 2.055, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -9621,11 +9658,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 702451055649555671, guid: 88585b78a9c98da438395dde7a9ceea0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 23.539999
+      value: 24.03
       objectReference: {fileID: 0}
     - target: {fileID: 702451055649555671, guid: 88585b78a9c98da438395dde7a9ceea0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -36.1
+      value: -35.96
       objectReference: {fileID: 0}
     - target: {fileID: 702451055649555671, guid: 88585b78a9c98da438395dde7a9ceea0, type: 3}
       propertyPath: m_LocalPosition.z
