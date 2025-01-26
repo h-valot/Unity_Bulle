@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 2f38b614c2c135b4096448394621734a
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - m_rsoCurrentPanel: {fileID: 11400000, guid: 1eac95a65c5c4db489562d2ca876dbb4, type: 2}
+  - m_rseSetCharacterScale: {fileID: 11400000, guid: b04ba2290c2432a46896b2b9366229b9, type: 2}
+  - m_ssoCharacter: {fileID: 11400000, guid: 4d72b7f9f302f63478716a3a4dc8fec5, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
