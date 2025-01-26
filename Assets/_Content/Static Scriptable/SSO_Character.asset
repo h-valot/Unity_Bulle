@@ -24,6 +24,7 @@ MonoBehaviour:
   GroundLayerToInclude:
     serializedVersion: 2
     m_Bits: 1
+  GraphicsScaleBase: 1
   OscillationDuration: 0.333
   CarryIdleDelay: 3
   CarrySprites:
@@ -35,3 +36,4 @@ MonoBehaviour:
   WalkSprites:
   - {fileID: 21300000, guid: 3e9894d90ca74f74cb6b07ebf3555286, type: 3}
   - {fileID: 21300000, guid: 09c5275fba5bfa04b889b88d4f2e6386, type: 3}
+  GraphicsScaleInHouse: 3.2
