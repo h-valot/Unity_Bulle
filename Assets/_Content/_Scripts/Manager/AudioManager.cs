@@ -4,92 +4,86 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    [SerializeField] private RSO_CurrentPanel _rsoCurrentPanel;
-    [SerializeField] private AudioSource _audioSource;
-    [SerializeField] private AudioClip _portMusic;
-    [SerializeField] private AudioClip _abyssMusic;
-    [SerializeField] private AudioClip _marketMusic;
-    [SerializeField] private AudioClip _gardenMusic;
-    [SerializeField] private AudioClip _houseMusic;
-    [SerializeField] private AudioClip _whaleMusic;
-    [SerializeField] private AudioClip _rainMusic;
-    [SerializeField] private AudioClip _lighthouseTopMusic;
-    [SerializeField] private AudioClip _lighthouseBottomMusic;
-    private PanelType _currentPanel;
-    private PanelType _lastPanel;
+    [SerializeField] private RSO_CurrentPanel m_rsoCurrentPanel;
 
-    void Start()
+    [SerializeField] private AudioSource m_audioSource;
+    [SerializeField] private AudioClip m_portMusic;
+    [SerializeField] private AudioClip m_abyssMusic;
+    [SerializeField] private AudioClip m_marketMusic;
+    [SerializeField] private AudioClip m_gardenMusic;
+    [SerializeField] private AudioClip m_houseMusic;
+    [SerializeField] private AudioClip m_whaleMusic;
+    [SerializeField] private AudioClip m_rainMusic;
+    [SerializeField] private AudioClip m_lighthouseTopMusic;
+    [SerializeField] private AudioClip m_lighthouseBottomMusic;
+
+    private void OnEnable()
     {
-        _lastPanel = PanelType.ALL;
+        m_rsoCurrentPanel.OnChanged += DeterminePanelMusic;
     }
 
-    private void DeterminePanel()
+    private void OnDisable()
     {
-        switch (_currentPanel)
+        m_rsoCurrentPanel.OnChanged -= DeterminePanelMusic;
+    }
+
+    private void DeterminePanelMusic(PanelType panelType)
+    {
+        switch (panelType)
         {
             case PanelType.HARBOR:
-                Debug.Log(_currentPanel.ToString());
-                PlayMusic(_portMusic);
+                Debug.Log(panelType.ToString());
+                PlayMusic(m_portMusic);
                 break;
             
             case PanelType.MARKET:
-                Debug.Log(_currentPanel.ToString());
-                PlayMusic(_marketMusic);
+                Debug.Log(panelType.ToString());
+                PlayMusic(m_marketMusic);
                 break;
             
             case PanelType.GARDEN:
-                Debug.Log(_currentPanel.ToString());
-                PlayMusic(_gardenMusic);
+                Debug.Log(panelType.ToString());
+                PlayMusic(m_gardenMusic);
                 break;
             
             case PanelType.ABYSS:
-                Debug.Log(_currentPanel.ToString());
-                PlayMusic(_abyssMusic);
+                Debug.Log(panelType.ToString());
+                PlayMusic(m_abyssMusic);
                 break;
             
             case PanelType.WHALE:
-                Debug.Log(_currentPanel.ToString());
-                PlayMusic(_whaleMusic);
+                Debug.Log(panelType.ToString());
+                PlayMusic(m_whaleMusic);
                 break;
             
             case PanelType.RAIN:
-                Debug.Log(_currentPanel.ToString());
-                PlayMusic(_rainMusic);
+                Debug.Log(panelType.ToString());
+                PlayMusic(m_rainMusic);
                 break;
 
             case PanelType.LIGHTHOUSE_BOTTOM:
-                Debug.Log(_currentPanel.ToString());
-                PlayMusic(_lighthouseBottomMusic);
+                Debug.Log(panelType.ToString());
+                PlayMusic(m_lighthouseBottomMusic);
                 break;
 
             case PanelType.LIGHTHOUSE_TOP:
-                Debug.Log(_currentPanel.ToString());
-                PlayMusic(_lighthouseTopMusic);
+                Debug.Log(panelType.ToString());
+                PlayMusic(m_lighthouseTopMusic);
                 break;
 
             case PanelType.HOUSE:
-                Debug.Log(_currentPanel.ToString());
-                PlayMusic(_houseMusic);
+                Debug.Log(panelType.ToString());
+                PlayMusic(m_houseMusic);
                 break;
 
             case PanelType.ALL:
-                Debug.Log(_currentPanel.ToString());
+                Debug.Log(panelType.ToString());
                 break;
         }
     }
     private void PlayMusic(AudioClip audioClip)
     {
-        _audioSource.Stop();
-        _audioSource.PlayOneShot(audioClip);
-        _lastPanel = _currentPanel;
-    }
-
-    void Update()
-    {
-        _currentPanel = _rsoCurrentPanel.Value;
-        if(_currentPanel != _lastPanel)
-        {
-            DeterminePanel();
-        }
+        m_audioSource.Stop();
+        m_audioSource.PlayOneShot(audioClip);
     }
 }

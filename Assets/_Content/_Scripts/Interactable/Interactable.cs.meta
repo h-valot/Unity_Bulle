@@ -3,7 +3,33 @@ guid: 880c595841e67a941a0e8ae236dfd9c8
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - m_rsePlaySoundOfType: {fileID: 11400000, guid: 9d5c589051fdab84c9434f5be34f5d88, type: 2}
+  - m_travelPosition: {instanceID: 0}
+  - m_pfItemSpawned: {instanceID: 0}
+  - m_spawnPosition: {instanceID: 0}
+  - m_interactableFishermanBoot: {instanceID: 0}
+  - m_marketTravelPosition: {instanceID: 0}
+  - m_interactableFishermanFish: {instanceID: 0}
+  - m_pfLadderLong: {instanceID: 0}
+  - m_pfPlantLong: {instanceID: 0}
+  - m_interactableGrandpaGranny: {instanceID: 0}
+  - m_placePosition: {instanceID: 0}
+  - m_rainTravel: {instanceID: 0}
+  - m_rainDoor: {instanceID: 0}
+  - m_TravelToHouse: {instanceID: 0}
+  - m_waypointToHouse: {instanceID: 0}
+  - m_balconyTravel: {instanceID: 0}
+  - m_lightTopTravel: {instanceID: 0}
+  - m_boxCollider2D: {instanceID: 0}
+  - m_rsoCurrentItem: {instanceID: 0}
+  - m_rsoCurrentPanel: {instanceID: 0}
+  - m_rsePickupItem: {instanceID: 0}
+  - m_rsePlaceItem: {instanceID: 0}
+  - m_rseSetCharacterPosition: {instanceID: 0}
+  - m_rsoToggleDivingSuit: {instanceID: 0}
+  - m_rsoToggleMitigedGravity: {instanceID: 0}
+  - m_rseSetBubble: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
