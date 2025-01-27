@@ -2,9 +2,12 @@ using UnityEngine;
 using Sirenix.OdinInspector;
 using System;
 using Unity.VisualScripting;
+using DG.Tweening;
 
 public class Interactable : MonoBehaviour
 {
+	[SerializeField] private RSE_PlaySoundOfType m_rsePlaySoundOfType; 
+
     [Title("Tweakable values")]
 	[OnValueChanged("ResetSerializedTypes")]
     [SerializeField] private InteractType m_type;
@@ -132,9 +135,15 @@ public class Interactable : MonoBehaviour
 
 			case InteractType.SPAWN:
 				IsValid = false;
-				Instantiate(m_pfItemSpawned, m_spawnPosition.position, Quaternion.identity);
 
-				if (m_pfItemSpawned.PickupType == ItemType.DIVING_SUIT)
+				Interactable spawnInteractable = Instantiate(m_pfItemSpawned, transform.position, Quaternion.identity);
+				float InteractableScale = spawnInteractable.transform.localScale.x;
+				spawnInteractable.transform.localScale = Vector3.zero;
+				spawnInteractable.transform.DOScale(InteractableScale, 1f).SetEase(Ease.OutBounce).SetLink(this.gameObject);
+				spawnInteractable.transform.DOJump(m_spawnPosition.position, 1f, 1, 0.5f).SetEase(Ease.Linear).SetLink(this.gameObject).OnComplete(() => { m_rsePlaySoundOfType.Call(m_type, m_pfItemSpawned.PickupType);});
+				m_rsePlaySoundOfType.Call(InteractType.SPAWN, m_pfItemSpawned.PickupType);
+
+                if (m_pfItemSpawned.PickupType == ItemType.DIVING_SUIT)
 				{
 					// Enable fisherman interactable place
 					m_interactableFishermanBoot.IsValid = true;
@@ -174,7 +183,10 @@ public class Interactable : MonoBehaviour
 				break;
 
 			case InteractType.PICKUP:
-				if (m_rsoCurrentItem.Value == ItemType.NONE 
+				
+                m_rsePlaySoundOfType.Call(InteractType.PICKUP, ItemType.NONE);
+
+                if (m_rsoCurrentItem.Value == ItemType.NONE 
 				&& PickupType == ItemType.DIVING_SUIT)
 				{
 					m_rsoToggleDivingSuit.Value = true;
@@ -223,7 +235,8 @@ public class Interactable : MonoBehaviour
 		m_rsoCurrentItem.Value = ItemType.NONE;
 
 		// TODO DOJump towards destination
-		transform.position = destination;
+		transform.DOJump(destination, 1f, 1, 0.5f).SetEase(Ease.Linear).SetLink(gameObject);
+		m_rsePlaySoundOfType.Call(InteractType.PLACE, PickupType);
 		transform.parent = null;
 
 		switch (PickupType)

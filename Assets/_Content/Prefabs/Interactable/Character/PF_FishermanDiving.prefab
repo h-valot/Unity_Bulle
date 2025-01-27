@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 880c595841e67a941a0e8ae236dfd9c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_rsePlaySoundOfType: {fileID: 11400000, guid: 9d5c589051fdab84c9434f5be34f5d88, type: 2}
   m_type: 1
   m_travelTo: 0
   m_travelPosition: {fileID: 0}
