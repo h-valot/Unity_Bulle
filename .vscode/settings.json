@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Unity_GGJ25.sln"
+    "dotnet.defaultSolution": "bulle.sln"
 }

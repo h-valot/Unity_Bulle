@@ -8,22 +8,21 @@ public class NPCLover : NPCGraphics
 
 	[FoldoutGroup("Scriptable")][SerializeField] protected RSO_CurrentItem m_rsoCurrentItem;
 
-	protected override void UpdateSprites()
+	protected override void Update()
 	{
-		m_currentSprites = m_rsoCurrentItem.Value != ItemType.GRANNY
-			? m_defaultSprites
-			: m_spriteChocked;
-
-		base.UpdateSprites();
+		UpdateSprites();
 	}
 
-	protected override void HandleOscillation()
+	protected override void UpdateSprites()
 	{
-		base.HandleOscillation();
+		m_currentSprites =  m_defaultSprites;
 
-		if (m_rsoCurrentItem.Value == ItemType.GRANNY)
+		if (m_rsoCurrentItem.Value == ItemType.GRANNY) 
 		{
+			m_currentSprites = m_spriteChocked;
 			m_currentIndex = 0;
 		}
+
+		m_spriteRenderer.sprite = m_currentSprites[m_currentIndex];
 	}
 }

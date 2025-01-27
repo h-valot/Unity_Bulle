@@ -19,7 +19,9 @@ public class Interactable : MonoBehaviour
 	// SPAWN
     [ShowIf("m_type", InteractType.SPAWN)][SerializeField] private Interactable m_pfItemSpawned;
     [ShowIf("m_type", InteractType.SPAWN)][SerializeField] private Transform m_spawnPosition;
-	[ShowIf("@m_pfItemSpawned.PickupType == ItemType.DIVING_SUIT")][SerializeField] private Interactable m_interactableFishermanBoot;
+
+	[ShowIf("@m_pfItemSpawned != null && m_pfItemSpawned.PickupType == ItemType.DIVING_SUIT")]
+	[SerializeField] private Interactable m_interactableFishermanBoot;
 
 
 	// PICKUP
@@ -42,7 +44,6 @@ public class Interactable : MonoBehaviour
 	[ShowIf("m_type", InteractType.PLACE)][SerializeField] private ItemType m_itemRequiered;
 
 	[ShowIf("m_itemRequiered", ItemType.FISH)][SerializeField] private Interactable m_rainTravel;
-	[ShowIf("m_itemRequiered", ItemType.FISH)][SerializeField] private GameObject m_rainDoor;
 
 	[ShowIf("m_itemRequiered", ItemType.KEY)][SerializeField] private Interactable m_TravelToHouse;
 	[ShowIf("m_itemRequiered", ItemType.KEY)][SerializeField] private Transform m_waypointToHouse;
@@ -162,7 +163,6 @@ public class Interactable : MonoBehaviour
 					else if (m_itemRequiered == ItemType.FISH)
 					{
 						// TODO Animate door
-						m_rainDoor.SetActive(true);
 						m_rainTravel.IsValid = true;
 						m_rseSetBubble.Call(CharacterType.FISHMONGER_SHORTKING, 1);
 						m_rseSetBubble.Call(CharacterType.FISHMONGER_TALL, 1);
@@ -277,7 +277,7 @@ public class Interactable : MonoBehaviour
 		if (!m_displayGizmos) return;
 
 		Gizmos.color = Color.cyan;
-		Gizmos.DrawWireCube(transform.position, m_boxCollider2D.size);
+		Gizmos.DrawWireCube(transform.position, transform.localScale);
 	}
 
 #endif
