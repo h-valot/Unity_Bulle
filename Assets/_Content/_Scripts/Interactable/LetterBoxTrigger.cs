@@ -17,10 +17,9 @@ public class LetterBoxTrigger : MonoBehaviour
 		m_rseSetBubble.Call(CharacterType.FISHMONGER_SHORTKING, 0);
 		m_rseSetBubble.Call(CharacterType.FISHMONGER_TALL, 0);
 		m_rseSetBubble.Call(CharacterType.LETTER, 0);
-		m_rseSetBubble.Call(CharacterType.LOVER, 0);
 		m_rseSetBubble.Call(CharacterType.SINGER, 0);
-		m_rseSetBubble.Call(CharacterType.COAST_GUARD, 0);
 		m_rseSetBubble.Call(CharacterType.GRANDPA, 1);
+
 		m_interactableFishermanDiving.IsValid = true;
 	}
 }

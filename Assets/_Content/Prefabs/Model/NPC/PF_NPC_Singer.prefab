@@ -146,7 +146,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8428896361334244951, guid: 0aac3e8917642b147adcc23458662a7a, type: 3}
       propertyPath: Type
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8428896361334244951, guid: 0aac3e8917642b147adcc23458662a7a, type: 3}
       propertyPath: dialogue1

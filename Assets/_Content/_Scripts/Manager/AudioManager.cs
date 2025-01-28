@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AudioManager : MonoBehaviour
@@ -32,55 +30,43 @@ public class AudioManager : MonoBehaviour
         switch (panelType)
         {
             case PanelType.HARBOR:
-                Debug.Log(panelType.ToString());
                 PlayMusic(m_portMusic);
                 break;
             
             case PanelType.MARKET:
-                Debug.Log(panelType.ToString());
                 PlayMusic(m_marketMusic);
                 break;
             
             case PanelType.GARDEN:
-                Debug.Log(panelType.ToString());
                 PlayMusic(m_gardenMusic);
                 break;
             
             case PanelType.ABYSS:
-                Debug.Log(panelType.ToString());
                 PlayMusic(m_abyssMusic);
                 break;
             
             case PanelType.WHALE:
-                Debug.Log(panelType.ToString());
                 PlayMusic(m_whaleMusic);
                 break;
             
             case PanelType.RAIN:
-                Debug.Log(panelType.ToString());
                 PlayMusic(m_rainMusic);
                 break;
 
             case PanelType.LIGHTHOUSE_BOTTOM:
-                Debug.Log(panelType.ToString());
                 PlayMusic(m_lighthouseBottomMusic);
                 break;
 
             case PanelType.LIGHTHOUSE_TOP:
-                Debug.Log(panelType.ToString());
                 PlayMusic(m_lighthouseTopMusic);
                 break;
 
             case PanelType.HOUSE:
-                Debug.Log(panelType.ToString());
                 PlayMusic(m_houseMusic);
-                break;
-
-            case PanelType.ALL:
-                Debug.Log(panelType.ToString());
                 break;
         }
     }
+
     private void PlayMusic(AudioClip audioClip)
     {
         m_audioSource.Stop();

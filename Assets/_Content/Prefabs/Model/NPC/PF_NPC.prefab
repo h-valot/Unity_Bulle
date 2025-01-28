@@ -67,6 +67,7 @@ MonoBehaviour:
   m_sprites: []
   m_graphicsParent: {fileID: 3398136122651017476}
   m_spriteRenderer: {fileID: 5656731162987792008}
+  Index: -1
 --- !u!61 &2254296894428229875
 BoxCollider2D:
   m_ObjectHideFlags: 0

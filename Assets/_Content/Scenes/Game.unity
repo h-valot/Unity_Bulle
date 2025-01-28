@@ -5192,7 +5192,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 341611232893424636, guid: 18e9234e7f8a86749be5939b4a902d28, type: 3}
       propertyPath: Type
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1499810371813656115, guid: 18e9234e7f8a86749be5939b4a902d28, type: 3}
       propertyPath: m_Enabled
@@ -6826,7 +6826,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5712653415617861501, guid: aad4200c141ce9942a4e3ebb0eba047b, type: 3}
       propertyPath: Type
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6857482561897104050, guid: aad4200c141ce9942a4e3ebb0eba047b, type: 3}
       propertyPath: m_Enabled
@@ -9410,7 +9410,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4714223621811401748, guid: 6d50bb7efe7b40f4793af4d957db29d2, type: 3}
       propertyPath: m_sprites.Array.size
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5837097659744248283, guid: 6d50bb7efe7b40f4793af4d957db29d2, type: 3}
       propertyPath: m_Enabled
@@ -9773,7 +9773,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6461820228609473894, guid: 925007b8a9ab8c745ad435f6c5ef3af5, type: 3}
       propertyPath: Type
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7193714063835102649, guid: 925007b8a9ab8c745ad435f6c5ef3af5, type: 3}
       propertyPath: m_MaskInteraction
@@ -11150,7 +11150,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -30
-  m_Sprite: {fileID: 21300000, guid: f6b05126d65ee434fae3be7e5c25b47f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ddd006e05a392594a83fc1b2dc19259f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -11296,8 +11296,8 @@ Transform:
   - {fileID: 71668099}
   - {fileID: 517625565}
   - {fileID: 19869323}
-  - {fileID: 1101657182}
   - {fileID: 976450737}
+  - {fileID: 1101657182}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1522827204 stripped
@@ -12915,7 +12915,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 796795043789371444, guid: c8c968a3fb013f648a338cc345e5abf0, type: 3}
       propertyPath: Type
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1973430767914085883, guid: c8c968a3fb013f648a338cc345e5abf0, type: 3}
       propertyPath: m_Enabled

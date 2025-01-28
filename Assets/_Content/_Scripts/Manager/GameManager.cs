@@ -15,9 +15,9 @@ public class GameManager : MonoBehaviour
 		m_rseSetBubble.Call(CharacterType.FISHMONGER_SHORTKING, -1);
 		m_rseSetBubble.Call(CharacterType.FISHMONGER_TALL, -1);
 		m_rseSetBubble.Call(CharacterType.LETTER, -1);
-		m_rseSetBubble.Call(CharacterType.LOVER, -1);
 		m_rseSetBubble.Call(CharacterType.SINGER, -1);
-		m_rseSetBubble.Call(CharacterType.COAST_GUARD, -1);
+		m_rseSetBubble.Call(CharacterType.LOVER, 0);
+		m_rseSetBubble.Call(CharacterType.COAST_GUARD, 0);
 		m_rseSetBubble.Call(CharacterType.GRANDPA, 0);
 
 		m_rsoCurrentItem.Value = ItemType.NONE;
