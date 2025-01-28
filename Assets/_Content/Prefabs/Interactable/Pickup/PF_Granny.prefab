@@ -28,7 +28,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.25, y: 2.25, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3641030891041119833}
@@ -63,7 +63,6 @@ MonoBehaviour:
   m_placePosition: {fileID: 0}
   m_itemRequiered: 0
   m_rainTravel: {fileID: 0}
-  m_rainDoor: {fileID: 0}
   m_TravelToHouse: {fileID: 0}
   m_waypointToHouse: {fileID: 0}
   m_balconyTravel: {fileID: 0}
@@ -175,6 +174,14 @@ PrefabInstance:
     - target: {fileID: 2775228551417648997, guid: e5d4db5f1bf3c4348968e44bba344c6c, type: 3}
       propertyPath: m_Name
       value: PF_NPC_Granny
+      objectReference: {fileID: 0}
+    - target: {fileID: 8563939772044082267, guid: e5d4db5f1bf3c4348968e44bba344c6c, type: 3}
+      propertyPath: m_MaskInteraction
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8832557682922798620, guid: e5d4db5f1bf3c4348968e44bba344c6c, type: 3}
+      propertyPath: m_MaskInteraction
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

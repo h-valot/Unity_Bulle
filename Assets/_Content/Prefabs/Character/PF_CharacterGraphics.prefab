@@ -31,8 +31,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6149932113539215000}
-  - {fileID: 2664529392746181333}
   - {fileID: 3561141129827046293}
+  - {fileID: 2664529392746181333}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1538355581166814391
@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dacff3472324e6408fe58b2546b532f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_divingSuit: {fileID: 5484023281724045929}
+  m_divingSuit: {fileID: 8286991213167297505}
   m_spriteRenderer: {fileID: 4121703821385196337}
   m_ssoCharacter: {fileID: 11400000, guid: 4d72b7f9f302f63478716a3a4dc8fec5, type: 2}
   m_rsoToggleDivingSuit: {fileID: 11400000, guid: 24646f10bb926d942b72c6ab01acea91, type: 2}
@@ -65,7 +65,7 @@ GameObject:
   - component: {fileID: 6149932113539215000}
   - component: {fileID: 4121703821385196337}
   m_Layer: 3
-  m_Name: Sprite renderer
+  m_Name: SR_Kid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -149,7 +149,7 @@ GameObject:
   - component: {fileID: 3561141129827046293}
   - component: {fileID: 8286991213167297505}
   m_Layer: 3
-  m_Name: DivingSuit
+  m_Name: SR_DivingSuit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -163,13 +163,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5484023281724045929}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.129, y: 1.304, z: 0}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
-  m_ConstrainProportionsScale: 1
+  m_LocalRotation: {x: -0, y: -0, z: 0.02058839, w: 0.99978805}
+  m_LocalPosition: {x: 0, y: 0.348, z: 0}
+  m_LocalScale: {x: 0.66337204, y: 0.3360287, z: 0.4267031}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7027966166001191549}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 2.359}
 --- !u!212 &8286991213167297505
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -28,7 +28,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.225, y: 2.225, z: 1}
+  m_LocalScale: {x: 2.42, y: 3.26, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -62,7 +62,6 @@ MonoBehaviour:
   m_placePosition: {fileID: 0}
   m_itemRequiered: 0
   m_rainTravel: {fileID: 0}
-  m_rainDoor: {fileID: 0}
   m_TravelToHouse: {fileID: 0}
   m_waypointToHouse: {fileID: 0}
   m_balconyTravel: {fileID: 0}
@@ -76,7 +75,7 @@ MonoBehaviour:
   m_rsoToggleDivingSuit: {fileID: 11400000, guid: 24646f10bb926d942b72c6ab01acea91, type: 2}
   m_rsoToggleMitigedGravity: {fileID: 11400000, guid: b5590c81bde1121408d1ebe3958c2a79, type: 2}
   m_rseSetBubble: {fileID: 11400000, guid: 7b45e7d949ee54e4bacc83755120db66, type: 2}
-  IsValid: 1
+  IsValid: 0
   m_displayGizmos: 1
 --- !u!61 &3507706488641018676
 BoxCollider2D:

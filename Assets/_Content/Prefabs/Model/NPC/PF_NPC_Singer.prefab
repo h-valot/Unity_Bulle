@@ -32,6 +32,18 @@ PrefabInstance:
       propertyPath: m_sprites.Array.data[1]
       value: 
       objectReference: {fileID: 21300000, guid: 73497f81fa31b25409b9eb5b179c6cb7, type: 3}
+    - target: {fileID: 1403957127961322583, guid: 0aac3e8917642b147adcc23458662a7a, type: 3}
+      propertyPath: m_defaultSprites.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1403957127961322583, guid: 0aac3e8917642b147adcc23458662a7a, type: 3}
+      propertyPath: m_defaultSprites.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: f214c32d3a10e8f438ce9d13938a98bf, type: 3}
+    - target: {fileID: 1403957127961322583, guid: 0aac3e8917642b147adcc23458662a7a, type: 3}
+      propertyPath: m_defaultSprites.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: 73497f81fa31b25409b9eb5b179c6cb7, type: 3}
     - target: {fileID: 1592917138439269932, guid: 0aac3e8917642b147adcc23458662a7a, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.35

@@ -62,7 +62,6 @@ MonoBehaviour:
   m_placePosition: {fileID: 702451055649555671}
   m_itemRequiered: 6
   m_rainTravel: {fileID: 0}
-  m_rainDoor: {fileID: 0}
   m_TravelToHouse: {fileID: 0}
   m_waypointToHouse: {fileID: 0}
   m_balconyTravel: {fileID: 0}

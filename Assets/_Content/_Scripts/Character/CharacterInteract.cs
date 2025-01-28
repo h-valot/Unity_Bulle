@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class CharacterInteract : MonoBehaviour
 {
+	[FoldoutGroup("Internal references")][SerializeField] private GameObject m_contextual;
+
 	[FoldoutGroup("Scriptable")][SerializeField] private SSO_Character m_characterConfig;
 	[FoldoutGroup("Scriptable")][SerializeField] private RSE_Interact m_rseInteract;
 
@@ -18,6 +20,11 @@ public class CharacterInteract : MonoBehaviour
 	private void OnDisable()
 	{
 		m_rseInteract.Action -= Interact;
+	}
+
+	private void Update()
+	{
+		m_contextual.SetActive(m_interactables.Any(c => c.CanInteract()));
 	}
 
 	private void Interact(bool isEnabled)

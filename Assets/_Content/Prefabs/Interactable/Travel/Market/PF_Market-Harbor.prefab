@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3940315509399413223
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5025218543207184348}
+  m_Layer: 7
+  m_Name: Waypoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5025218543207184348
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3940315509399413223}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 8.19, y: 9.22, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 702451055649555671}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5775256860904131518
 GameObject:
   m_ObjectHideFlags: 0
@@ -28,9 +59,10 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.225, y: 2.225, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 5025218543207184348}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1324187087967687981
@@ -48,7 +80,7 @@ MonoBehaviour:
   m_rsePlaySoundOfType: {fileID: 11400000, guid: 9d5c589051fdab84c9434f5be34f5d88, type: 2}
   m_type: 0
   m_travelTo: 1
-  m_travelPosition: {fileID: 0}
+  m_travelPosition: {fileID: 5025218543207184348}
   m_pfItemSpawned: {fileID: 0}
   m_spawnPosition: {fileID: 0}
   m_interactableFishermanBoot: {fileID: 0}
@@ -62,7 +94,6 @@ MonoBehaviour:
   m_placePosition: {fileID: 0}
   m_itemRequiered: 0
   m_rainTravel: {fileID: 0}
-  m_rainDoor: {fileID: 0}
   m_TravelToHouse: {fileID: 0}
   m_waypointToHouse: {fileID: 0}
   m_balconyTravel: {fileID: 0}
@@ -73,9 +104,9 @@ MonoBehaviour:
   m_rsePickupItem: {fileID: 11400000, guid: d2840920dd3679a48a8dba66204b9271, type: 2}
   m_rsePlaceItem: {fileID: 11400000, guid: 731ea32a8ea55244e9f8e941b5857240, type: 2}
   m_rseSetCharacterPosition: {fileID: 11400000, guid: 7b802547d3b5b8c4a89b1e007838a868, type: 2}
-  m_rsoToggleDivingSuit: {fileID: 0}
-  m_rsoToggleMitigedGravity: {fileID: 0}
-  m_rseSetBubble: {fileID: 0}
+  m_rsoToggleDivingSuit: {fileID: 11400000, guid: 24646f10bb926d942b72c6ab01acea91, type: 2}
+  m_rsoToggleMitigedGravity: {fileID: 11400000, guid: b5590c81bde1121408d1ebe3958c2a79, type: 2}
+  m_rseSetBubble: {fileID: 11400000, guid: 7b45e7d949ee54e4bacc83755120db66, type: 2}
   IsValid: 1
   m_displayGizmos: 1
 --- !u!61 &3507706488641018676

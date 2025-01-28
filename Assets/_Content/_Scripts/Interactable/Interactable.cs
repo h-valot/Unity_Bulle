@@ -1,7 +1,7 @@
 using UnityEngine;
 using Sirenix.OdinInspector;
-using System;
 using DG.Tweening;
+using System.Collections.Generic;
 
 public class Interactable : MonoBehaviour
 {
@@ -12,7 +12,7 @@ public class Interactable : MonoBehaviour
     [SerializeField] private InteractType m_type;
 
 	// TRAVEL
-    [ShowIf("m_type", InteractType.TRAVEL)][SerializeField] private PanelType m_travelTo;
+	[ShowIf("m_type", InteractType.TRAVEL)][SerializeField] private PanelType m_travelTo;
     [ShowIf("m_type", InteractType.TRAVEL)][SerializeField] private Transform m_travelPosition;
 
 
@@ -65,12 +65,7 @@ public class Interactable : MonoBehaviour
 	[FoldoutGroup("Scriptable")][SerializeField] private RSE_SetBubble m_rseSetBubble;
 
 	[SerializeField] public bool IsValid = true;
-	[SerializeField] private bool m_displayGizmos;
-
-	public Action OnInteracted;
-	public Action<CharacterInteract> OnInteractedWithRef;
-
-	private CharacterInteract m_characterInteract;
+	[SerializeField] private bool m_displayGizmos; 
 
 	private void OnEnable()
 	{
@@ -88,13 +83,37 @@ public class Interactable : MonoBehaviour
 		m_itemRequiered = ItemType.NONE;
 	}
 
+	public bool CanInteract()
+	{
+		bool isInteractive = false;
+
+		switch (m_type)
+		{
+			case InteractType.TRAVEL:
+				isInteractive = true;
+				break;
+
+			case InteractType.SPAWN:
+				// Hide contextual hint
+				break;
+
+			case InteractType.PLACE:
+				isInteractive = m_rsoCurrentItem.Value == m_itemRequiered;
+				break;
+
+			case InteractType.PICKUP:
+				isInteractive = m_rsoCurrentItem.Value == ItemType.NONE;
+				break;
+		}
+
+		return isInteractive;
+	}
+
 	/// <summary>
 	/// Called when the interactable is interacted with.
 	/// </summary>
 	public virtual void Interact()
 	{
-		OnInteracted?.Invoke();
-		if (m_characterInteract) OnInteractedWithRef?.Invoke(m_characterInteract);
 		HandleInteraction();
 	}
 
@@ -104,11 +123,9 @@ public class Interactable : MonoBehaviour
 	/// </summary>
 	public virtual void OnTriggerEnter2D(Collider2D collider)
 	{
-		if (collider.TryGetComponent<CharacterInteract>(out var character))
-		{
-			m_characterInteract = character;
-			character.Add(this);
-		}
+		if (!collider.TryGetComponent<CharacterInteract>(out var character)) return;
+
+		character.Add(this);
 	}
 
 	/// <summary>
@@ -117,11 +134,9 @@ public class Interactable : MonoBehaviour
 	/// </summary>
 	public virtual void OnTriggerExit2D(Collider2D collider)
 	{
-		if (collider.TryGetComponent<CharacterInteract>(out var character))
-		{
-			character.Remove(this);
-			m_characterInteract = null;
-		}
+		if (!collider.TryGetComponent<CharacterInteract>(out var character)) return;
+
+		character.Remove(this);
 	}
 
 	private void HandleInteraction()
@@ -232,7 +247,6 @@ public class Interactable : MonoBehaviour
 
 		m_rsoCurrentItem.Value = ItemType.NONE;
 
-		// TODO DOJump towards destination
 		transform.DOJump(destination, 1f, 1, 0.5f).SetEase(Ease.Linear).SetLink(gameObject);
 		m_rsePlaySoundOfType.Call(InteractType.PLACE, PickupType);
 		transform.parent = null;
@@ -249,15 +263,17 @@ public class Interactable : MonoBehaviour
 				Destroy(gameObject);
 				break;
 
+			case ItemType.FISH:
+				Destroy(gameObject);
+				break;
+
 			case ItemType.LADDER:
 				Instantiate(m_pfLadderLong, transform.position, Quaternion.identity);
-				// TODO Temp ? Maybe only activate on complete of ladder prefab animation
 				Destroy(gameObject);
 				break;
 
 			case ItemType.PLANT:
 				Instantiate(m_pfPlantLong, transform.position, Quaternion.identity);
-				// TODO Temp ? Maybe only activate on complete of plant prefab animation
 				Destroy(gameObject);
 				break;
 

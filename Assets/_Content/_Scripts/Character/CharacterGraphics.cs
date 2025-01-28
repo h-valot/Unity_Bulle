@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CharacterGraphics : MonoBehaviour
 {
-	[FoldoutGroup("Internal references")][SerializeField] private GameObject m_divingSuit;
+	[FoldoutGroup("Internal references")][SerializeField] private SpriteRenderer m_divingSuit;
 	[FoldoutGroup("Internal references")][SerializeField] private SpriteRenderer m_spriteRenderer;
 
 	[FoldoutGroup("Scriptable")][SerializeField] private SSO_Character m_ssoCharacter;
@@ -51,12 +51,16 @@ public class CharacterGraphics : MonoBehaviour
 
 	private void ToggleDivingSuit(bool isEnabled)
 	{
-		m_divingSuit.SetActive(isEnabled);
+		m_divingSuit.gameObject.SetActive(isEnabled);
 	}
 
 	public void UpdateSprites()
 	{
-		if (m_moveInput.magnitude > 0f) m_spriteRenderer.flipX = m_moveInput.x > 0;
+		if (m_moveInput.magnitude > 0f) 
+		{
+			m_spriteRenderer.flipX = m_moveInput.x > 0;
+			m_divingSuit.flipX = m_moveInput.x > 0;
+		}
 
 		m_currentSprites = m_rsoCurrentItem.Value == ItemType.NONE
 			? m_ssoCharacter.WalkSprites
