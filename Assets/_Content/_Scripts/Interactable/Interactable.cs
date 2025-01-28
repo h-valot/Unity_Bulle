@@ -1,7 +1,6 @@
 using UnityEngine;
 using Sirenix.OdinInspector;
 using DG.Tweening;
-using System.Collections.Generic;
 
 public class Interactable : MonoBehaviour
 {
@@ -52,8 +51,10 @@ public class Interactable : MonoBehaviour
 
 	[ShowIf("m_itemRequiered", ItemType.PLANT)][SerializeField] private Interactable m_lightTopTravel;
 
+	[ShowIf("m_itemRequiered", ItemType.GRANNY)][SerializeField] private Camera m_camera;
 
-    [FoldoutGroup("Internal references")][SerializeField] private BoxCollider2D m_boxCollider2D;
+
+	[FoldoutGroup("Internal references")][SerializeField] private BoxCollider2D m_boxCollider2D;
 
 	[FoldoutGroup("Scriptable")][SerializeField] private RSO_CurrentItem m_rsoCurrentItem;
 	[FoldoutGroup("Scriptable")][SerializeField] private RSO_CurrentPanel m_rsoCurrentPanel;
@@ -63,6 +64,7 @@ public class Interactable : MonoBehaviour
 	[FoldoutGroup("Scriptable")][SerializeField] private RSO_ToggleDivingSuit m_rsoToggleDivingSuit;
 	[FoldoutGroup("Scriptable")][SerializeField] private RSO_ToggleMitigedGravity m_rsoToggleMitigedGravity;
 	[FoldoutGroup("Scriptable")][SerializeField] private RSE_SetBubble m_rseSetBubble;
+	[FoldoutGroup("Scriptable")][SerializeField] private RSO_LockInputs m_rsoLockInputs;
 
 	[SerializeField] public bool IsValid = true;
 	[SerializeField] private bool m_displayGizmos; 
@@ -189,6 +191,10 @@ public class Interactable : MonoBehaviour
 						m_rsoCurrentPanel.Value = PanelType.HOUSE;
 						m_rseSetCharacterPosition.Call(m_waypointToHouse.position);
 					}
+					else if (m_itemRequiered == ItemType.GRANNY)
+					{
+						PlayEndCinematic();
+					}
 
 					IsValid = false;
 					m_rsePlaceItem.Call(m_placePosition.position);
@@ -278,11 +284,17 @@ public class Interactable : MonoBehaviour
 				break;
 
 			case ItemType.GRANNY:
-				m_rsoToggleMitigedGravity.Value = false;
-				// TODO Starts end game cinematic
-				Application.Quit();
+				m_rsoToggleMitigedGravity.Value = false;				
 				break;
 		}
+	}
+
+	private void PlayEndCinematic()
+	{
+		m_rsoLockInputs.Value = true;
+		var sequence = new Sequence().Pause();
+		sequence.Append(m_camera.transform.DOMove());
+		sequence.Append(m_camera.orthographicSize.po)
 	}
 
 #if UNITY_EDITOR

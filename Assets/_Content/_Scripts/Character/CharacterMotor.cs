@@ -15,6 +15,7 @@ public class CharacterMotor : MonoBehaviour
 	[FoldoutGroup("Scriptable")][SerializeField] private RSO_CurrentPosition m_rsoCurrentPosition;
 	[FoldoutGroup("Scriptable")][SerializeField] private RSO_ToggleMitigedGravity m_rsoToggleMitigedGravity;
 	[FoldoutGroup("Scriptable")][SerializeField] private RSO_CharacterVelocity m_rsoCharacterVelocity;
+	[FoldoutGroup("Scriptable")][SerializeField] private RSO_LockInputs m_rsoLockInputs;
 
 	private Vector2 m_moveInput;
 	private bool m_isGrounded;
@@ -48,6 +49,8 @@ public class CharacterMotor : MonoBehaviour
 
 	private void FixedUpdate()
 	{
+		if (m_rsoLockInputs.Value) return;
+
 		CheckGround();
 
 		HandleJump();

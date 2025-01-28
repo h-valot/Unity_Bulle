@@ -7,7 +7,8 @@ public class GameManager : MonoBehaviour
 	[FoldoutGroup("Scriptable")][SerializeField] private RSO_CurrentItem m_rsoCurrentItem;
 	[FoldoutGroup("Scriptable")][SerializeField] private RSO_CurrentPanel m_rsoCurrentPanel;
 	[FoldoutGroup("Scriptable")][SerializeField] private RSO_ToggleMitigedGravity m_rsoToggleMitigedGravity;
-	[FoldoutGroup("Scriptable")][SerializeField] private RSE_SetBubble m_rseSetBubble;
+	[FoldoutGroup("Scriptable")][SerializeField] private RSE_SetBubble m_rseSetBubble; 
+	[FoldoutGroup("Scriptable")][SerializeField] private RSO_LockInputs m_rsoLockInputs;
 
 	private void Start()
 	{
@@ -22,6 +23,8 @@ public class GameManager : MonoBehaviour
 
 		m_rsoCurrentItem.Value = ItemType.NONE;
 		m_rsoCurrentPanel.Value = PanelType.HARBOR;
+		
 		m_rsoToggleMitigedGravity.Value = false;
+		m_rsoLockInputs.Value = false;
 	}
 }
