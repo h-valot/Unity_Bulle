@@ -52,10 +52,12 @@ public class Interactable : MonoBehaviour
 	[ShowIf("m_itemRequiered", ItemType.PLANT)][SerializeField] private Interactable m_lightTopTravel;
 
 	[ShowIf("m_itemRequiered", ItemType.GRANNY)][SerializeField] private Camera m_camera;
+	[ShowIf("m_itemRequiered", ItemType.GRANNY)][SerializeField] private Transform m_cameraCinematicTarget;
 
 
 	[FoldoutGroup("Internal references")][SerializeField] private BoxCollider2D m_boxCollider2D;
 
+	[FoldoutGroup("Scriptable")][SerializeField] private SSO_Camera m_ssoCamera;
 	[FoldoutGroup("Scriptable")][SerializeField] private RSO_CurrentItem m_rsoCurrentItem;
 	[FoldoutGroup("Scriptable")][SerializeField] private RSO_CurrentPanel m_rsoCurrentPanel;
 	[FoldoutGroup("Scriptable")][SerializeField] private RSE_PickupItem m_rsePickupItem;
@@ -64,7 +66,9 @@ public class Interactable : MonoBehaviour
 	[FoldoutGroup("Scriptable")][SerializeField] private RSO_ToggleDivingSuit m_rsoToggleDivingSuit;
 	[FoldoutGroup("Scriptable")][SerializeField] private RSO_ToggleMitigedGravity m_rsoToggleMitigedGravity;
 	[FoldoutGroup("Scriptable")][SerializeField] private RSE_SetBubble m_rseSetBubble;
+	[FoldoutGroup("Scriptable")][SerializeField] private RSE_DisplayEnd m_rseDisplayEnd;
 	[FoldoutGroup("Scriptable")][SerializeField] private RSO_LockInputs m_rsoLockInputs;
+	[FoldoutGroup("Scriptable")][SerializeField] private RSE_SetCameraLerp m_rseSetCameraLerp;
 
 	[SerializeField] public bool IsValid = true;
 	[SerializeField] private bool m_displayGizmos; 
@@ -292,9 +296,9 @@ public class Interactable : MonoBehaviour
 	private void PlayEndCinematic()
 	{
 		m_rsoLockInputs.Value = true;
-		var sequence = new Sequence().Pause();
-		sequence.Append(m_camera.transform.DOMove());
-		sequence.Append(m_camera.orthographicSize.po)
+		m_rseSetCameraLerp.Call(false);
+		m_camera.transform.DOMove(m_cameraCinematicTarget.position, m_ssoCamera.EndTranslationDuration);
+		m_camera.DOOrthoSize(m_ssoCamera.EndOrthoSize, m_ssoCamera.EndTranslationDuration).OnComplete(() => { m_rseDisplayEnd.Call(true); });
 	}
 
 #if UNITY_EDITOR

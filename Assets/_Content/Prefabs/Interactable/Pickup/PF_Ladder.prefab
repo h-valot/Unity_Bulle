@@ -67,7 +67,10 @@ MonoBehaviour:
   m_waypointToHouse: {fileID: 0}
   m_balconyTravel: {fileID: 0}
   m_lightTopTravel: {fileID: 0}
+  m_camera: {fileID: 0}
+  m_cameraCinematicTarget: {fileID: 0}
   m_boxCollider2D: {fileID: 3507706488641018676}
+  m_ssoCamera: {fileID: 11400000, guid: 94c2425e87c1f6d4dbc58839c51bc515, type: 2}
   m_rsoCurrentItem: {fileID: 11400000, guid: e8991317bb976804d94292a461f5aa99, type: 2}
   m_rsoCurrentPanel: {fileID: 11400000, guid: 1eac95a65c5c4db489562d2ca876dbb4, type: 2}
   m_rsePickupItem: {fileID: 11400000, guid: d2840920dd3679a48a8dba66204b9271, type: 2}
@@ -76,7 +79,9 @@ MonoBehaviour:
   m_rsoToggleDivingSuit: {fileID: 11400000, guid: 24646f10bb926d942b72c6ab01acea91, type: 2}
   m_rsoToggleMitigedGravity: {fileID: 11400000, guid: b5590c81bde1121408d1ebe3958c2a79, type: 2}
   m_rseSetBubble: {fileID: 11400000, guid: 7b45e7d949ee54e4bacc83755120db66, type: 2}
-  m_rsoContextuals: {fileID: 11400000, guid: 144ee6fc216ae5140ba10eb0f5fbd53d, type: 2}
+  m_rseDisplayEnd: {fileID: 11400000, guid: d3140e1c16f131242a87b4bbd7944c63, type: 2}
+  m_rsoLockInputs: {fileID: 11400000, guid: bb0fc7e273c01eb45a8fe21bda5d61bc, type: 2}
+  m_rseSetCameraLerp: {fileID: 11400000, guid: ea57d8fe5148f6542b37739c88d99128, type: 2}
   IsValid: 1
   m_displayGizmos: 1
 --- !u!61 &3507706488641018676

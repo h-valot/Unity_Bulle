@@ -299,18 +299,6 @@ PrefabInstance:
       value: PF_CameraManager
       objectReference: {fileID: 0}
     - target: {fileID: 8107864097603259986, guid: b41b199ae2f51f84eb8fac6e3597d348, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8107864097603259986, guid: b41b199ae2f51f84eb8fac6e3597d348, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8107864097603259986, guid: b41b199ae2f51f84eb8fac6e3597d348, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8107864097603259986, guid: b41b199ae2f51f84eb8fac6e3597d348, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}

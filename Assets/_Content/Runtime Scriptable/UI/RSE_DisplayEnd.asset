@@ -9,9 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7468b0af8ea89d498d140c2b81353bc, type: 3}
-  m_Name: SSO_Camera
+  m_Script: {fileID: 11500000, guid: 1308bde46ea860b4ebdc907b2836d07c, type: 3}
+  m_Name: RSE_DisplayEnd
   m_EditorClassIdentifier: 
-  SmoothTime: 0.1
-  EndTranslationDuration: 5
-  EndOrthoSize: 24

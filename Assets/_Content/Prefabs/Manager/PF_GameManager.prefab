@@ -49,3 +49,4 @@ MonoBehaviour:
   m_rsoCurrentPanel: {fileID: 11400000, guid: 1eac95a65c5c4db489562d2ca876dbb4, type: 2}
   m_rsoToggleMitigedGravity: {fileID: 11400000, guid: b5590c81bde1121408d1ebe3958c2a79, type: 2}
   m_rseSetBubble: {fileID: 11400000, guid: 7b45e7d949ee54e4bacc83755120db66, type: 2}
+  m_rsoLockInputs: {fileID: 11400000, guid: bb0fc7e273c01eb45a8fe21bda5d61bc, type: 2}

@@ -60,6 +60,7 @@ MonoBehaviour:
   m_rsoCurrentPosition: {fileID: 11400000, guid: ded93db3c6beea9409520de0f320dfef, type: 2}
   m_rsoToggleMitigedGravity: {fileID: 11400000, guid: b5590c81bde1121408d1ebe3958c2a79, type: 2}
   m_rsoCharacterVelocity: {fileID: 11400000, guid: d16dba3fb7e60254d9f19ad16976d93d, type: 2}
+  m_rsoLockInputs: {fileID: 11400000, guid: bb0fc7e273c01eb45a8fe21bda5d61bc, type: 2}
 --- !u!114 &5952477918962114214
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -5,13 +5,38 @@ public class UIMenu : MonoBehaviour
 {
 	[SerializeField] private GameObject m_graphicsParent;
 	[SerializeField] private GameObject m_creditsParent;
+	[SerializeField] private GameObject m_endScreenParent;
 
 	[FoldoutGroup("Scriptable")][SerializeField] private RSO_LockCursor m_rsoLockCursor;
+	[FoldoutGroup("Scriptable")][SerializeField] private RSE_DisplayEnd m_rseDisplayEnd;
 
 	private void Start()
 	{
 		Show();
 		m_creditsParent.SetActive(false);
+		m_endScreenParent.SetActive(false);
+	}
+
+	private void OnEnable()
+	{
+		m_rseDisplayEnd.Action += ToggleEndScreen;
+	}
+
+	private void OnDisable()
+	{
+		m_rseDisplayEnd.Action -= ToggleEndScreen;
+	}
+
+	public void ToggleEndScreen(bool isEnabled)
+	{
+		if (isEnabled)
+		{
+			m_endScreenParent.SetActive(true);
+		}
+		else
+		{
+			m_endScreenParent.SetActive(false);
+		}
 	}
 
 	public void OnPressedPlay()
