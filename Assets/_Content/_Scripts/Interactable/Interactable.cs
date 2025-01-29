@@ -76,6 +76,7 @@ public class Interactable : MonoBehaviour
 	[FoldoutGroup("Scriptable")][SerializeField] private RSO_LockInputs m_rsoLockInputs;
 	[FoldoutGroup("Scriptable")][SerializeField] private RSE_SetCameraLerp m_rseSetCameraLerp;
 	[FoldoutGroup("Scriptable")][SerializeField] private RSO_LockCursor m_rsoLockCursor;
+	[FoldoutGroup("Scriptable")][SerializeField] private RSE_SetMono m_rseSetMono;
 
 	[SerializeField] public bool IsValid = true;
 	[SerializeField] public bool IsInteractive = true; 
@@ -171,12 +172,31 @@ public class Interactable : MonoBehaviour
 				float InteractableScale = spawnInteractable.transform.localScale.x;
 				spawnInteractable.transform.localScale = Vector3.zero;
 				spawnInteractable.transform.DOScale(InteractableScale, 1f).SetEase(Ease.OutBounce).SetLink(gameObject);
-				spawnInteractable.transform.DOJump(m_spawnPosition.position, 1f, 1, 0.5f).SetEase(Ease.Linear).SetLink(gameObject).OnComplete(() => { m_rsePlaySoundOfType.Call(m_type, m_pfItemSpawned.PickupType);});
+				spawnInteractable.transform.DOJump(m_spawnPosition.position, m_ssoInteractables.PlaceDoJumpPower, m_ssoInteractables.PlaceDoJumpNumber, m_ssoInteractables.PlaceDoJumpDuration)
+					.SetEase(Ease.Linear)
+					.SetLink(gameObject)
+					.OnComplete(() => 
+				{ 
+					m_rsePlaySoundOfType.Call(m_type, m_pfItemSpawned.PickupType);
+				});
 
-                if (m_pfItemSpawned.PickupType == ItemType.DIVING_SUIT)
+				if (m_pfItemSpawned.PickupType == ItemType.KEY)
+				{
+					m_rseSetMono.Call(CharacterType.GRANDPA);
+				}
+				else if (m_pfItemSpawned.PickupType == ItemType.DIVING_SUIT)
 				{
 					// Enable next fisherman interactable
 					m_interactableFishermanBoot.IsValid = true;
+					m_rseSetMono.Call(CharacterType.FISHERMAN);
+				}
+				else if (m_pfItemSpawned.PickupType == ItemType.LADDER)
+				{
+					m_rseSetMono.Call(CharacterType.COAST_GUARD);
+				}
+				else if (m_pfItemSpawned.PickupType == ItemType.PLANT)
+				{
+					m_rseSetMono.Call(CharacterType.SINGER);
 				}
 				break;
 
@@ -240,11 +260,18 @@ public class Interactable : MonoBehaviour
 		{
 			case ItemType.BOOT:
 				m_rseSetBubble.Call(CharacterType.FISHERMAN, 1);
+
 				GameObject fish = Instantiate(m_pfFish, transform.position, Quaternion.identity);
 				float fishScale = fish.transform.localScale.x;
 				fish.transform.localScale = Vector3.zero;
 				fish.transform.DOScale(fishScale, 1f).SetEase(Ease.OutBounce).SetLink(gameObject);
-				fish.transform.DOJump(m_fishSpawnPosition.position, 1f, 1, 0.5f).SetEase(Ease.Linear).SetLink(gameObject).OnComplete(() => { m_rsePlaySoundOfType.Call(m_type, ItemType.FISH); });
+				fish.transform.DOJump(m_fishSpawnPosition.position, m_ssoInteractables.PlaceDoJumpPower, m_ssoInteractables.PlaceDoJumpNumber, m_ssoInteractables.PlaceDoJumpDuration)
+					.SetEase(Ease.Linear)
+					.SetLink(gameObject)
+					.OnComplete(() => 
+				{ 
+					m_rsePlaySoundOfType.Call(m_type, ItemType.FISH); 
+				});
 				break;
 
 			case ItemType.FISH:

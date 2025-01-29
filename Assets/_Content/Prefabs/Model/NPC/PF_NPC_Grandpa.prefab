@@ -96,6 +96,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: c84c9ac2d60b331478d84f80e91ce21e, type: 3}
+    - target: {fileID: 5656731162987792008, guid: 0aac3e8917642b147adcc23458662a7a, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6030850714902013665, guid: 0aac3e8917642b147adcc23458662a7a, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -109,21 +113,49 @@ PrefabInstance:
       value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8428896361334244951, guid: 0aac3e8917642b147adcc23458662a7a, type: 3}
+      propertyPath: m_idMono
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8428896361334244951, guid: 0aac3e8917642b147adcc23458662a7a, type: 3}
+      propertyPath: m_spMono
+      value: 
+      objectReference: {fileID: 21300000, guid: 16ca2a03541ae164d8d255be71b7997b, type: 3}
+    - target: {fileID: 8428896361334244951, guid: 0aac3e8917642b147adcc23458662a7a, type: 3}
       propertyPath: dialogue1
       value: "Mamie est parti et elle a ferm\xE9 la maison a cl\xE9"
       objectReference: {fileID: 0}
     - target: {fileID: 8428896361334244951, guid: 0aac3e8917642b147adcc23458662a7a, type: 3}
       propertyPath: m_sprites.Array.size
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8428896361334244951, guid: 0aac3e8917642b147adcc23458662a7a, type: 3}
       propertyPath: m_sprites.Array.data[0]
       value: 
-      objectReference: {fileID: 21300000, guid: c84c9ac2d60b331478d84f80e91ce21e, type: 3}
+      objectReference: {fileID: 21300000, guid: c06cecfea89253c4880fbff33f2d1863, type: 3}
     - target: {fileID: 8428896361334244951, guid: 0aac3e8917642b147adcc23458662a7a, type: 3}
       propertyPath: m_sprites.Array.data[1]
       value: 
-      objectReference: {fileID: 21300000, guid: 6860400e5eb254648a808b9157824ebe, type: 3}
+      objectReference: {fileID: 21300000, guid: 1879640b75a874443a4d76951623c96f, type: 3}
+    - target: {fileID: 8428896361334244951, guid: 0aac3e8917642b147adcc23458662a7a, type: 3}
+      propertyPath: m_sprites.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: fd4f0c167f0af5e479b9d3db59735f9b, type: 3}
+    - target: {fileID: 8428896361334244951, guid: 0aac3e8917642b147adcc23458662a7a, type: 3}
+      propertyPath: m_sprites.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: d9732a66caf9d734484068a8bd3bbdd3, type: 3}
+    - target: {fileID: 8428896361334244951, guid: 0aac3e8917642b147adcc23458662a7a, type: 3}
+      propertyPath: m_sprites.Array.data[4]
+      value: 
+      objectReference: {fileID: 21300000, guid: d9732a66caf9d734484068a8bd3bbdd3, type: 3}
+    - target: {fileID: 8428896361334244951, guid: 0aac3e8917642b147adcc23458662a7a, type: 3}
+      propertyPath: m_sprites.Array.data[5]
+      value: 
+      objectReference: {fileID: 21300000, guid: d9732a66caf9d734484068a8bd3bbdd3, type: 3}
+    - target: {fileID: 8428896361334244951, guid: 0aac3e8917642b147adcc23458662a7a, type: 3}
+      propertyPath: m_sprites.Array.data[6]
+      value: 
+      objectReference: {fileID: 21300000, guid: d9732a66caf9d734484068a8bd3bbdd3, type: 3}
     - target: {fileID: 8714931105223621407, guid: 0aac3e8917642b147adcc23458662a7a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.97
