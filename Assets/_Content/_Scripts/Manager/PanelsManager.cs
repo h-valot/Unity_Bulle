@@ -21,6 +21,7 @@ public class PanelsManager : MonoBehaviour
 	[SerializeField] private SSO_Camera m_ssoCamera;
 	[SerializeField] private RSE_SetBubble m_rseSetBubble;
 
+
 	[Header("Panel GameObjects")]
     [SerializeField] private SpriteMask[] m_spriteMasks;
     [SerializeField] private PanelType[] m_panelsType;
@@ -79,7 +80,29 @@ public class PanelsManager : MonoBehaviour
 
     private void RevealPanel(int panelIndex)
     {
-        DOTween.To(()=> m_spriteMasks[panelIndex].alphaCutoff, x=> m_spriteMasks[panelIndex].alphaCutoff = x, 0, m_revealSpeed).SetEase(Ease.Linear).SetLink(gameObject);
+		// Disable camera and character inputs 
+		m_rsoLockInputs.Value = true;
+	    m_rseSetCameraLerp.Call(false);
+
+		// Zoom out at the panel position, then unmask panel
+		m_camera.transform.DOMove(m_ssoCamera.GetOffset(m_spriteMasks[panelIndex].transform.position), m_ssoCamera.DiscoveryInTranslationDuration);
+		m_camera.DOOrthoSize(m_ssoCamera.DiscoveryOrthoSize, m_ssoCamera.DiscoveryInTranslationDuration);
+		DOTween.To(() => m_spriteMasks[panelIndex].alphaCutoff, x => m_spriteMasks[panelIndex].alphaCutoff = x, 0, m_revealSpeed)
+			.SetEase(Ease.Linear)
+			.SetLink(gameObject)
+			.OnComplete(() =>
+			{
+				// Zoom in back to the new panel
+				m_camera.transform.DOMove(m_ssoCamera.GetOffset(m_character.position), m_ssoCamera.DiscoveryOutTranslationDuration);
+				m_camera.DOOrthoSize(m_ssoCamera.DefaultOrthoSize, m_ssoCamera.DiscoveryOutTranslationDuration)
+					.OnComplete(() =>
+					{
+						// Re-enable camera and character inputs 
+						m_rsoLockInputs.Value = false;
+						m_rseSetCameraLerp.Call(true);
+					});
+
+			});
     }
 
     private void TogglePanelSpecialAction(PanelType panelType)
@@ -99,7 +122,11 @@ public class PanelsManager : MonoBehaviour
     {
         SpriteMask panelToReveal = m_spriteMasksToReveal[0];
         m_spriteMasksToReveal.RemoveAt(0);
-        DOTween.To(() => panelToReveal.alphaCutoff, x => panelToReveal.alphaCutoff = x, 0, m_revealSpeed).SetEase(Ease.Linear).SetLink(gameObject).OnComplete(() => { RevealStart(); });
+
+        DOTween.To(() => panelToReveal.alphaCutoff, x => panelToReveal.alphaCutoff = x, 0, m_revealSpeed)
+			.SetEase(Ease.Linear)
+			.SetLink(gameObject)
+			.OnComplete(() => { RevealStart(); });
     }
 
 	private void OnDisplayIntro()

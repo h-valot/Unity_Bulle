@@ -12,8 +12,12 @@ public class SSO_Camera : ScriptableObject
 	public float IntroKidTranslationDuration;
 	public float DefaultOrthoSize;
 
+	public float DiscoveryInTranslationDuration;
+	public float DiscoveryOutTranslationDuration;
+	public float DiscoveryOrthoSize;
+
 	public Vector3 GetOffset(Vector3 position)
 	{
-		return new Vector3(position.x, position.y, -10);
+		return new Vector3(position.x, position.y + 2, -10);
 	}
 }
