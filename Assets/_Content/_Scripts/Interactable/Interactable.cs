@@ -282,7 +282,6 @@ public class Interactable : MonoBehaviour
 				break;
 
 			case ItemType.KEY:
-				// TODO Animate door
 				m_TravelToHouse.IsValid = true;
 				m_rsoCurrentPanel.Value = PanelType.HOUSE;
 				m_rseSetCharacterPosition.Call(m_waypointToHouse.position);

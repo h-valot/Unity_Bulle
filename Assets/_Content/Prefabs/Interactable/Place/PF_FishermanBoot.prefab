@@ -63,7 +63,7 @@ MonoBehaviour:
   m_rainTravel: {fileID: 0}
   m_srMarketForeground: {fileID: 0}
   m_spMarketOpened: {fileID: 0}
-  m_pfFish: {fileID: 0}
+  m_pfFish: {fileID: 5775256860904131518, guid: c39ecf5a60323cc48bc9a680edd3d203, type: 3}
   m_fishSpawnPosition: {fileID: 0}
   m_TravelToHouse: {fileID: 0}
   m_waypointToHouse: {fileID: 0}
