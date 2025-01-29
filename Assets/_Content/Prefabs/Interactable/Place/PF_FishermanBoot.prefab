@@ -81,6 +81,7 @@ MonoBehaviour:
   m_rseDisplayEnd: {fileID: 11400000, guid: d3140e1c16f131242a87b4bbd7944c63, type: 2}
   m_rsoLockInputs: {fileID: 11400000, guid: bb0fc7e273c01eb45a8fe21bda5d61bc, type: 2}
   m_rseSetCameraLerp: {fileID: 11400000, guid: ea57d8fe5148f6542b37739c88d99128, type: 2}
+  m_rsoLockCursor: {fileID: 11400000, guid: b9d163e373160974e9bf3866d3d82dc9, type: 2}
   IsValid: 0
   m_displayGizmos: 1
 --- !u!61 &3507706488641018676

@@ -69,6 +69,7 @@ public class Interactable : MonoBehaviour
 	[FoldoutGroup("Scriptable")][SerializeField] private RSE_DisplayEnd m_rseDisplayEnd;
 	[FoldoutGroup("Scriptable")][SerializeField] private RSO_LockInputs m_rsoLockInputs;
 	[FoldoutGroup("Scriptable")][SerializeField] private RSE_SetCameraLerp m_rseSetCameraLerp;
+	[FoldoutGroup("Scriptable")][SerializeField] private RSO_LockCursor m_rsoLockCursor;
 
 	[SerializeField] public bool IsValid = true;
 	[SerializeField] private bool m_displayGizmos; 
@@ -298,7 +299,11 @@ public class Interactable : MonoBehaviour
 		m_rsoLockInputs.Value = true;
 		m_rseSetCameraLerp.Call(false);
 		m_camera.transform.DOMove(m_cameraCinematicTarget.position, m_ssoCamera.EndTranslationDuration);
-		m_camera.DOOrthoSize(m_ssoCamera.EndOrthoSize, m_ssoCamera.EndTranslationDuration).OnComplete(() => { m_rseDisplayEnd.Call(true); });
+		m_camera.DOOrthoSize(m_ssoCamera.EndOrthoSize, m_ssoCamera.EndTranslationDuration).OnComplete(() => 
+		{ 
+			m_rseDisplayEnd.Call(true); 
+			m_rsoLockCursor.Value = false;
+		});
 	}
 
 #if UNITY_EDITOR

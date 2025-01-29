@@ -1,5 +1,6 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UIMenu : MonoBehaviour
 {
@@ -27,16 +28,14 @@ public class UIMenu : MonoBehaviour
 		m_rseDisplayEnd.Action -= ToggleEndScreen;
 	}
 
-	public void ToggleEndScreen(bool isEnabled)
+	private void ToggleEndScreen(bool isEnabled)
 	{
-		if (isEnabled)
-		{
-			m_endScreenParent.SetActive(true);
-		}
-		else
-		{
-			m_endScreenParent.SetActive(false);
-		}
+		m_endScreenParent.SetActive(isEnabled);
+	}
+
+	public void OnPressedLeave()
+	{
+		SceneManager.LoadScene("Game");
 	}
 
 	public void OnPressedPlay()
