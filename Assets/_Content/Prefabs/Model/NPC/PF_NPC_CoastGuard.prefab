@@ -176,7 +176,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3398136122651017476, guid: 0aac3e8917642b147adcc23458662a7a, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4812670931241616591, guid: 0aac3e8917642b147adcc23458662a7a, type: 3}
       propertyPath: m_Sprite
@@ -198,6 +198,10 @@ PrefabInstance:
       propertyPath: Type
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 8428896361334244951, guid: 0aac3e8917642b147adcc23458662a7a, type: 3}
+      propertyPath: m_spMono
+      value: 
+      objectReference: {fileID: 21300000, guid: 48acf66721fbaad4e9d61ed6a38ab525, type: 3}
     - target: {fileID: 8428896361334244951, guid: 0aac3e8917642b147adcc23458662a7a, type: 3}
       propertyPath: dialogue1
       value: "Ho non, on a vol\xE9 mon echelle"

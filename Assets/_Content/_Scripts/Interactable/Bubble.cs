@@ -8,6 +8,8 @@ public class Bubble : MonoBehaviour
 	[Title("Tweakable values")]
 	[SerializeField] public CharacterType Type;
     [SerializeField] private List<Sprite> m_sprites = new List<Sprite>();
+	[SerializeField] private float m_idMono;
+	[SerializeField] private Sprite m_spMono;
 
     [FoldoutGroup("Internal references")][SerializeField] private GameObject m_graphicsParent;
 	[FoldoutGroup("Internal references")][SerializeField] private SpriteRenderer m_spriteRenderer;
@@ -81,6 +83,15 @@ public class Bubble : MonoBehaviour
 		{
 			m_spriteRenderer.sprite = m_sprites[Index];
 		}
+	}
+
+	public void SetMono()
+	{
+		// Assertion
+		if (!m_spMono) return;
+		if (m_idMono != Index) return;
+		
+		m_spriteRenderer.sprite = m_spMono;
 	}
 
 	public void AnimateCollision()

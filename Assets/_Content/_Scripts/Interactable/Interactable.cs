@@ -1,6 +1,7 @@
 using UnityEngine;
 using Sirenix.OdinInspector;
 using DG.Tweening;
+using System.Collections;
 
 public class Interactable : MonoBehaviour
 {
@@ -42,6 +43,8 @@ public class Interactable : MonoBehaviour
 	[ShowIf("m_type", InteractType.PLACE)][SerializeField] private ItemType m_itemRequiered;
 
 	[ShowIf("m_itemRequiered", ItemType.FISH)][SerializeField] private Interactable m_rainTravel;
+	[ShowIf("m_itemRequiered", ItemType.FISH)][SerializeField] private SpriteRenderer m_srMarketForeground;
+	[ShowIf("m_itemRequiered", ItemType.FISH)][SerializeField] private Sprite m_spMarketOpened;
 
 	[ShowIf("m_itemRequiered", ItemType.BOOT)][SerializeField] private GameObject m_pfFish;
 	[ShowIf("m_itemRequiered", ItemType.BOOT)][SerializeField] private Transform m_fishSpawnPosition;
@@ -60,6 +63,7 @@ public class Interactable : MonoBehaviour
 	[FoldoutGroup("Internal references")][SerializeField] private BoxCollider2D m_boxCollider2D;
 
 	[FoldoutGroup("Scriptable")][SerializeField] private SSO_Camera m_ssoCamera;
+	[FoldoutGroup("Scriptable")][SerializeField] private SSO_Interactables m_ssoInteractables;
 	[FoldoutGroup("Scriptable")][SerializeField] private RSO_CurrentItem m_rsoCurrentItem;
 	[FoldoutGroup("Scriptable")][SerializeField] private RSO_CurrentPanel m_rsoCurrentPanel;
 	[FoldoutGroup("Scriptable")][SerializeField] private RSE_PickupItem m_rsePickupItem;
@@ -72,18 +76,19 @@ public class Interactable : MonoBehaviour
 	[FoldoutGroup("Scriptable")][SerializeField] private RSO_LockInputs m_rsoLockInputs;
 	[FoldoutGroup("Scriptable")][SerializeField] private RSE_SetCameraLerp m_rseSetCameraLerp;
 	[FoldoutGroup("Scriptable")][SerializeField] private RSO_LockCursor m_rsoLockCursor;
+	[FoldoutGroup("Scriptable")][SerializeField] private RSE_SetMono m_rseSetMono;
 
 	[SerializeField] public bool IsValid = true;
 	[SerializeField] public bool IsInteractive = true; 
 
 	private void OnEnable()
 	{
-		if (m_type == InteractType.PICKUP) m_rsePlaceItem.Action += PlaceItem;
+		if (m_type == InteractType.PICKUP) m_rsePlaceItem.Action += PlacePickup;
 	}
 
 	private void OnDisable()
 	{
-		if (m_type == InteractType.PICKUP) m_rsePlaceItem.Action -= PlaceItem;
+		if (m_type == InteractType.PICKUP) m_rsePlaceItem.Action -= PlacePickup;
 	}
 
 	private void ResetSerializedTypes()
@@ -166,59 +171,37 @@ public class Interactable : MonoBehaviour
 				Interactable spawnInteractable = Instantiate(m_pfItemSpawned, transform.position, Quaternion.identity);
 				float InteractableScale = spawnInteractable.transform.localScale.x;
 				spawnInteractable.transform.localScale = Vector3.zero;
-				spawnInteractable.transform.DOScale(InteractableScale, 1f).SetEase(Ease.OutBounce).SetLink(this.gameObject);
-				spawnInteractable.transform.DOJump(m_spawnPosition.position, 1f, 1, 0.5f).SetEase(Ease.Linear).SetLink(this.gameObject).OnComplete(() => { m_rsePlaySoundOfType.Call(m_type, m_pfItemSpawned.PickupType);});
+				spawnInteractable.transform.DOScale(InteractableScale, 1f).SetEase(Ease.OutBounce).SetLink(gameObject);
+				spawnInteractable.transform.DOJump(m_spawnPosition.position, m_ssoInteractables.PlaceDoJumpPower, m_ssoInteractables.PlaceDoJumpNumber, m_ssoInteractables.PlaceDoJumpDuration)
+					.SetEase(Ease.Linear)
+					.SetLink(gameObject)
+					.OnComplete(() => 
+				{ 
+					m_rsePlaySoundOfType.Call(m_type, m_pfItemSpawned.PickupType);
+				});
 
-                if (m_pfItemSpawned.PickupType == ItemType.DIVING_SUIT)
+				if (m_pfItemSpawned.PickupType == ItemType.KEY)
 				{
-					// Enable fisherman interactable place
+					m_rseSetMono.Call(CharacterType.GRANDPA);
+				}
+				else if (m_pfItemSpawned.PickupType == ItemType.DIVING_SUIT)
+				{
+					// Enable next fisherman interactable
 					m_interactableFishermanBoot.IsValid = true;
+					m_rseSetMono.Call(CharacterType.FISHERMAN);
+				}
+				else if (m_pfItemSpawned.PickupType == ItemType.LADDER)
+				{
+					m_rseSetMono.Call(CharacterType.COAST_GUARD);
+				}
+				else if (m_pfItemSpawned.PickupType == ItemType.PLANT)
+				{
+					m_rseSetMono.Call(CharacterType.SINGER);
 				}
 				break;
 
 			case InteractType.PLACE:
-				if (m_rsoCurrentItem.Value == m_itemRequiered) 
-				{
-					if (m_itemRequiered == ItemType.KEY)
-					{
-						// TODO Animate door
-						m_TravelToHouse.IsValid = true;
-						m_rsoCurrentPanel.Value = PanelType.HOUSE;
-						m_rseSetCharacterPosition.Call(m_waypointToHouse.position);
-					}
-					else if (m_itemRequiered == ItemType.BOOT)
-					{
-						m_rseSetBubble.Call(CharacterType.FISHERMAN, 1);
-
-						GameObject fish = Instantiate(m_pfFish, transform.position, Quaternion.identity);
-						float fishScale = fish.transform.localScale.x;
-						fish.transform.localScale = Vector3.zero;
-						fish.transform.DOScale(fishScale, 1f).SetEase(Ease.OutBounce).SetLink(gameObject);
-						fish.transform.DOJump(m_fishSpawnPosition.position, 1f, 1, 0.5f).SetEase(Ease.Linear).SetLink(gameObject).OnComplete(() => { m_rsePlaySoundOfType.Call(m_type, ItemType.FISH); });
-					}
-					else if (m_itemRequiered == ItemType.FISH)
-					{
-						// TODO Animate door
-						m_rainTravel.IsValid = true;
-						m_rseSetBubble.Call(CharacterType.FISHMONGER_SHORTKING, 1);
-						m_rseSetBubble.Call(CharacterType.FISHMONGER_TALL, 1);
-					}
-					else if (m_itemRequiered == ItemType.LADDER)
-					{
-						m_balconyTravel.IsValid = true;
-					}
-					else if (m_itemRequiered == ItemType.PLANT)
-					{
-						m_lightTopTravel.IsValid = true;
-					}
-					else if (m_itemRequiered == ItemType.GRANNY)
-					{
-						PlayEndCinematic();
-					}
-
-					IsValid = false;
-					m_rsePlaceItem.Call(m_placePosition.position);
-				}
+				StartCoroutine(AnimatePlaceReceiver());
 				break;
 
 			case InteractType.PICKUP:
@@ -266,45 +249,107 @@ public class Interactable : MonoBehaviour
 		}
 	}
 
-	private void PlaceItem(Vector3 destination)
+	private IEnumerator AnimatePlaceReceiver()
+	{
+		// Assertion
+		if (m_rsoCurrentItem.Value != m_itemRequiered) yield break;
+
+		yield return new WaitForSeconds(m_ssoInteractables.PlaceDoJumpDuration);
+
+		switch (m_itemRequiered)
+		{
+			case ItemType.BOOT:
+				m_rseSetBubble.Call(CharacterType.FISHERMAN, 1);
+
+				GameObject fish = Instantiate(m_pfFish, transform.position, Quaternion.identity);
+				float fishScale = fish.transform.localScale.x;
+				fish.transform.localScale = Vector3.zero;
+				fish.transform.DOScale(fishScale, 1f).SetEase(Ease.OutBounce).SetLink(gameObject);
+				fish.transform.DOJump(m_fishSpawnPosition.position, m_ssoInteractables.PlaceDoJumpPower, m_ssoInteractables.PlaceDoJumpNumber, m_ssoInteractables.PlaceDoJumpDuration)
+					.SetEase(Ease.Linear)
+					.SetLink(gameObject)
+					.OnComplete(() => 
+				{ 
+					m_rsePlaySoundOfType.Call(m_type, ItemType.FISH); 
+				});
+				break;
+
+			case ItemType.FISH:
+				m_rainTravel.IsValid = true;
+				m_srMarketForeground.sprite = m_spMarketOpened;
+				m_rseSetBubble.Call(CharacterType.FISHMONGER_SHORTKING, 1);
+				m_rseSetBubble.Call(CharacterType.FISHMONGER_TALL, 1);
+				break;
+
+			case ItemType.KEY:
+				// TODO Animate door
+				m_TravelToHouse.IsValid = true;
+				m_rsoCurrentPanel.Value = PanelType.HOUSE;
+				m_rseSetCharacterPosition.Call(m_waypointToHouse.position);
+				break;
+
+			case ItemType.LADDER:
+				m_balconyTravel.IsValid = true;
+				break;
+
+			case ItemType.PLANT:
+				m_lightTopTravel.IsValid = true;
+				break;
+
+			case ItemType.GRANNY:
+				PlayEndCinematic();
+				break;
+		}
+
+		IsValid = false;
+		m_rsePlaceItem.Call(m_placePosition.position);
+	}
+
+
+	private void PlacePickup(Vector3 destination)
 	{
 		// Assertion
 		if (m_rsoCurrentItem.Value != PickupType) return;
 
 		m_rsoCurrentItem.Value = ItemType.NONE;
 
-		transform.DOJump(destination, 1f, 1, 0.5f).SetEase(Ease.Linear).SetLink(gameObject);
-		m_rsePlaySoundOfType.Call(InteractType.PLACE, PickupType);
-		transform.parent = null;
-
-		switch (PickupType)
+		transform.DOJump(destination, m_ssoInteractables.PlaceDoJumpPower, m_ssoInteractables.PlaceDoJumpNumber, m_ssoInteractables.PlaceDoJumpDuration)
+			.SetEase(Ease.Linear)
+			.SetLink(gameObject)
+			.OnComplete(() =>
 		{
-			case ItemType.BOOT:
-				Destroy(gameObject);
-				break;
+			m_rsePlaySoundOfType.Call(InteractType.PLACE, PickupType);
+			transform.parent = null;
 
-			case ItemType.KEY:
-				Destroy(gameObject);
-				break;
+			switch (PickupType)
+			{
+				case ItemType.BOOT:
+					Destroy(gameObject);
+					break;
 
-			case ItemType.FISH:
-				Destroy(gameObject);
-				break;
+				case ItemType.KEY:
+					Destroy(gameObject);
+					break;
 
-			case ItemType.LADDER:
-				Instantiate(m_pfLadderLong, transform.position, Quaternion.identity);
-				Destroy(gameObject);
-				break;
+				case ItemType.FISH:
+					Destroy(gameObject);
+					break;
 
-			case ItemType.PLANT:
-				Instantiate(m_pfPlantLong, transform.position, Quaternion.identity);
-				Destroy(gameObject);
-				break;
+				case ItemType.LADDER:
+					Instantiate(m_pfLadderLong, transform.position, Quaternion.identity);
+					Destroy(gameObject);
+					break;
 
-			case ItemType.GRANNY:
-				m_rsoToggleMitigedGravity.Value = false;				
-				break;
-		}
+				case ItemType.PLANT:
+					Instantiate(m_pfPlantLong, transform.position, Quaternion.identity);
+					Destroy(gameObject);
+					break;
+
+				case ItemType.GRANNY:
+					m_rsoToggleMitigedGravity.Value = false;
+					break;
+			}
+		});
 	}
 
 	private void PlayEndCinematic()

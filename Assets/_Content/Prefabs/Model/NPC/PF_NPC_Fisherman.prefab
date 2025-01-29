@@ -140,7 +140,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3398136122651017476, guid: 0aac3e8917642b147adcc23458662a7a, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4812670931241616591, guid: 0aac3e8917642b147adcc23458662a7a, type: 3}
       propertyPath: m_Sprite
@@ -156,16 +156,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6668513565112937806, guid: 0aac3e8917642b147adcc23458662a7a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.49
+      value: -2.22
       objectReference: {fileID: 0}
     - target: {fileID: 6668513565112937806, guid: 0aac3e8917642b147adcc23458662a7a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.16
+      value: 2.18
       objectReference: {fileID: 0}
     - target: {fileID: 8428896361334244951, guid: 0aac3e8917642b147adcc23458662a7a, type: 3}
       propertyPath: Type
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 8428896361334244951, guid: 0aac3e8917642b147adcc23458662a7a, type: 3}
+      propertyPath: m_spMono
+      value: 
+      objectReference: {fileID: 21300000, guid: a01c2686c3c9dd84e804bfd284ca1c58, type: 3}
     - target: {fileID: 8428896361334244951, guid: 0aac3e8917642b147adcc23458662a7a, type: 3}
       propertyPath: dialogue1
       value: J'ai perdu ma botte, mais je ne rentre plus dans mon scaphandre
@@ -177,19 +181,11 @@ PrefabInstance:
     - target: {fileID: 8428896361334244951, guid: 0aac3e8917642b147adcc23458662a7a, type: 3}
       propertyPath: m_sprites.Array.data[0]
       value: 
-      objectReference: {fileID: 21300000, guid: 78f37fac844a16946a8c7ecf91be6fa9, type: 3}
+      objectReference: {fileID: 21300000, guid: 73c933f1a8cb24542920f60e2815075c, type: 3}
     - target: {fileID: 8428896361334244951, guid: 0aac3e8917642b147adcc23458662a7a, type: 3}
       propertyPath: m_sprites.Array.data[1]
       value: 
-      objectReference: {fileID: 21300000, guid: 73c933f1a8cb24542920f60e2815075c, type: 3}
-    - target: {fileID: 8714931105223621407, guid: 0aac3e8917642b147adcc23458662a7a, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.99
-      objectReference: {fileID: 0}
-    - target: {fileID: 8714931105223621407, guid: 0aac3e8917642b147adcc23458662a7a, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.61
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 21300000, guid: 78f37fac844a16946a8c7ecf91be6fa9, type: 3}
     m_RemovedComponents:
     - {fileID: 1403957127961322583, guid: 0aac3e8917642b147adcc23458662a7a, type: 3}
     m_RemovedGameObjects: []

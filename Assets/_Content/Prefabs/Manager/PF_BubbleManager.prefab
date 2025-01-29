@@ -45,3 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_rseSetBubble: {fileID: 11400000, guid: 7b45e7d949ee54e4bacc83755120db66, type: 2}
+  m_rseSetMono: {fileID: 11400000, guid: 3e895c35e32a4ea48b40960c7e6bd23a, type: 2}
