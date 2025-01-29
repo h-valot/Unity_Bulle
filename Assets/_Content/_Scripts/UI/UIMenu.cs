@@ -10,8 +10,9 @@ public class UIMenu : MonoBehaviour
 
 	[FoldoutGroup("Scriptable")][SerializeField] private RSO_LockCursor m_rsoLockCursor;
 	[FoldoutGroup("Scriptable")][SerializeField] private RSE_DisplayEnd m_rseDisplayEnd;
+    [FoldoutGroup("Scriptable")][SerializeField] private RSE_DisplayIntro m_rseDisplayIntro;
 
-	private void Start()
+    private void Start()
 	{
 		Show();
 		m_creditsParent.SetActive(false);
@@ -41,7 +42,8 @@ public class UIMenu : MonoBehaviour
 	public void OnPressedPlay()
 	{
 		Hide();
-	}
+		m_rseDisplayIntro.Call();
+    }
 
 	public void OnPressedCredits()
 	{

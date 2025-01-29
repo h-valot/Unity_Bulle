@@ -1,39 +1,48 @@
 using DG.Tweening;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class PanelsManager : MonoBehaviour
 {
+    [Header("Config")]
+    [SerializeField] private float m_revealSpeed = 0.5f;
+
     [Header("Scriptable")]
+    [SerializeField] private RSE_DisplayIntro m_rseDisplayIntro;
     [SerializeField] private RSO_CurrentPanel m_rsoCurrentPanel;
     [SerializeField] private RSE_SetCharacterScale m_rseSetCharacterScale;
     [SerializeField] private SSO_Character m_ssoCharacter;
 
     [Header("Panel GameObjects")]
-    [SerializeField] private GameObject[] m_panels;
+    [SerializeField] private SpriteMask[] m_spriteMasks;
     [SerializeField] private PanelType[] m_panelsType;
     [SerializeField] private bool[] m_arePanelsDiscovered;
+
+    private List<SpriteMask> m_spriteMasksToReveal = new List<SpriteMask>();
 
 	private void Start()
     {
         //Check what are the panel discovered at start
-        for (int i = 0; i < m_panels.Length; i++)
+        for (int i = 0; i < m_spriteMasks.Length; i++)
         {
-			m_panels[i].transform.localScale = new Vector3(1, 0, 1);
+			m_spriteMasks[i].alphaCutoff = 1;
             if (m_arePanelsDiscovered[i])
             {
-                RevealPanel(i);
+                m_spriteMasksToReveal.AddUnique(m_spriteMasks[i]);
 			}
 		}    
     }
 
     private void OnEnable()
     {
+        m_rseDisplayIntro.Action += RevealStart;
         m_rsoCurrentPanel.OnChanged += CheckPanelDiscovered;
         m_rsoCurrentPanel.OnChanged += TogglePanelSpecialAction;
     }
 
     private void OnDisable()
     {
+        m_rseDisplayIntro.Action -= RevealStart;
         m_rsoCurrentPanel.OnChanged -= CheckPanelDiscovered;
         m_rsoCurrentPanel.OnChanged -= TogglePanelSpecialAction;
     }
@@ -42,7 +51,7 @@ public class PanelsManager : MonoBehaviour
     {
         int panelIndex = 0;
         
-        for (int i = 0; i < m_panels.Length; i++)
+        for (int i = 0; i < m_spriteMasks.Length; i++)
         {
             if (m_panelsType[i] == panelType)
             {
@@ -60,7 +69,7 @@ public class PanelsManager : MonoBehaviour
 
     private void RevealPanel(int panelIndex)
     {
-        m_panels[panelIndex].transform.DOScaleY(1f, 0.3f);
+        DOTween.To(()=> m_spriteMasks[panelIndex].alphaCutoff, x=> m_spriteMasks[panelIndex].alphaCutoff = x, 0, m_revealSpeed).SetEase(Ease.Linear).SetLink(gameObject);
     }
 
     private void TogglePanelSpecialAction(PanelType panelType)
@@ -74,5 +83,12 @@ public class PanelsManager : MonoBehaviour
         {
             m_rseSetCharacterScale.Call(m_ssoCharacter.GraphicsScaleBase);
         }
+    }
+
+    private void RevealStart()
+    {
+        SpriteMask panelToReveal = m_spriteMasksToReveal[0];
+        m_spriteMasksToReveal.RemoveAt(0);
+        DOTween.To(() => panelToReveal.alphaCutoff, x => panelToReveal.alphaCutoff = x, 0, m_revealSpeed).SetEase(Ease.Linear).SetLink(gameObject).OnComplete(() => { RevealStart(); });
     }
 }
