@@ -1,5 +1,79 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &680385876428060960
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 5600650503709748608}
+    m_Modifications:
+    - target: {fileID: 1742030366303252972, guid: 345e10758bb22c5479be442026dce26a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.63
+      objectReference: {fileID: 0}
+    - target: {fileID: 1742030366303252972, guid: 345e10758bb22c5479be442026dce26a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.37
+      objectReference: {fileID: 0}
+    - target: {fileID: 1742030366303252972, guid: 345e10758bb22c5479be442026dce26a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1742030366303252972, guid: 345e10758bb22c5479be442026dce26a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1742030366303252972, guid: 345e10758bb22c5479be442026dce26a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1742030366303252972, guid: 345e10758bb22c5479be442026dce26a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1742030366303252972, guid: 345e10758bb22c5479be442026dce26a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1742030366303252972, guid: 345e10758bb22c5479be442026dce26a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1742030366303252972, guid: 345e10758bb22c5479be442026dce26a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1742030366303252972, guid: 345e10758bb22c5479be442026dce26a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2409967728137148606, guid: 345e10758bb22c5479be442026dce26a, type: 3}
+      propertyPath: m_Name
+      value: PF_SpawnDiving
+      objectReference: {fileID: 0}
+    - target: {fileID: 2960484462210565021, guid: 345e10758bb22c5479be442026dce26a, type: 3}
+      propertyPath: m_Size.x
+      value: 1.42
+      objectReference: {fileID: 0}
+    - target: {fileID: 2960484462210565021, guid: 345e10758bb22c5479be442026dce26a, type: 3}
+      propertyPath: m_Size.y
+      value: 0.62
+      objectReference: {fileID: 0}
+    - target: {fileID: 7279730890996989861, guid: 345e10758bb22c5479be442026dce26a, type: 3}
+      propertyPath: m_bubble
+      value: 
+      objectReference: {fileID: 2243428088639145622}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 345e10758bb22c5479be442026dce26a, type: 3}
+--- !u!4 &1251394019290581196 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1742030366303252972, guid: 345e10758bb22c5479be442026dce26a, type: 3}
+  m_PrefabInstance: {fileID: 680385876428060960}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7771864271739240641
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -64,6 +138,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3398136122651017476, guid: 0aac3e8917642b147adcc23458662a7a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4812670931241616591, guid: 0aac3e8917642b147adcc23458662a7a, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -105,18 +183,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 73c933f1a8cb24542920f60e2815075c, type: 3}
     - target: {fileID: 8714931105223621407, guid: 0aac3e8917642b147adcc23458662a7a, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8714931105223621407, guid: 0aac3e8917642b147adcc23458662a7a, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8714931105223621407, guid: 0aac3e8917642b147adcc23458662a7a, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8714931105223621407, guid: 0aac3e8917642b147adcc23458662a7a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.99
       objectReference: {fileID: 0}
@@ -124,14 +190,13 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 1.61
       objectReference: {fileID: 0}
-    - target: {fileID: 8714931105223621407, guid: 0aac3e8917642b147adcc23458662a7a, type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1403957127961322583, guid: 0aac3e8917642b147adcc23458662a7a, type: 3}
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 2765971675067067713, guid: 0aac3e8917642b147adcc23458662a7a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1251394019290581196}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1337750260222717937, guid: 0aac3e8917642b147adcc23458662a7a, type: 3}
       insertIndex: 2
@@ -151,6 +216,11 @@ MonoBehaviour:
 --- !u!212 &2691897370296469065 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 5656731162987792008, guid: 0aac3e8917642b147adcc23458662a7a, type: 3}
+  m_PrefabInstance: {fileID: 7771864271739240641}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &5600650503709748608 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2765971675067067713, guid: 0aac3e8917642b147adcc23458662a7a, type: 3}
   m_PrefabInstance: {fileID: 7771864271739240641}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &8740239647840644912 stripped

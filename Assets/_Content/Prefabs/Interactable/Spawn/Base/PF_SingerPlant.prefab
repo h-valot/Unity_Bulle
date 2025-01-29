@@ -28,7 +28,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.225, y: 2.225, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -83,7 +83,7 @@ MonoBehaviour:
   m_rseSetCameraLerp: {fileID: 11400000, guid: ea57d8fe5148f6542b37739c88d99128, type: 2}
   m_rsoLockCursor: {fileID: 11400000, guid: b9d163e373160974e9bf3866d3d82dc9, type: 2}
   IsValid: 1
-  m_displayGizmos: 1
+  IsInteractive: 0
 --- !u!61 &3507706488641018676
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -91,7 +91,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5775256860904131518}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:

@@ -5,7 +5,7 @@ using UnityEngine;
 public class CharacterMotor : MonoBehaviour
 {
 	[FoldoutGroup("Internal references")][SerializeField] private Rigidbody2D m_rigidbody2D;
-	[FoldoutGroup("Internal references")][SerializeField] private Transform m_itemAnchor;
+	[FoldoutGroup("Internal references")][SerializeField] public Transform ItemAnchor;
 
 	[FoldoutGroup("Scriptable")][SerializeField] private SSO_Character m_ssoCharacter;
 	[FoldoutGroup("Scriptable")][SerializeField] private RSE_Move m_rseMove;
@@ -88,8 +88,8 @@ public class CharacterMotor : MonoBehaviour
 
 	private void PickUpItem(Transform pickupTransform)
 	{
-		pickupTransform.SetParent(m_itemAnchor);
-		pickupTransform.DOLocalJump(m_itemAnchor.localPosition, 1f, 1, 0.5f).SetEase(Ease.Linear).SetLink(gameObject);
+		pickupTransform.SetParent(ItemAnchor);
+		pickupTransform.DOLocalJump(ItemAnchor.localPosition, 1f, 1, 0.5f).SetEase(Ease.Linear).SetLink(gameObject);
 	}
 
 	private void CheckGround()

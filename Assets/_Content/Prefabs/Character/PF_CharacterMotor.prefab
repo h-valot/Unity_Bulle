@@ -51,7 +51,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_rigidbody2D: {fileID: 1112500034327644085}
-  m_itemAnchor: {fileID: 1814359883263169399}
+  ItemAnchor: {fileID: 1814359883263169399}
   m_ssoCharacter: {fileID: 11400000, guid: 4d72b7f9f302f63478716a3a4dc8fec5, type: 2}
   m_rseMove: {fileID: 11400000, guid: 2ae46e52cfd6af14ab8189d45844ac82, type: 2}
   m_rseJump: {fileID: 11400000, guid: 7892fbf9c0a7865479fa6ea8add75035, type: 2}

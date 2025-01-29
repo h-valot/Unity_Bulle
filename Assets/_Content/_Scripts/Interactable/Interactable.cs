@@ -27,7 +27,6 @@ public class Interactable : MonoBehaviour
 	[ShowIf("m_type", InteractType.PICKUP)][SerializeField] public ItemType PickupType;
 
 	[ShowIf("PickupType", ItemType.BOOT)][SerializeField] private Transform m_marketTravelPosition;
-	[ShowIf("PickupType", ItemType.BOOT)][SerializeField] private Interactable m_interactableFishermanFish;
 
 	[ShowIf("PickupType", ItemType.DIVING_SUIT)][SerializeField] private Vector2 m_abyssTravelPosition;
 
@@ -43,6 +42,9 @@ public class Interactable : MonoBehaviour
 	[ShowIf("m_type", InteractType.PLACE)][SerializeField] private ItemType m_itemRequiered;
 
 	[ShowIf("m_itemRequiered", ItemType.FISH)][SerializeField] private Interactable m_rainTravel;
+
+	[ShowIf("m_itemRequiered", ItemType.BOOT)][SerializeField] private GameObject m_pfFish;
+	[ShowIf("m_itemRequiered", ItemType.BOOT)][SerializeField] private Transform m_fishSpawnPosition;
 
 	[ShowIf("m_itemRequiered", ItemType.KEY)][SerializeField] private Interactable m_TravelToHouse;
 	[ShowIf("m_itemRequiered", ItemType.KEY)][SerializeField] private Transform m_waypointToHouse;
@@ -72,7 +74,7 @@ public class Interactable : MonoBehaviour
 	[FoldoutGroup("Scriptable")][SerializeField] private RSO_LockCursor m_rsoLockCursor;
 
 	[SerializeField] public bool IsValid = true;
-	[SerializeField] private bool m_displayGizmos; 
+	[SerializeField] public bool IsInteractive = true; 
 
 	private void OnEnable()
 	{
@@ -92,6 +94,9 @@ public class Interactable : MonoBehaviour
 
 	public bool CanInteract()
 	{
+		// Assertion
+		if (!IsInteractive) return false;
+
 		bool isInteractive = false;
 
 		switch (m_type)
@@ -174,13 +179,22 @@ public class Interactable : MonoBehaviour
 			case InteractType.PLACE:
 				if (m_rsoCurrentItem.Value == m_itemRequiered) 
 				{
-					if (m_itemRequiered == ItemType.PLANT)
+					if (m_itemRequiered == ItemType.KEY)
 					{
-						m_lightTopTravel.IsValid = true;
+						// TODO Animate door
+						m_TravelToHouse.IsValid = true;
+						m_rsoCurrentPanel.Value = PanelType.HOUSE;
+						m_rseSetCharacterPosition.Call(m_waypointToHouse.position);
 					}
-					else if (m_itemRequiered == ItemType.LADDER)
+					else if (m_itemRequiered == ItemType.BOOT)
 					{
-						m_balconyTravel.IsValid = true;
+						m_rseSetBubble.Call(CharacterType.FISHERMAN, 1);
+
+						GameObject fish = Instantiate(m_pfFish, transform.position, Quaternion.identity);
+						float fishScale = fish.transform.localScale.x;
+						fish.transform.localScale = Vector3.zero;
+						fish.transform.DOScale(fishScale, 1f).SetEase(Ease.OutBounce).SetLink(gameObject);
+						fish.transform.DOJump(m_fishSpawnPosition.position, 1f, 1, 0.5f).SetEase(Ease.Linear).SetLink(gameObject).OnComplete(() => { m_rsePlaySoundOfType.Call(m_type, ItemType.FISH); });
 					}
 					else if (m_itemRequiered == ItemType.FISH)
 					{
@@ -189,12 +203,13 @@ public class Interactable : MonoBehaviour
 						m_rseSetBubble.Call(CharacterType.FISHMONGER_SHORTKING, 1);
 						m_rseSetBubble.Call(CharacterType.FISHMONGER_TALL, 1);
 					}
-					else if (m_itemRequiered == ItemType.KEY)
+					else if (m_itemRequiered == ItemType.LADDER)
 					{
-						// TODO Animate door
-						m_TravelToHouse.IsValid = true;
-						m_rsoCurrentPanel.Value = PanelType.HOUSE;
-						m_rseSetCharacterPosition.Call(m_waypointToHouse.position);
+						m_balconyTravel.IsValid = true;
+					}
+					else if (m_itemRequiered == ItemType.PLANT)
+					{
+						m_lightTopTravel.IsValid = true;
 					}
 					else if (m_itemRequiered == ItemType.GRANNY)
 					{
@@ -265,8 +280,6 @@ public class Interactable : MonoBehaviour
 		switch (PickupType)
 		{
 			case ItemType.BOOT:
-				m_rseSetBubble.Call(CharacterType.FISHERMAN, 1);
-				m_interactableFishermanFish.IsValid = true;
 				Destroy(gameObject);
 				break;
 
@@ -310,9 +323,6 @@ public class Interactable : MonoBehaviour
 
 	private void OnDrawGizmos()
 	{
-		// Assertion
-		if (!m_displayGizmos) return;
-
 		Gizmos.color = Color.cyan;
 		Gizmos.DrawWireCube(transform.position, transform.localScale);
 	}
