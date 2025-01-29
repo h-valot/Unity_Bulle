@@ -42,6 +42,8 @@ public class Interactable : MonoBehaviour
 	[ShowIf("m_type", InteractType.PLACE)][SerializeField] private ItemType m_itemRequiered;
 
 	[ShowIf("m_itemRequiered", ItemType.FISH)][SerializeField] private Interactable m_rainTravel;
+	[ShowIf("m_itemRequiered", ItemType.FISH)][SerializeField] private SpriteRenderer m_srMarketForeground;
+	[ShowIf("m_itemRequiered", ItemType.FISH)][SerializeField] private Sprite m_spMarketOpened;
 
 	[ShowIf("m_itemRequiered", ItemType.BOOT)][SerializeField] private GameObject m_pfFish;
 	[ShowIf("m_itemRequiered", ItemType.BOOT)][SerializeField] private Transform m_fishSpawnPosition;
@@ -198,7 +200,7 @@ public class Interactable : MonoBehaviour
 					}
 					else if (m_itemRequiered == ItemType.FISH)
 					{
-						// TODO Animate door
+						m_srMarketForeground.sprite = m_spMarketOpened;
 						m_rainTravel.IsValid = true;
 						m_rseSetBubble.Call(CharacterType.FISHMONGER_SHORTKING, 1);
 						m_rseSetBubble.Call(CharacterType.FISHMONGER_TALL, 1);
