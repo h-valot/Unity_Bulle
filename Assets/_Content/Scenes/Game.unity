@@ -9708,6 +9708,14 @@ PrefabInstance:
       propertyPath: m_rainTravel
       value: 
       objectReference: {fileID: 248494527}
+    - target: {fileID: 1324187087967687981, guid: 61e04b724760b3446859da4089d51d4a, type: 3}
+      propertyPath: m_spMarketOpened
+      value: 
+      objectReference: {fileID: 21300000, guid: 77eb99b03f832124f974573026b374ca, type: 3}
+    - target: {fileID: 1324187087967687981, guid: 61e04b724760b3446859da4089d51d4a, type: 3}
+      propertyPath: m_srMarketForeground
+      value: 
+      objectReference: {fileID: 1900869099}
     - target: {fileID: 5775256860904131518, guid: 61e04b724760b3446859da4089d51d4a, type: 3}
       propertyPath: m_Name
       value: PF_FishmongerFish
