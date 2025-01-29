@@ -297,6 +297,7 @@ public class Interactable : MonoBehaviour
 				break;
 
 			case ItemType.GRANNY:
+				m_rseSetBubble.Call(CharacterType.GRANDPA, 3);
 				PlayEndCinematic();
 				break;
 		}

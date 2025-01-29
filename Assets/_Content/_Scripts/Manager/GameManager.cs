@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
 	[FoldoutGroup("Scriptable")][SerializeField] private RSO_ToggleMitigedGravity m_rsoToggleMitigedGravity;
 	[FoldoutGroup("Scriptable")][SerializeField] private RSE_SetBubble m_rseSetBubble; 
 	[FoldoutGroup("Scriptable")][SerializeField] private RSO_LockInputs m_rsoLockInputs;
+	[FoldoutGroup("Scriptable")][SerializeField] private RSE_SetCameraLerp m_rseSetCameraLerp;
 
 	private void Start()
 	{
@@ -25,6 +26,8 @@ public class GameManager : MonoBehaviour
 		m_rsoCurrentPanel.Value = PanelType.HARBOR;
 		
 		m_rsoToggleMitigedGravity.Value = false;
-		m_rsoLockInputs.Value = false;
+		m_rsoLockInputs.Value = true;
+
+		m_rseSetCameraLerp.Call(false);
 	}
 }

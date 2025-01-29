@@ -93,12 +93,20 @@ PrefabInstance:
       value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5656731162987792008, guid: 0aac3e8917642b147adcc23458662a7a, type: 3}
+      propertyPath: m_Size.x
+      value: 10.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 5656731162987792008, guid: 0aac3e8917642b147adcc23458662a7a, type: 3}
+      propertyPath: m_Size.y
+      value: 10.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 5656731162987792008, guid: 0aac3e8917642b147adcc23458662a7a, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: c84c9ac2d60b331478d84f80e91ce21e, type: 3}
+      objectReference: {fileID: 21300000, guid: c06cecfea89253c4880fbff33f2d1863, type: 3}
     - target: {fileID: 5656731162987792008, guid: 0aac3e8917642b147adcc23458662a7a, type: 3}
       propertyPath: m_WasSpriteAssigned
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6030850714902013665, guid: 0aac3e8917642b147adcc23458662a7a, type: 3}
       propertyPath: m_Layer
@@ -123,6 +131,10 @@ PrefabInstance:
     - target: {fileID: 8428896361334244951, guid: 0aac3e8917642b147adcc23458662a7a, type: 3}
       propertyPath: dialogue1
       value: "Mamie est parti et elle a ferm\xE9 la maison a cl\xE9"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8428896361334244951, guid: 0aac3e8917642b147adcc23458662a7a, type: 3}
+      propertyPath: m_alwaysActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8428896361334244951, guid: 0aac3e8917642b147adcc23458662a7a, type: 3}
       propertyPath: m_sprites.Array.size

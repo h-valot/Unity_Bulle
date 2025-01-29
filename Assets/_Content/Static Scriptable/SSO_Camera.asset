@@ -15,3 +15,6 @@ MonoBehaviour:
   SmoothTime: 0.1
   EndTranslationDuration: 5
   EndOrthoSize: 24
+  IntroGrandpaTranslationDuration: 10
+  IntroKidTranslationDuration: 6
+  DefaultOrthoSize: 7

@@ -1,19 +1,27 @@
 using DG.Tweening;
 using UnityEngine;
 using System.Collections.Generic;
+using System.Collections;
 
 public class PanelsManager : MonoBehaviour
 {
     [Header("Config")]
     [SerializeField] private float m_revealSpeed = 0.5f;
+	[SerializeField] private Camera m_camera;
+	[SerializeField] private Transform m_character;
+	[SerializeField] private Transform m_grandpa;
 
-    [Header("Scriptable")]
+	[Header("Scriptable")]
     [SerializeField] private RSE_DisplayIntro m_rseDisplayIntro;
     [SerializeField] private RSO_CurrentPanel m_rsoCurrentPanel;
     [SerializeField] private RSE_SetCharacterScale m_rseSetCharacterScale;
     [SerializeField] private SSO_Character m_ssoCharacter;
+	[SerializeField] private RSO_LockInputs m_rsoLockInputs;
+	[SerializeField] private RSE_SetCameraLerp m_rseSetCameraLerp;
+	[SerializeField] private SSO_Camera m_ssoCamera;
+	[SerializeField] private RSE_SetBubble m_rseSetBubble;
 
-    [Header("Panel GameObjects")]
+	[Header("Panel GameObjects")]
     [SerializeField] private SpriteMask[] m_spriteMasks;
     [SerializeField] private PanelType[] m_panelsType;
     [SerializeField] private bool[] m_arePanelsDiscovered;
@@ -36,13 +44,15 @@ public class PanelsManager : MonoBehaviour
     private void OnEnable()
     {
         m_rseDisplayIntro.Action += RevealStart;
-        m_rsoCurrentPanel.OnChanged += CheckPanelDiscovered;
+		m_rseDisplayIntro.Action += OnDisplayIntro;
+		m_rsoCurrentPanel.OnChanged += CheckPanelDiscovered;
         m_rsoCurrentPanel.OnChanged += TogglePanelSpecialAction;
     }
 
     private void OnDisable()
     {
         m_rseDisplayIntro.Action -= RevealStart;
+		m_rseDisplayIntro.Action -= OnDisplayIntro;
         m_rsoCurrentPanel.OnChanged -= CheckPanelDiscovered;
         m_rsoCurrentPanel.OnChanged -= TogglePanelSpecialAction;
     }
@@ -91,4 +101,27 @@ public class PanelsManager : MonoBehaviour
         m_spriteMasksToReveal.RemoveAt(0);
         DOTween.To(() => panelToReveal.alphaCutoff, x => panelToReveal.alphaCutoff = x, 0, m_revealSpeed).SetEase(Ease.Linear).SetLink(gameObject).OnComplete(() => { RevealStart(); });
     }
+
+	private void OnDisplayIntro()
+	{	
+		StartCoroutine(AnimateIntro());
+	}
+
+	private IEnumerator AnimateIntro()
+	{
+		m_rseSetBubble.Call(CharacterType.GRANDPA, 0);
+		m_camera.transform.DOMove(m_ssoCamera.GetOffset(m_grandpa.position), m_ssoCamera.IntroGrandpaTranslationDuration);
+		m_camera.DOOrthoSize(m_ssoCamera.DefaultOrthoSize, m_ssoCamera.IntroGrandpaTranslationDuration);
+
+		yield return new WaitForSeconds(m_ssoCamera.IntroGrandpaTranslationDuration);
+
+		m_camera.transform.DOMove(m_ssoCamera.GetOffset(m_character.position), m_ssoCamera.IntroKidTranslationDuration);
+		m_camera.DOOrthoSize(m_ssoCamera.DefaultOrthoSize, m_ssoCamera.IntroKidTranslationDuration);
+
+		yield return new WaitForSeconds(m_ssoCamera.IntroKidTranslationDuration);
+
+		m_rseSetBubble.Call(CharacterType.GRANDPA, 1);
+		m_rsoLockInputs.Value = false;
+		m_rseSetCameraLerp.Call(true);
+	}
 }

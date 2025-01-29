@@ -10,8 +10,9 @@ public class Bubble : MonoBehaviour
     [SerializeField] private List<Sprite> m_sprites = new List<Sprite>();
 	[SerializeField] private float m_idMono;
 	[SerializeField] private Sprite m_spMono;
+	[SerializeField] private bool m_alwaysActive;
 
-    [FoldoutGroup("Internal references")][SerializeField] private GameObject m_graphicsParent;
+	[FoldoutGroup("Internal references")][SerializeField] private GameObject m_graphicsParent;
 	[FoldoutGroup("Internal references")][SerializeField] private SpriteRenderer m_spriteRenderer;
 
 	[ReadOnly] public int Index = -1;
@@ -21,13 +22,14 @@ public class Bubble : MonoBehaviour
 
 	private void Start()
 	{
-		m_graphicsParent.SetActive(false);
+		m_graphicsParent.SetActive(m_alwaysActive);
 	}
 
     private void OnTriggerStay2D(Collider2D collider)
 	{
 		// Assertion
 		if (!collider.TryGetComponent<CharacterMotor>(out var character)) return;
+		if (m_alwaysActive) return;
 
 		if (Index == -1)
 		{
@@ -42,13 +44,17 @@ public class Bubble : MonoBehaviour
 	{
 		// Assertion
 		if (!collider.TryGetComponent<CharacterMotor>(out var character)) return;
+		if (m_alwaysActive) return;
 
 		m_exited = true;
 	}
 
 	private void Update()
 	{
-		if (m_entered && !m_exited)
+		// Assertion
+		if (m_alwaysActive) return;
+
+		if (m_entered)
 		{
 			m_entered = false;
 			Show();

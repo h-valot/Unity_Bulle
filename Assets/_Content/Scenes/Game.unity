@@ -7276,18 +7276,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4078272357543061239, guid: 480f965be7e02724c936f63a71cb130f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4078272357543061239, guid: 480f965be7e02724c936f63a71cb130f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4158265133380355497, guid: 480f965be7e02724c936f63a71cb130f, type: 3}
       propertyPath: m_Name
       value: --MANAGER--
       objectReference: {fileID: 0}
     - target: {fileID: 5133526858806688510, guid: 480f965be7e02724c936f63a71cb130f, type: 3}
+      propertyPath: m_camera
+      value: 
+      objectReference: {fileID: 1188536681}
+    - target: {fileID: 5133526858806688510, guid: 480f965be7e02724c936f63a71cb130f, type: 3}
+      propertyPath: m_grandpa
+      value: 
+      objectReference: {fileID: 196411116}
+    - target: {fileID: 5133526858806688510, guid: 480f965be7e02724c936f63a71cb130f, type: 3}
+      propertyPath: m_character
+      value: 
+      objectReference: {fileID: 1431663942}
+    - target: {fileID: 5133526858806688510, guid: 480f965be7e02724c936f63a71cb130f, type: 3}
       propertyPath: m_revealSpeed
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 5133526858806688510, guid: 480f965be7e02724c936f63a71cb130f, type: 3}
-      propertyPath: m_rseDisplayIntro
-      value: 
-      objectReference: {fileID: 11400000, guid: 0e42d1ec8162a0a41bcc6565ab54d135, type: 2}
     - target: {fileID: 5133526858806688510, guid: 480f965be7e02724c936f63a71cb130f, type: 3}
       propertyPath: m_panels.Array.data[0]
       value: 
@@ -7327,30 +7343,6 @@ PrefabInstance:
     - target: {fileID: 5133526858806688510, guid: 480f965be7e02724c936f63a71cb130f, type: 3}
       propertyPath: m_spriteMasks.Array.size
       value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 5133526858806688510, guid: 480f965be7e02724c936f63a71cb130f, type: 3}
-      propertyPath: m_panelsType.Array.data[3]
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 5133526858806688510, guid: 480f965be7e02724c936f63a71cb130f, type: 3}
-      propertyPath: m_panelsType.Array.data[4]
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 5133526858806688510, guid: 480f965be7e02724c936f63a71cb130f, type: 3}
-      propertyPath: m_panelsType.Array.data[5]
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5133526858806688510, guid: 480f965be7e02724c936f63a71cb130f, type: 3}
-      propertyPath: m_panelsType.Array.data[6]
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 5133526858806688510, guid: 480f965be7e02724c936f63a71cb130f, type: 3}
-      propertyPath: m_panelsType.Array.data[7]
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 5133526858806688510, guid: 480f965be7e02724c936f63a71cb130f, type: 3}
-      propertyPath: m_panelsType.Array.data[8]
-      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5133526858806688510, guid: 480f965be7e02724c936f63a71cb130f, type: 3}
       propertyPath: m_spriteMasks.Array.data[0]
