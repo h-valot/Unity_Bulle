@@ -12,6 +12,7 @@ public class CharacterGraphics : MonoBehaviour
 	[FoldoutGroup("Scriptable")][SerializeField] private RSE_Move m_rseMove;
 	[FoldoutGroup("Scriptable")][SerializeField] private RSO_CurrentItem m_rsoCurrentItem;
     [FoldoutGroup("Scriptable")][SerializeField] private RSE_SetCharacterScale m_rseSetCharacterScale;
+    [FoldoutGroup("Scriptable")][SerializeField] private RSO_CurrentDirection m_rsoCurrentDirection;
 
     private Vector2 m_moveInput;
 	private float m_oscillationTimer;
@@ -60,7 +61,15 @@ public class CharacterGraphics : MonoBehaviour
 		{
 			m_spriteRenderer.flipX = m_moveInput.x > 0;
 			m_divingSuit.flipX = m_moveInput.x > 0;
-		}
+			if (m_moveInput.x > 0)
+			{
+                m_rsoCurrentDirection.Value = TravelDirection.RIGHT;
+            }
+			else
+			{
+                m_rsoCurrentDirection.Value = TravelDirection.LEFT;
+            }
+        }
 
 		m_currentSprites = m_rsoCurrentItem.Value == ItemType.NONE
 			? m_ssoCharacter.WalkSprites

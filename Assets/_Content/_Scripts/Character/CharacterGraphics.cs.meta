@@ -3,7 +3,15 @@ guid: 4dacff3472324e6408fe58b2546b532f
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - m_divingSuit: {instanceID: 0}
+  - m_spriteRenderer: {instanceID: 0}
+  - m_ssoCharacter: {instanceID: 0}
+  - m_rsoToggleDivingSuit: {instanceID: 0}
+  - m_rseMove: {instanceID: 0}
+  - m_rsoCurrentItem: {instanceID: 0}
+  - m_rseSetCharacterScale: {instanceID: 0}
+  - m_rsoCurrentDirection: {fileID: 11400000, guid: 66e8b24404f4824478778e0dc2c6dfd7, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

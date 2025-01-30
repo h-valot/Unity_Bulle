@@ -9,7 +9,7 @@ public class SpawnCollision : MonoBehaviour
 
 	[FoldoutGroup("Internal references")][SerializeField] private Interactable m_interactable;
 
-	private void OnCollisionEnter2D(Collision2D collision)
+	private void OnTriggerEnter2D(Collider2D collision)
 	{
 		// Assertion
 		if (!collision.gameObject.TryGetComponent<CharacterMotor>(out var character)) return;

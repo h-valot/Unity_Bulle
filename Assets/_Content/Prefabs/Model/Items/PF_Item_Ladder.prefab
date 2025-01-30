@@ -8,9 +8,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 669588159559978205, guid: dacdb8c98ea9fbf4b976a47ac4b11d1b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.48
+      objectReference: {fileID: 0}
     - target: {fileID: 732439988627032025, guid: dacdb8c98ea9fbf4b976a47ac4b11d1b, type: 3}
       propertyPath: m_Name
-      value: PF_Object_Ladder
+      value: PF_Item_Ladder
       objectReference: {fileID: 0}
     - target: {fileID: 4547894503585857846, guid: dacdb8c98ea9fbf4b976a47ac4b11d1b, type: 3}
       propertyPath: m_LocalPosition.x

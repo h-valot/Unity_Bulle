@@ -14,9 +14,10 @@ public class Interactable : MonoBehaviour
 	// TRAVEL
 	[ShowIf("m_type", InteractType.TRAVEL)][SerializeField] private PanelType m_travelTo;
     [ShowIf("m_type", InteractType.TRAVEL)][SerializeField] private Transform m_travelPosition;
+    [ShowIf("m_type", InteractType.TRAVEL)][SerializeField] private TravelDirection m_travelDirection;
+    [ShowIf("m_type", InteractType.TRAVEL)][SerializeField] private RSO_CurrentDirection m_rsoCurrentDirection;
 
-
-	// SPAWN
+    // SPAWN
     [ShowIf("m_type", InteractType.SPAWN)][SerializeField] private Interactable m_pfItemSpawned;
     [ShowIf("m_type", InteractType.SPAWN)][SerializeField] private Transform m_spawnPosition;
 
@@ -107,7 +108,7 @@ public class Interactable : MonoBehaviour
 		switch (m_type)
 		{
 			case InteractType.TRAVEL:
-				isInteractive = true;
+                isInteractive = (m_travelDirection == m_rsoCurrentDirection.Value || m_travelDirection == TravelDirection.NONE) && IsValid;
 				break;
 
 			case InteractType.SPAWN:
