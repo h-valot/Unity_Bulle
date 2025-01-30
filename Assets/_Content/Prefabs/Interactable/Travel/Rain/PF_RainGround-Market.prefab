@@ -82,6 +82,8 @@ MonoBehaviour:
   m_type: 0
   m_travelTo: 2
   m_travelPosition: {fileID: 4864318441364595470}
+  m_travelDirection: 0
+  m_rsoCurrentDirection: {fileID: 0}
   m_pfItemSpawned: {fileID: 0}
   m_spawnPosition: {fileID: 0}
   m_interactableFishermanBoot: {fileID: 0}
@@ -119,6 +121,8 @@ MonoBehaviour:
   m_rsoLockInputs: {fileID: 11400000, guid: bb0fc7e273c01eb45a8fe21bda5d61bc, type: 2}
   m_rseSetCameraLerp: {fileID: 11400000, guid: ea57d8fe5148f6542b37739c88d99128, type: 2}
   m_rsoLockCursor: {fileID: 11400000, guid: b9d163e373160974e9bf3866d3d82dc9, type: 2}
+  m_rseSetMono: {fileID: 11400000, guid: 3e895c35e32a4ea48b40960c7e6bd23a, type: 2}
+  m_rseSetMobileInputs: {fileID: 11400000, guid: c77178cdf3055a443b6e53d4236edf5b, type: 2}
   IsValid: 1
   IsInteractive: 1
 --- !u!61 &3507706488641018676

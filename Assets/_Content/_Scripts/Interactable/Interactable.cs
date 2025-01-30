@@ -78,6 +78,7 @@ public class Interactable : MonoBehaviour
 	[FoldoutGroup("Scriptable")][SerializeField] private RSE_SetCameraLerp m_rseSetCameraLerp;
 	[FoldoutGroup("Scriptable")][SerializeField] private RSO_LockCursor m_rsoLockCursor;
 	[FoldoutGroup("Scriptable")][SerializeField] private RSE_SetMono m_rseSetMono;
+	[FoldoutGroup("Scriptable")][SerializeField] private RSE_SetMobileInputs m_rseSetMobileInputs;
 
 	[SerializeField] public bool IsValid = true;
 	[SerializeField] public bool IsInteractive = true; 
@@ -355,6 +356,7 @@ public class Interactable : MonoBehaviour
 
 	private void PlayEndCinematic()
 	{
+		m_rseSetMobileInputs.Call(false);
 		m_rsoLockInputs.Value = true;
 		m_rseSetCameraLerp.Call(false);
 		m_camera.transform.DOMove(m_cameraCinematicTarget.position, m_ssoCamera.EndTranslationDuration);

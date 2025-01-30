@@ -44,18 +44,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f38b614c2c135b4096448394621734a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_revealSpeed: 0.5
+  m_camera: {fileID: 0}
+  m_character: {fileID: 0}
+  m_grandpa: {fileID: 0}
+  m_rseDisplayIntro: {fileID: 11400000, guid: 0e42d1ec8162a0a41bcc6565ab54d135, type: 2}
   m_rsoCurrentPanel: {fileID: 11400000, guid: 1eac95a65c5c4db489562d2ca876dbb4, type: 2}
   m_rseSetCharacterScale: {fileID: 11400000, guid: b04ba2290c2432a46896b2b9366229b9, type: 2}
   m_ssoCharacter: {fileID: 11400000, guid: 4d72b7f9f302f63478716a3a4dc8fec5, type: 2}
-  m_panels:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  m_rsoLockInputs: {fileID: 11400000, guid: bb0fc7e273c01eb45a8fe21bda5d61bc, type: 2}
+  m_rseSetCameraLerp: {fileID: 11400000, guid: ea57d8fe5148f6542b37739c88d99128, type: 2}
+  m_ssoCamera: {fileID: 11400000, guid: 94c2425e87c1f6d4dbc58839c51bc515, type: 2}
+  m_rseSetBubble: {fileID: 11400000, guid: 7b45e7d949ee54e4bacc83755120db66, type: 2}
+  m_rseSetMobileInputs: {fileID: 11400000, guid: c77178cdf3055a443b6e53d4236edf5b, type: 2}
+  m_spriteMasks: []
   m_panelsType: 010000000200000003000000040000000500000006000000070000000800000009000000
   m_arePanelsDiscovered: 010101000000000000

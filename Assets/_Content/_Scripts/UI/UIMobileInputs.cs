@@ -8,25 +8,32 @@ public class UIMobileInputs : MonoBehaviour
 	[FoldoutGroup("Scriptable")][SerializeField] private RSE_Move m_rseMove;
 	[FoldoutGroup("Scriptable")][SerializeField] private RSE_Interact m_rseInteract;
 	[FoldoutGroup("Scriptable")][SerializeField] private RSE_Jump m_rseJump;
-	[FoldoutGroup("Scriptable")][SerializeField] private RSE_DisplayIntro m_rseDisplayIntro;
+	[FoldoutGroup("Scriptable")][SerializeField] private RSE_SetMobileInputs m_rseSetMobileInputs;
+
+	private void Start()
+	{
+		m_graphicsParent.SetActive(false);
+	}
 
 	private void OnEnable()
 	{
-		m_rseDisplayIntro.Action += Initialize;
+		m_rseSetMobileInputs.Action += Setup;
 	}
 
 	private void OnDisable()
 	{
-		m_rseDisplayIntro.Action -= Initialize;
+		m_rseSetMobileInputs.Action -= Setup;
 	}
 
-	private void Initialize()
+	private void Setup(bool isEnabled)
 	{
-		m_graphicsParent.SetActive(PlatformManagement.IsMobile);
+		if (!PlatformManagement.s_isMobile)
+		{
+			m_graphicsParent.SetActive(false);
+			return;
+		}
 
-		m_rseJump.Call(false);
-		m_rseInteract.Call(false);
-		m_rseMove.Call(Vector2.zero);
+		m_graphicsParent.SetActive(isEnabled);
 	}
 
 	public void OnJumpDown() => m_rseJump.Call(true);

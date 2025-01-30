@@ -8,7 +8,7 @@ public static class PlatformManagement
 		[DllImport("__Internal")] private static extern bool IsMobile();
 #endif
 
-	public static bool IsMobile;
+	public static bool s_isMobile;
 
 	public static void Initialize()
 	{
@@ -18,6 +18,6 @@ public static class PlatformManagement
         output = IsMobile();
 #endif
 
-		IsMobile = output;
+		s_isMobile = output;
 	}
 }

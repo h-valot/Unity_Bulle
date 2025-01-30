@@ -195,6 +195,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UIMobileInputs
       objectReference: {fileID: 0}
+    - target: {fileID: 1949586528221923342, guid: 2eb458471bc3e7f4ba0273ea584de51c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

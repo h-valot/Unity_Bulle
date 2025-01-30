@@ -20,6 +20,7 @@ public class PanelsManager : MonoBehaviour
 	[SerializeField] private RSE_SetCameraLerp m_rseSetCameraLerp;
 	[SerializeField] private SSO_Camera m_ssoCamera;
 	[SerializeField] private RSE_SetBubble m_rseSetBubble;
+	[SerializeField] private RSE_SetMobileInputs m_rseSetMobileInputs;
 
 
 	[Header("Panel GameObjects")]
@@ -150,5 +151,6 @@ public class PanelsManager : MonoBehaviour
 		m_rseSetBubble.Call(CharacterType.GRANDPA, 1);
 		m_rsoLockInputs.Value = false;
 		m_rseSetCameraLerp.Call(true);
+		m_rseSetMobileInputs.Call(true);
 	}
 }

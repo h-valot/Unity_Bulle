@@ -87,26 +87,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5394336287172786700, guid: 15a8e6f9eb4ad024f9e564130404571e, type: 3}
-      propertyPath: m_ssoCamera
-      value: 
-      objectReference: {fileID: 11400000, guid: 94c2425e87c1f6d4dbc58839c51bc515, type: 2}
-    - target: {fileID: 5394336287172786700, guid: 15a8e6f9eb4ad024f9e564130404571e, type: 3}
-      propertyPath: m_rseSetBubble
-      value: 
-      objectReference: {fileID: 11400000, guid: 7b45e7d949ee54e4bacc83755120db66, type: 2}
-    - target: {fileID: 5394336287172786700, guid: 15a8e6f9eb4ad024f9e564130404571e, type: 3}
-      propertyPath: m_rsoLockInputs
-      value: 
-      objectReference: {fileID: 11400000, guid: bb0fc7e273c01eb45a8fe21bda5d61bc, type: 2}
-    - target: {fileID: 5394336287172786700, guid: 15a8e6f9eb4ad024f9e564130404571e, type: 3}
-      propertyPath: m_rseDisplayIntro
-      value: 
-      objectReference: {fileID: 11400000, guid: 0e42d1ec8162a0a41bcc6565ab54d135, type: 2}
-    - target: {fileID: 5394336287172786700, guid: 15a8e6f9eb4ad024f9e564130404571e, type: 3}
-      propertyPath: m_rseSetCameraLerp
-      value: 
-      objectReference: {fileID: 11400000, guid: ea57d8fe5148f6542b37739c88d99128, type: 2}
-    - target: {fileID: 5394336287172786700, guid: 15a8e6f9eb4ad024f9e564130404571e, type: 3}
       propertyPath: m_panelsType.Array.data[3]
       value: 9
       objectReference: {fileID: 0}

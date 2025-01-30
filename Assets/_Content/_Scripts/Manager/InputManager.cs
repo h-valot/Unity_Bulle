@@ -43,7 +43,7 @@ public class InputManager : MonoBehaviour
 
 	private void UpdateCursorMode(bool isEnable)
 	{
-		if (PlatformManagement.IsMobile) 
+		if (PlatformManagement.s_isMobile) 
 		{
 			Cursor.lockState = CursorLockMode.None;
 			return;
