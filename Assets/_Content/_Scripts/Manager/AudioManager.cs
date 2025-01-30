@@ -1,11 +1,16 @@
+using System.Collections;
 using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    [SerializeField] private RSO_CurrentPanel m_rsoCurrentPanel;
+	[SerializeField] private float m_defaultVolume;
+	[SerializeField] private float m_crossfadeDuration;
 
-    [SerializeField] private AudioSource m_audioSource;
-    [SerializeField] private AudioClip m_portMusic;
+	[SerializeField] private RSO_CurrentPanel m_rsoCurrentPanel;
+
+	[SerializeField] private AudioSource m_audioSourceA;
+	[SerializeField] private AudioSource m_audioSourceB;
+	[SerializeField] private AudioClip m_portMusic;
     [SerializeField] private AudioClip m_abyssMusic;
     [SerializeField] private AudioClip m_marketMusic;
     [SerializeField] private AudioClip m_gardenMusic;
@@ -67,9 +72,32 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+	private Coroutine m_crossfadeCoroutine = null;
     private void PlayMusic(AudioClip audioClip)
     {
-        m_audioSource.Stop();
-        m_audioSource.PlayOneShot(audioClip);
+		var current = m_audioSourceA.isPlaying ? m_audioSourceA : m_audioSourceB;
+		var target = m_audioSourceA.isPlaying ? m_audioSourceB : m_audioSourceA;
+
+		target.clip = audioClip;
+		if (m_crossfadeCoroutine != null) StopCoroutine(m_crossfadeCoroutine) ;
+		m_crossfadeCoroutine = StartCoroutine(Crossfade(current, target));
     }
+
+	private IEnumerator Crossfade(AudioSource current, AudioSource target)
+	{
+		if (target.isPlaying == false) target.Play();
+		target.UnPause();
+
+		float percentage = 0;
+		while (current.volume > 0)
+		{
+			current.volume = Mathf.Lerp(m_defaultVolume, 0, percentage);
+			target.volume = Mathf.Lerp(0, m_defaultVolume, percentage);
+			percentage += Time.deltaTime / m_crossfadeDuration;
+			yield return null;
+		}
+
+		current.Pause();
+		m_crossfadeCoroutine = null;
+	}
 }
