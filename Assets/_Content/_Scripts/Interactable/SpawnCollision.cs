@@ -17,6 +17,6 @@ public class SpawnCollision : MonoBehaviour
 
 		m_interactable.Interact();
 		m_bubble.AnimateCollision();
-		Instantiate(m_pfVfxPopBubble, character.ItemAnchor.position, Quaternion.identity);
+		Instantiate(m_pfVfxPopBubble, transform.position, Quaternion.identity);
 	}
 }

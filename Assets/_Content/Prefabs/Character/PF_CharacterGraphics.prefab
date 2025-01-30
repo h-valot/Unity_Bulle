@@ -54,6 +54,7 @@ MonoBehaviour:
   m_rseMove: {fileID: 11400000, guid: 2ae46e52cfd6af14ab8189d45844ac82, type: 2}
   m_rsoCurrentItem: {fileID: 11400000, guid: e8991317bb976804d94292a461f5aa99, type: 2}
   m_rseSetCharacterScale: {fileID: 11400000, guid: b04ba2290c2432a46896b2b9366229b9, type: 2}
+  m_rsoCurrentDirection: {fileID: 0}
 --- !u!1 &3817974837897069116
 GameObject:
   m_ObjectHideFlags: 0
@@ -220,7 +221,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 1
   m_SpriteSortPoint: 0
 --- !u!1 &7519054862020530037
 GameObject:
