@@ -107,6 +107,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: ea57d8fe5148f6542b37739c88d99128, type: 2}
     - target: {fileID: 5394336287172786700, guid: 15a8e6f9eb4ad024f9e564130404571e, type: 3}
+      propertyPath: m_rsoSpecialTransition
+      value: 
+      objectReference: {fileID: 11400000, guid: 5b8b31daa965335469700de4752f689e, type: 2}
+    - target: {fileID: 5394336287172786700, guid: 15a8e6f9eb4ad024f9e564130404571e, type: 3}
       propertyPath: m_panelsType.Array.data[3]
       value: 9
       objectReference: {fileID: 0}

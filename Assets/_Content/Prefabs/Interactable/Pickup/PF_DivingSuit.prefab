@@ -142,6 +142,7 @@ MonoBehaviour:
   PickupType: 1
   m_marketTravelPosition: {fileID: 0}
   m_abyssTravelPosition: {x: -15, y: -11.5}
+  m_rseSetCharaterJump: {fileID: 11400000, guid: 38184441dabd3ea4a869090ec51731b4, type: 2}
   m_pfLadderLong: {fileID: 0}
   m_pfPlantLong: {fileID: 0}
   m_interactableGrandpaGranny: {fileID: 0}

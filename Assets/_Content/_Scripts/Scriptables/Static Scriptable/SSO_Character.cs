@@ -30,4 +30,13 @@ public class SSO_Character : ScriptableObject
 
 	[Title("Panel Special")]
 	public float GraphicsScaleInHouse = 2;
+	[Space(5)]
+	public Vector3 JumpAbyssEndPosition = Vector3.zero;
+	public float JumpAbyssForce;
+	public GameObject VFXJump;
+    [Space(5)]
+    public Vector3 JumpWhaleEndPosition = Vector3.zero;
+    public float JumpWhaleForce;
+	public float JumpWhaleDuration;
+    public GameObject VFXWhale;
 }
