@@ -255,6 +255,7 @@ public class Interactable : MonoBehaviour
 		// Assertion
 		if (m_rsoCurrentItem.Value != m_itemRequiered) yield break;
 
+		m_rsePlaceItem.Call(m_placePosition.position);
 		yield return new WaitForSeconds(m_ssoInteractables.PlaceDoJumpDuration);
 
 		switch (m_itemRequiered)
@@ -303,7 +304,6 @@ public class Interactable : MonoBehaviour
 		}
 
 		IsValid = false;
-		m_rsePlaceItem.Call(m_placePosition.position);
 	}
 
 

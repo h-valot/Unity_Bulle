@@ -10396,10 +10396,6 @@ PrefabInstance:
       propertyPath: m_rsoCurrentDirection
       value: 
       objectReference: {fileID: 11400000, guid: 66e8b24404f4824478778e0dc2c6dfd7, type: 2}
-    - target: {fileID: 5680982469155299907, guid: 89f8623f929bcab43a9cd8835cd7ddc9, type: 3}
-      propertyPath: m_MaskInteraction
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6115232978721363614, guid: 89f8623f929bcab43a9cd8835cd7ddc9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.02
