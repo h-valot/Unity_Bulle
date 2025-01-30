@@ -43,6 +43,12 @@ public class InputManager : MonoBehaviour
 
 	private void UpdateCursorMode(bool isEnable)
 	{
+		if (PlatformManagement.IsMobile) 
+		{
+			Cursor.lockState = CursorLockMode.None;
+			return;
+		}
+
 		Cursor.lockState = m_rsoLockCursor.Value && m_isFocused
 			? CursorLockMode.Locked
 			: CursorLockMode.None;

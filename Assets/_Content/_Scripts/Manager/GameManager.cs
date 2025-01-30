@@ -11,6 +11,11 @@ public class GameManager : MonoBehaviour
 	[FoldoutGroup("Scriptable")][SerializeField] private RSO_LockInputs m_rsoLockInputs;
 	[FoldoutGroup("Scriptable")][SerializeField] private RSE_SetCameraLerp m_rseSetCameraLerp;
 
+	private void Awake()
+	{
+		PlatformManagement.Initialize();
+	}
+
 	private void Start()
 	{
 		m_rseSetBubble.Call(CharacterType.FISHERMAN, -1);
