@@ -37,3 +37,10 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 3e9894d90ca74f74cb6b07ebf3555286, type: 3}
   - {fileID: 21300000, guid: 09c5275fba5bfa04b889b88d4f2e6386, type: 3}
   GraphicsScaleInHouse: 3.2
+  JumpAbyssEndPosition: {x: -15, y: -9, z: 0}
+  JumpAbyssForce: 7
+  VFXJump: {fileID: 4193431730839092029, guid: 4ec2ecb1146f44d499854da307063198, type: 3}
+  JumpWhaleEndPosition: {x: -0.86, y: -23.5, z: 0}
+  JumpWhaleForce: 13
+  JumpWhaleDuration: 5
+  VFXWhale: {fileID: 4193431730839092029, guid: 62d51bfff889a9e4988f512d445e2aff, type: 3}

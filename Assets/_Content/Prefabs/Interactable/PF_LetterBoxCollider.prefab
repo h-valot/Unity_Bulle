@@ -179,7 +179,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Type: 1
   m_sprites:
-  - {fileID: 21300000, guid: 27698e4ef784e9f49b1d251f1c2d485a, type: 3}
+  - {fileID: 21300000, guid: 559646e49b2c614499b3a2382cdc201b, type: 3}
   m_idMono: 0
   m_spMono: {fileID: 0}
   m_alwaysActive: 0

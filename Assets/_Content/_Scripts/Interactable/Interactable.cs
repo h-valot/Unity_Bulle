@@ -31,8 +31,10 @@ public class Interactable : MonoBehaviour
 	[ShowIf("PickupType", ItemType.BOOT)][SerializeField] private Transform m_marketTravelPosition;
 
 	[ShowIf("PickupType", ItemType.DIVING_SUIT)][SerializeField] private Vector2 m_abyssTravelPosition;
+    [ShowIf("@PickupType == ItemType.DIVING_SUIT || PickupType == ItemType.BOOT")]
+    [SerializeField] private RSE_SetCharacterJump m_rseSetCharaterJump;
 
-	[ShowIf("PickupType", ItemType.LADDER)][SerializeField] private GameObject m_pfLadderLong;
+    [ShowIf("PickupType", ItemType.LADDER)][SerializeField] private GameObject m_pfLadderLong;
 
 	[ShowIf("PickupType", ItemType.PLANT)][SerializeField] private GameObject m_pfPlantLong;
 
@@ -215,7 +217,7 @@ public class Interactable : MonoBehaviour
 				{
 					m_rsoToggleDivingSuit.Value = true;
 					m_rsoCurrentPanel.Value = PanelType.ABYSS;
-					m_rseSetCharacterPosition.Call(m_abyssTravelPosition);
+					m_rseSetCharaterJump.Call(ItemType.DIVING_SUIT);
 
 					Destroy(gameObject);
 				}
@@ -224,7 +226,7 @@ public class Interactable : MonoBehaviour
 				{
 					m_rsoToggleDivingSuit.Value = false;
 					m_rsoCurrentPanel.Value = PanelType.MARKET;
-					m_rseSetCharacterPosition.Call(m_marketTravelPosition.position);
+                    m_rseSetCharaterJump.Call(ItemType.BOOT);
 
 					IsValid = false;
 					m_rsoCurrentItem.Value = PickupType;

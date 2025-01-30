@@ -20,6 +20,7 @@ public class PanelsManager : MonoBehaviour
 	[SerializeField] private RSE_SetCameraLerp m_rseSetCameraLerp;
 	[SerializeField] private SSO_Camera m_ssoCamera;
 	[SerializeField] private RSE_SetBubble m_rseSetBubble;
+    [SerializeField] private RSO_SpecialTransition m_rsoSpecialTransition;
 	[SerializeField] private RSE_SetMobileInputs m_rseSetMobileInputs;
 
 
@@ -94,7 +95,22 @@ public class PanelsManager : MonoBehaviour
 			.OnComplete(() =>
 			{
 				// Zoom in back to the new panel
-				m_camera.transform.DOMove(m_ssoCamera.GetOffset(m_character.position), m_ssoCamera.DiscoveryOutTranslationDuration);
+                if(m_rsoSpecialTransition.Value == true)
+                {
+                    m_rsoSpecialTransition.Value = false;
+                    switch (m_rsoCurrentPanel.Value)
+                    {
+                        case PanelType.ABYSS:
+                            m_camera.transform.DOMove(m_ssoCamera.GetOffset(m_ssoCharacter.JumpAbyssEndPosition), m_ssoCamera.DiscoveryOutTranslationDuration);
+                            break;
+                    }
+                }
+                else
+                {
+                    Debug.Log("pas de special transition");
+                    m_camera.transform.DOMove(m_ssoCamera.GetOffset(m_character.position), m_ssoCamera.DiscoveryOutTranslationDuration);
+                }
+				
 				m_camera.DOOrthoSize(m_ssoCamera.DefaultOrthoSize, m_ssoCamera.DiscoveryOutTranslationDuration)
 					.OnComplete(() =>
 					{
