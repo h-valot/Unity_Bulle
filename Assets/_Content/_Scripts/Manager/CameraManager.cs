@@ -1,4 +1,5 @@
 using Sirenix.OdinInspector;
+using System.Linq.Expressions;
 using UnityEngine;
 
 public class CameraManager : MonoBehaviour
@@ -8,23 +9,31 @@ public class CameraManager : MonoBehaviour
 	[FoldoutGroup("Scriptable")][SerializeField] private SSO_Camera m_ssoCamera;
 	[FoldoutGroup("Scriptable")][SerializeField] private RSO_CurrentPosition m_rsoCurrentPosition;
 	[FoldoutGroup("Scriptable")][SerializeField] private RSE_SetCameraLerp m_rseSetCameraLerp;
+    [FoldoutGroup("Scriptable")][SerializeField] private RSE_SetCameraPosition m_rseSetCameraPosition;
 
-	private Vector3 m_currentVelocity = new Vector3();
+    private Vector3 m_currentVelocity = new Vector3();
 	private bool m_isLerpEnabled = true;
 
 	private void OnEnable()
 	{
 		m_rseSetCameraLerp.Action += SetLerp;
-	}
+        m_rseSetCameraPosition.Action += SetPosition;
+    }
 
 	private void OnDisable()
 	{
 		m_rseSetCameraLerp.Action -= SetLerp;
-	}
+        m_rseSetCameraPosition.Action -= SetPosition;
+    }
 
 	private void SetLerp(bool isEnabled)
 	{
 		m_isLerpEnabled = isEnabled;
+	}
+
+	private void SetPosition(Vector3 position)
+	{
+		transform.position = position + new Vector3(0,0,-10f);
 	}
 
 	private void LateUpdate()

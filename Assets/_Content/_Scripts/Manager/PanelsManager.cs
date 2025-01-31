@@ -22,9 +22,9 @@ public class PanelsManager : MonoBehaviour
 	[SerializeField] private RSE_SetBubble m_rseSetBubble;
     [SerializeField] private RSO_SpecialTransition m_rsoSpecialTransition;
 	[SerializeField] private RSE_SetMobileInputs m_rseSetMobileInputs;
+    [SerializeField] private RSE_SetCameraPosition m_rseSetCameraPosition;
 
-
-	[Header("Panel GameObjects")]
+    [Header("Panel GameObjects")]
     [SerializeField] private SpriteMask[] m_spriteMasks;
     [SerializeField] private PanelType[] m_panelsType;
     [SerializeField] private bool[] m_arePanelsDiscovered;
@@ -107,7 +107,6 @@ public class PanelsManager : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("pas de special transition");
                     m_camera.transform.DOMove(m_ssoCamera.GetOffset(m_character.position), m_ssoCamera.DiscoveryOutTranslationDuration);
                 }
 				
@@ -166,7 +165,8 @@ public class PanelsManager : MonoBehaviour
 
 		m_rseSetBubble.Call(CharacterType.GRANDPA, 1);
 		m_rsoLockInputs.Value = false;
-		m_rseSetCameraLerp.Call(true);
+        m_rseSetCameraPosition.Call(m_ssoCamera.GetOffset(m_character.position));
+        m_rseSetCameraLerp.Call(true);
 		m_rseSetMobileInputs.Call(true);
 	}
 }

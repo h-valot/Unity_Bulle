@@ -8349,6 +8349,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5133526858806688510, guid: 480f965be7e02724c936f63a71cb130f, type: 3}
+      propertyPath: m_rseSetCameraPosition
+      value: 
+      objectReference: {fileID: 11400000, guid: 1d7f8f8fbf9542540accb04e1d601871, type: 2}
+    - target: {fileID: 5133526858806688510, guid: 480f965be7e02724c936f63a71cb130f, type: 3}
       propertyPath: m_rsoSpecialTransition
       value: 
       objectReference: {fileID: 11400000, guid: 5b8b31daa965335469700de4752f689e, type: 2}
@@ -8392,6 +8396,10 @@ PrefabInstance:
       propertyPath: m_spriteMasks.Array.data[8]
       value: 
       objectReference: {fileID: 1135043513}
+    - target: {fileID: 7878309892274752310, guid: 480f965be7e02724c936f63a71cb130f, type: 3}
+      propertyPath: m_rseSetCameraPosition
+      value: 
+      objectReference: {fileID: 11400000, guid: 1d7f8f8fbf9542540accb04e1d601871, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
