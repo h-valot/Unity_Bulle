@@ -5,6 +5,7 @@ using UnityEngine.PlayerLoop;
 public class SFXManager : MonoBehaviour
 {
     [SerializeField] private RSE_PlaySoundOfType m_rsePlaySoundOfType;
+    [SerializeField] private RSE_PlaySpecialSFX m_rsePlaySpecialSFX;
 
     [Header("SFX")]
     [SerializeField] private AudioSource m_SFXSource;
@@ -15,15 +16,22 @@ public class SFXManager : MonoBehaviour
     [SerializeField] private AudioClip m_ladderSFX;
     [SerializeField] private AudioClip m_plantSFX;
     [SerializeField] private AudioClip m_divingSuitSFX;
+    [SerializeField] private AudioClip m_diveSFX;
+    [SerializeField] private AudioClip m_wooshSFX;
+    [SerializeField] private AudioClip m_whaleSFX;
+    [SerializeField] private AudioClip m_heySFX;
+    [SerializeField] private AudioClip m_drawingSFX;
 
     private void OnEnable()
     {
         m_rsePlaySoundOfType.Action += DetermineSFX;
+        m_rsePlaySpecialSFX.Action += DetermineSpecialSFX;
     }
 
     private void OnDisable()
     {
-        m_rsePlaySoundOfType.Action += DetermineSFX;
+        m_rsePlaySoundOfType.Action -= DetermineSFX;
+        m_rsePlaySpecialSFX.Action -= DetermineSpecialSFX;
     }
     
     private void DetermineSFX(InteractType interactType, ItemType itemType)
@@ -80,8 +88,42 @@ public class SFXManager : MonoBehaviour
                 break;
 
             case InteractType.PICKUP:
-                sfxClip = m_pickUpSFX;
+                if(itemType == ItemType.BOOT)
+                {
+                    sfxClip = m_whaleSFX;
+                }
+                else
+                {
+                    sfxClip = m_pickUpSFX;
+                }
                 break;
+        }
+
+        if (sfxClip != null)
+        {
+            PlaySFX(sfxClip);
+        }
+    }
+
+    private void DetermineSpecialSFX(SpecialSFX sfx)
+    {
+        AudioClip sfxClip = null;
+
+        switch (sfx)
+        {
+            case SpecialSFX.DIVE:
+                sfxClip = m_diveSFX;
+                break;
+            case SpecialSFX.HEY:
+                sfxClip = m_heySFX;
+                break;
+            case SpecialSFX.WOOSH:
+                sfxClip = m_wooshSFX;
+                break;
+            case SpecialSFX.DRAWING:
+                sfxClip = m_drawingSFX;
+                break;
+
         }
 
         if (sfxClip != null)
@@ -92,9 +134,6 @@ public class SFXManager : MonoBehaviour
 
     private void PlaySFX(AudioClip sfxClip)
 	{
-		if (m_timer > 0f) return;
-
-		m_timer = 0.5f;
 		m_SFXSource.PlayOneShot(sfxClip);
     }
 

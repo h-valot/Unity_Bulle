@@ -11,7 +11,8 @@ public class SSO_Camera : ScriptableObject
 	public float EndOrthoSize;
 
 	public float IntroGrandpaTranslationDuration;
-	public float IntroKidTranslationDuration;
+    public float IntroGrandpaTimingHey;
+    public float IntroKidTranslationDuration;
 	public float DefaultOrthoSize;
 
 	public float DiscoveryInTranslationDuration;

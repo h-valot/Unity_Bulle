@@ -58,6 +58,7 @@ MonoBehaviour:
   PickupType: 6
   m_marketTravelPosition: {fileID: 0}
   m_abyssTravelPosition: {x: 0, y: 0}
+  m_rseSetCharaterJump: {fileID: 0}
   m_pfLadderLong: {fileID: 0}
   m_pfPlantLong: {fileID: 3610221579833362408, guid: d020a53f516115b48b5660fc166bb2a3, type: 3}
   m_interactableGrandpaGranny: {fileID: 0}
@@ -74,6 +75,7 @@ MonoBehaviour:
   m_lightTopTravel: {fileID: 0}
   m_camera: {fileID: 0}
   m_cameraCinematicTarget: {fileID: 0}
+  m_rseToggleForceActive: {fileID: 0}
   m_boxCollider2D: {fileID: 3507706488641018676}
   m_ssoCamera: {fileID: 11400000, guid: 94c2425e87c1f6d4dbc58839c51bc515, type: 2}
   m_ssoInteractables: {fileID: 11400000, guid: 4008868be3b433144889b56c2f06c290, type: 2}
@@ -210,7 +212,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 9
   m_Sprite: {fileID: 21300000, guid: 3629605a0c5f6be46b671139bbc60376, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

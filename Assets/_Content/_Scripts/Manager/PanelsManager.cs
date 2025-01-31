@@ -24,6 +24,7 @@ public class PanelsManager : MonoBehaviour
 	[SerializeField] private RSE_SetMobileInputs m_rseSetMobileInputs;
     [SerializeField] private RSE_SetCameraSmoothTime m_rseSetCameraSmoothTime;
     [SerializeField] private RSE_ToggleForceActive m_rseToggleForceActive;
+    [SerializeField] private RSE_PlaySpecialSFX m_rsoPlaySpecialSFX;
 
     [Header("Panel GameObjects")]
     [SerializeField] private SpriteMask[] m_spriteMasks;
@@ -79,6 +80,10 @@ public class PanelsManager : MonoBehaviour
             RevealPanel(panelIndex);
             m_arePanelsDiscovered[panelIndex] = true;
         }
+        else
+        {
+            m_rsoPlaySpecialSFX.Call(SpecialSFX.WOOSH);
+        }
     }
 
     private void RevealPanel(int panelIndex)
@@ -87,8 +92,9 @@ public class PanelsManager : MonoBehaviour
 		m_rsoLockInputs.Value = true;
 	    m_rseSetCameraLerp.Call(false);
 
-		// Zoom out at the panel position, then unmask panel
-		m_camera.transform.DOMove(m_ssoCamera.GetOffset(m_spriteMasks[panelIndex].transform.position), m_ssoCamera.DiscoveryInTranslationDuration);
+        m_rsoPlaySpecialSFX.Call(SpecialSFX.DRAWING);
+        // Zoom out at the panel position, then unmask panel
+        m_camera.transform.DOMove(m_ssoCamera.GetOffset(m_spriteMasks[panelIndex].transform.position), m_ssoCamera.DiscoveryInTranslationDuration);
 		m_camera.DOOrthoSize(m_ssoCamera.DiscoveryOrthoSize, m_ssoCamera.DiscoveryInTranslationDuration);
 		DOTween.To(() => m_spriteMasks[panelIndex].alphaCutoff, x => m_spriteMasks[panelIndex].alphaCutoff = x, 0, m_revealSpeed)
 			.SetEase(Ease.Linear)
@@ -121,6 +127,7 @@ public class PanelsManager : MonoBehaviour
     {
         SpriteMask panelToReveal = m_spriteMasksToReveal[0];
         m_spriteMasksToReveal.RemoveAt(0);
+        m_rsoPlaySpecialSFX.Call(SpecialSFX.DRAWING);
 
         DOTween.To(() => panelToReveal.alphaCutoff, x => panelToReveal.alphaCutoff = x, 0, m_revealSpeed)
 			.SetEase(Ease.Linear)
@@ -139,7 +146,12 @@ public class PanelsManager : MonoBehaviour
 		m_camera.transform.DOMove(m_ssoCamera.GetOffset(m_grandpa.position), m_ssoCamera.IntroGrandpaTranslationDuration);
 		m_camera.DOOrthoSize(m_ssoCamera.DefaultOrthoSize, m_ssoCamera.IntroGrandpaTranslationDuration);
 
-		yield return new WaitForSeconds(m_ssoCamera.IntroGrandpaTranslationDuration);
+        yield return new WaitForSeconds(m_ssoCamera.IntroGrandpaTimingHey);
+
+        m_rsoPlaySpecialSFX.Call(SpecialSFX.HEY);
+        m_rseToggleForceActive.Call(true);
+
+        yield return new WaitForSeconds(m_ssoCamera.IntroGrandpaTranslationDuration - m_ssoCamera.IntroGrandpaTimingHey);
 
 		m_camera.DOOrthoSize(m_ssoCamera.DefaultOrthoSize, m_ssoCamera.IntroKidTranslationDuration);
         m_rseSetCameraSmoothTime.Call(m_ssoCamera.SmoothTimeIntro);

@@ -64,6 +64,7 @@ MonoBehaviour:
   m_rsoCharacterVelocity: {fileID: 11400000, guid: d16dba3fb7e60254d9f19ad16976d93d, type: 2}
   m_rsoLockInputs: {fileID: 11400000, guid: bb0fc7e273c01eb45a8fe21bda5d61bc, type: 2}
   m_rsoSpecialTransition: {fileID: 11400000, guid: 5b8b31daa965335469700de4752f689e, type: 2}
+  m_rsePlaySpecialSFX: {fileID: 11400000, guid: 0629b077f4e4a174897ba74ce1599c19, type: 2}
 --- !u!114 &5952477918962114214
 MonoBehaviour:
   m_ObjectHideFlags: 0

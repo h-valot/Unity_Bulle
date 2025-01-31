@@ -165,8 +165,8 @@ public class Interactable : MonoBehaviour
 		switch(m_type)
 		{
 			case InteractType.TRAVEL:
-				m_rsoCurrentPanel.Value = m_travelTo;
 				m_rseSetCharacterPosition.Call(m_travelPosition.position);
+				m_rsoCurrentPanel.Value = m_travelTo;
 				break;
 
 			case InteractType.SPAWN:
@@ -210,7 +210,7 @@ public class Interactable : MonoBehaviour
 
 			case InteractType.PICKUP:
 				
-                m_rsePlaySoundOfType.Call(InteractType.PICKUP, ItemType.NONE);
+                m_rsePlaySoundOfType.Call(InteractType.PICKUP, PickupType);
 
                 if (m_rsoCurrentItem.Value == ItemType.NONE 
 				&& PickupType == ItemType.DIVING_SUIT)
@@ -282,7 +282,8 @@ public class Interactable : MonoBehaviour
 			case ItemType.FISH:
 				m_rainTravel.IsValid = true;
 				m_srMarketForeground.sprite = m_spMarketOpened;
-				m_rseSetBubble.Call(CharacterType.FISHMONGER_SHORTKING, 1);
+                m_rsePlaySoundOfType.Call(InteractType.PLACE, ItemType.KEY);
+                m_rseSetBubble.Call(CharacterType.FISHMONGER_SHORTKING, 1);
 				m_rseSetBubble.Call(CharacterType.FISHMONGER_TALL, 1);
 				break;
 

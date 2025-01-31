@@ -18,6 +18,7 @@ MonoBehaviour:
   EndTranslationDuration: 5
   EndOrthoSize: 24
   IntroGrandpaTranslationDuration: 10
+  IntroGrandpaTimingHey: 5.5
   IntroKidTranslationDuration: 6
   DefaultOrthoSize: 7
   DiscoveryInTranslationDuration: 2

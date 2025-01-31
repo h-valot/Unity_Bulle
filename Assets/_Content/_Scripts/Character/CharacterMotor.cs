@@ -19,6 +19,7 @@ public class CharacterMotor : MonoBehaviour
 	[FoldoutGroup("Scriptable")][SerializeField] private RSO_CharacterVelocity m_rsoCharacterVelocity;
 	[FoldoutGroup("Scriptable")][SerializeField] private RSO_LockInputs m_rsoLockInputs;
     [FoldoutGroup("Scriptable")][SerializeField] private RSO_SpecialTransition m_rsoSpecialTransition;
+    [FoldoutGroup("Scriptable")][SerializeField] private RSE_PlaySpecialSFX m_rsePlaySpecialSFX;
 
     private Vector2 m_moveInput;
 	private bool m_isGrounded;
@@ -104,6 +105,7 @@ public class CharacterMotor : MonoBehaviour
                 m_rsoSpecialTransition.Value = true;
                 transform.DOJump(m_ssoCharacter.JumpAbyssEndPosition, m_ssoCharacter.JumpAbyssForce, 1, m_ssoCamera.DiscoveryInTranslationDuration + m_ssoCamera.DiscoveryOutTranslationDuration).SetEase(Ease.Linear).OnComplete(()=> {
 					Instantiate(m_ssoCharacter.VFXJump, transform.position, Quaternion.identity);
+					m_rsePlaySpecialSFX.Call(SpecialSFX.DIVE);
                     m_rsoLockInputs.Value = false;
                 });
 				break;

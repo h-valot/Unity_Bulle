@@ -12,7 +12,7 @@ public class Bubble : MonoBehaviour
     [SerializeField] private List<Sprite> m_sprites = new List<Sprite>();
 	[SerializeField] private float m_idMono;
 	[SerializeField] private Sprite m_spMono;
-	[SerializeField] private bool m_forceActive = false;
+    [SerializeField] private bool m_forceActive = false;
 
 	[FoldoutGroup("Internal references")][SerializeField] private GameObject m_graphicsParent;
 	[FoldoutGroup("Internal references")][SerializeField] private SpriteRenderer m_spriteRenderer;
@@ -117,6 +117,8 @@ public class Bubble : MonoBehaviour
 
 	public void ToggleForceActive(bool state)
 	{
+		if (Type != CharacterType.GRANDPA) return;
+
 		m_forceActive = state;
 
 		if (!m_forceActive)
@@ -126,7 +128,7 @@ public class Bubble : MonoBehaviour
             m_graphicsParent.SetActive(false);
         }
 
-		if (m_forceActive && m_graphicsParent.activeInHierarchy) 
+		if (m_forceActive && !m_graphicsParent.activeInHierarchy) 
 		{
 			Show();
 		}
