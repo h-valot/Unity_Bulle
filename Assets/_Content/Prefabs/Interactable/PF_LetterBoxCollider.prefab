@@ -177,12 +177,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d52d038a5451bc40bee70ea77723e6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_rseToggleForceActive: {fileID: 11400000, guid: ed3cb1b067a28664fa23b1b2e55b1621, type: 2}
   Type: 1
   m_sprites:
   - {fileID: 21300000, guid: 559646e49b2c614499b3a2382cdc201b, type: 3}
   m_idMono: 0
   m_spMono: {fileID: 0}
-  m_alwaysActive: 0
+  m_forceActive: 0
   m_graphicsParent: {fileID: 5641783092255257215}
   m_spriteRenderer: {fileID: 6802825006196770781}
   Index: -1

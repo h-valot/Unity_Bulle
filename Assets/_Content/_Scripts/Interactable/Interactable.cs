@@ -61,9 +61,9 @@ public class Interactable : MonoBehaviour
 
 	[ShowIf("m_itemRequiered", ItemType.GRANNY)][SerializeField] private Camera m_camera;
 	[ShowIf("m_itemRequiered", ItemType.GRANNY)][SerializeField] private Transform m_cameraCinematicTarget;
+    [ShowIf("m_itemRequiered", ItemType.GRANNY)][SerializeField] private RSE_ToggleForceActive m_rseToggleForceActive;
 
-
-	[FoldoutGroup("Internal references")][SerializeField] private BoxCollider2D m_boxCollider2D;
+    [FoldoutGroup("Internal references")][SerializeField] private BoxCollider2D m_boxCollider2D;
 
 	[FoldoutGroup("Scriptable")][SerializeField] private SSO_Camera m_ssoCamera;
 	[FoldoutGroup("Scriptable")][SerializeField] private SSO_Interactables m_ssoInteractables;
@@ -82,7 +82,7 @@ public class Interactable : MonoBehaviour
 	[FoldoutGroup("Scriptable")][SerializeField] private RSE_SetMono m_rseSetMono;
 	[FoldoutGroup("Scriptable")][SerializeField] private RSE_SetMobileInputs m_rseSetMobileInputs;
 
-	[SerializeField] public bool IsValid = true;
+    [SerializeField] public bool IsValid = true;
 	[SerializeField] public bool IsInteractive = true; 
 
 	private void OnEnable()
@@ -361,7 +361,8 @@ public class Interactable : MonoBehaviour
 		m_rseSetMobileInputs.Call(false);
 		m_rsoLockInputs.Value = true;
 		m_rseSetCameraLerp.Call(false);
-		m_camera.transform.DOMove(m_cameraCinematicTarget.position, m_ssoCamera.EndTranslationDuration);
+        m_rseToggleForceActive.Call(true);
+        m_camera.transform.DOMove(m_cameraCinematicTarget.position, m_ssoCamera.EndTranslationDuration);
 		m_camera.DOOrthoSize(m_ssoCamera.EndOrthoSize, m_ssoCamera.EndTranslationDuration).OnComplete(() => 
 		{ 
 			m_rseDisplayEnd.Call(true); 

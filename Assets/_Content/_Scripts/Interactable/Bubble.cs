@@ -5,12 +5,14 @@ using DG.Tweening;
 
 public class Bubble : MonoBehaviour
 {
-	[Title("Tweakable values")]
+    [FoldoutGroup("Scriptable")][SerializeField] private RSE_ToggleForceActive m_rseToggleForceActive;
+
+    [Title("Tweakable values")]
 	[SerializeField] public CharacterType Type;
     [SerializeField] private List<Sprite> m_sprites = new List<Sprite>();
 	[SerializeField] private float m_idMono;
 	[SerializeField] private Sprite m_spMono;
-	[SerializeField] private bool m_alwaysActive;
+	[SerializeField] private bool m_forceActive = false;
 
 	[FoldoutGroup("Internal references")][SerializeField] private GameObject m_graphicsParent;
 	[FoldoutGroup("Internal references")][SerializeField] private SpriteRenderer m_spriteRenderer;
@@ -20,16 +22,25 @@ public class Bubble : MonoBehaviour
 	private bool m_entered;
 	private bool m_exited;
 
-	private void Start()
+    private void OnEnable()
+    {
+		m_rseToggleForceActive.Action += ToggleForceActive;
+    }
+
+    private void OnDisable()
+    {
+        m_rseToggleForceActive.Action -= ToggleForceActive;
+    }
+
+    private void Start()
 	{
-		m_graphicsParent.SetActive(m_alwaysActive);
+		m_graphicsParent.SetActive(m_forceActive);
 	}
 
     private void OnTriggerStay2D(Collider2D collider)
 	{
 		// Assertion
 		if (!collider.TryGetComponent<CharacterMotor>(out var character)) return;
-		if (m_alwaysActive) return;
 
 		if (Index == -1)
 		{
@@ -44,7 +55,6 @@ public class Bubble : MonoBehaviour
 	{
 		// Assertion
 		if (!collider.TryGetComponent<CharacterMotor>(out var character)) return;
-		if (m_alwaysActive) return;
 
 		m_exited = true;
 	}
@@ -52,7 +62,7 @@ public class Bubble : MonoBehaviour
 	private void Update()
 	{
 		// Assertion
-		if (m_alwaysActive) return;
+		if (m_forceActive) return;
 
 		if (m_entered)
 		{
@@ -103,5 +113,22 @@ public class Bubble : MonoBehaviour
 	public void AnimateCollision()
 	{
 		m_graphicsParent.transform.DOShakeScale(0.6f, 0.5f);
+	}
+
+	public void ToggleForceActive(bool state)
+	{
+		m_forceActive = state;
+
+		if (!m_forceActive)
+		{
+			m_entered = false;
+			m_exited = false;
+            m_graphicsParent.SetActive(false);
+        }
+
+		if (m_forceActive && m_graphicsParent.activeInHierarchy) 
+		{
+			Show();
+		}
 	}
 }

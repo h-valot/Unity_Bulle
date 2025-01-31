@@ -141,6 +141,10 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8428896361334244951, guid: 0aac3e8917642b147adcc23458662a7a, type: 3}
+      propertyPath: m_rseToggleForceActive
+      value: 
+      objectReference: {fileID: 11400000, guid: ed3cb1b067a28664fa23b1b2e55b1621, type: 2}
+    - target: {fileID: 8428896361334244951, guid: 0aac3e8917642b147adcc23458662a7a, type: 3}
       propertyPath: m_sprites.Array.data[0]
       value: 
       objectReference: {fileID: 21300000, guid: c06cecfea89253c4880fbff33f2d1863, type: 3}

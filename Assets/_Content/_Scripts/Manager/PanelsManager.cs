@@ -23,6 +23,7 @@ public class PanelsManager : MonoBehaviour
     [SerializeField] private RSO_SpecialTransition m_rsoSpecialTransition;
 	[SerializeField] private RSE_SetMobileInputs m_rseSetMobileInputs;
     [SerializeField] private RSE_SetCameraPosition m_rseSetCameraPosition;
+    [SerializeField] private RSE_ToggleForceActive m_rseToggleForceActive;
 
     [Header("Panel GameObjects")]
     [SerializeField] private SpriteMask[] m_spriteMasks;
@@ -168,5 +169,7 @@ public class PanelsManager : MonoBehaviour
         m_rseSetCameraPosition.Call(m_ssoCamera.GetOffset(m_character.position));
         m_rseSetCameraLerp.Call(true);
 		m_rseSetMobileInputs.Call(true);
-	}
+        m_rseToggleForceActive.Call(false);
+
+    }
 }
