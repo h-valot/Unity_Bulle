@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
 	private void Awake()
 	{
 		PlatformManagement.Initialize();
-	}
+    }
 
 	private void Start()
 	{

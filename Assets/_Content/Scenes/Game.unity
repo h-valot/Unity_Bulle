@@ -2352,6 +2352,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1324187087967687981, guid: eff82f8ec37e29f4f86be38b9050d189, type: 3}
+      propertyPath: m_travelTo
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1324187087967687981, guid: eff82f8ec37e29f4f86be38b9050d189, type: 3}
       propertyPath: m_rsoCurrentDirection
       value: 
       objectReference: {fileID: 11400000, guid: 66e8b24404f4824478778e0dc2c6dfd7, type: 2}
@@ -8361,14 +8365,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 1d7f8f8fbf9542540accb04e1d601871, type: 2}
     - target: {fileID: 5133526858806688510, guid: 480f965be7e02724c936f63a71cb130f, type: 3}
-      propertyPath: m_rseToggleForceActive
-      value: 
-      objectReference: {fileID: 11400000, guid: ed3cb1b067a28664fa23b1b2e55b1621, type: 2}
-    - target: {fileID: 5133526858806688510, guid: 480f965be7e02724c936f63a71cb130f, type: 3}
-      propertyPath: m_rsoSpecialTransition
-      value: 
-      objectReference: {fileID: 11400000, guid: 5b8b31daa965335469700de4752f689e, type: 2}
-    - target: {fileID: 5133526858806688510, guid: 480f965be7e02724c936f63a71cb130f, type: 3}
       propertyPath: m_spriteMasks.Array.size
       value: 9
       objectReference: {fileID: 0}
@@ -14026,6 +14022,10 @@ PrefabInstance:
     - target: {fileID: 702451055649555671, guid: 1f98041cab01541448287650b475cfd1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1324187087967687981, guid: 1f98041cab01541448287650b475cfd1, type: 3}
+      propertyPath: m_travelTo
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1324187087967687981, guid: 1f98041cab01541448287650b475cfd1, type: 3}
       propertyPath: m_travelDirection

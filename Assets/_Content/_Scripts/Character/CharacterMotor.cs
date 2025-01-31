@@ -41,7 +41,7 @@ public class CharacterMotor : MonoBehaviour
 		m_rseJump.Action += UpdateJumpInput;
 
 		m_rsoSpecialTransition.Value = false;
-
+        m_rsoCurrentPosition.Value = m_rigidbody2D.position;
     }
 
 	private void OnDisable()
@@ -57,12 +57,13 @@ public class CharacterMotor : MonoBehaviour
 
 	private void FixedUpdate()
 	{
-		if (m_rsoLockInputs.Value) return;
+		if (!m_rsoLockInputs.Value)
+		{
+            CheckGround();
 
-		CheckGround();
-
-		HandleJump();
-		HandleMove();
+            HandleJump();
+            HandleMove();
+        }
 
 		m_previousPosition = m_rsoCurrentPosition.Value;
 		m_rsoCurrentPosition.Value = m_rigidbody2D.position;

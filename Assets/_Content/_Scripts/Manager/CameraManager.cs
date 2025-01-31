@@ -9,32 +9,35 @@ public class CameraManager : MonoBehaviour
 	[FoldoutGroup("Scriptable")][SerializeField] private SSO_Camera m_ssoCamera;
 	[FoldoutGroup("Scriptable")][SerializeField] private RSO_CurrentPosition m_rsoCurrentPosition;
 	[FoldoutGroup("Scriptable")][SerializeField] private RSE_SetCameraLerp m_rseSetCameraLerp;
-    [FoldoutGroup("Scriptable")][SerializeField] private RSE_SetCameraPosition m_rseSetCameraPosition;
+    [FoldoutGroup("Scriptable")][SerializeField] private RSE_SetCameraSmoothTime m_rseSetCameraSmoothTime;
 
     private Vector3 m_currentVelocity = new Vector3();
 	private bool m_isLerpEnabled = true;
+	private float m_smoothTime;
 
-	private void OnEnable()
+
+    private void OnEnable()
 	{
 		m_rseSetCameraLerp.Action += SetLerp;
-        m_rseSetCameraPosition.Action += SetPosition;
+        m_rseSetCameraSmoothTime.Action += SetSmoothTime;
     }
 
 	private void OnDisable()
 	{
 		m_rseSetCameraLerp.Action -= SetLerp;
-        m_rseSetCameraPosition.Action -= SetPosition;
+        m_rseSetCameraSmoothTime.Action -= SetSmoothTime;
     }
 
 	private void SetLerp(bool isEnabled)
 	{
 		m_isLerpEnabled = isEnabled;
-	}
+    }
 
-	private void SetPosition(Vector3 position)
+	private void SetSmoothTime(float smoothTime)
 	{
-		transform.position = position + new Vector3(0,0,-10f);
-	}
+		m_smoothTime = smoothTime;
+        m_currentVelocity = new Vector3();
+    }
 
 	private void LateUpdate()
 	{
@@ -44,7 +47,7 @@ public class CameraManager : MonoBehaviour
 			m_camera.transform.position,
 			new Vector3(m_rsoCurrentPosition.Value.x, m_rsoCurrentPosition.Value.y + 2, -10),
 			ref m_currentVelocity,
-			m_ssoCamera.SmoothTime
-		);
-	}
+            m_smoothTime
+        );
+    }
 }

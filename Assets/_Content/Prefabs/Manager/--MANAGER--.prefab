@@ -87,6 +87,18 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5394336287172786700, guid: 15a8e6f9eb4ad024f9e564130404571e, type: 3}
+      propertyPath: m_rseToggleForceActive
+      value: 
+      objectReference: {fileID: 11400000, guid: ed3cb1b067a28664fa23b1b2e55b1621, type: 2}
+    - target: {fileID: 5394336287172786700, guid: 15a8e6f9eb4ad024f9e564130404571e, type: 3}
+      propertyPath: m_rsoSpecialTransition
+      value: 
+      objectReference: {fileID: 11400000, guid: 5b8b31daa965335469700de4752f689e, type: 2}
+    - target: {fileID: 5394336287172786700, guid: 15a8e6f9eb4ad024f9e564130404571e, type: 3}
+      propertyPath: m_rseSetCameraSmoothTime
+      value: 
+      objectReference: {fileID: 11400000, guid: 1d7f8f8fbf9542540accb04e1d601871, type: 2}
+    - target: {fileID: 5394336287172786700, guid: 15a8e6f9eb4ad024f9e564130404571e, type: 3}
       propertyPath: m_panelsType.Array.data[3]
       value: 9
       objectReference: {fileID: 0}
@@ -327,6 +339,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2840363657231800477}
     m_Modifications:
+    - target: {fileID: 2686790191377851283, guid: b41b199ae2f51f84eb8fac6e3597d348, type: 3}
+      propertyPath: m_rseSetCameraSmoothTime
+      value: 
+      objectReference: {fileID: 11400000, guid: 1d7f8f8fbf9542540accb04e1d601871, type: 2}
     - target: {fileID: 3626240907210671614, guid: b41b199ae2f51f84eb8fac6e3597d348, type: 3}
       propertyPath: m_Name
       value: PF_CameraManager

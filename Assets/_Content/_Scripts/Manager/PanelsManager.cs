@@ -22,7 +22,7 @@ public class PanelsManager : MonoBehaviour
 	[SerializeField] private RSE_SetBubble m_rseSetBubble;
     [SerializeField] private RSO_SpecialTransition m_rsoSpecialTransition;
 	[SerializeField] private RSE_SetMobileInputs m_rseSetMobileInputs;
-    [SerializeField] private RSE_SetCameraPosition m_rseSetCameraPosition;
+    [SerializeField] private RSE_SetCameraSmoothTime m_rseSetCameraSmoothTime;
     [SerializeField] private RSE_ToggleForceActive m_rseToggleForceActive;
 
     [Header("Panel GameObjects")]
@@ -95,31 +95,13 @@ public class PanelsManager : MonoBehaviour
 			.SetLink(gameObject)
 			.OnComplete(() =>
 			{
-				// Zoom in back to the new panel
-                if(m_rsoSpecialTransition.Value == true)
-                {
-                    m_rsoSpecialTransition.Value = false;
-                    switch (m_rsoCurrentPanel.Value)
-                    {
-                        case PanelType.ABYSS:
-                            m_camera.transform.DOMove(m_ssoCamera.GetOffset(m_ssoCharacter.JumpAbyssEndPosition), m_ssoCamera.DiscoveryOutTranslationDuration);
-                            break;
-                    }
-                }
-                else
-                {
-                    m_camera.transform.DOMove(m_ssoCamera.GetOffset(m_character.position), m_ssoCamera.DiscoveryOutTranslationDuration);
-                }
-				
-				m_camera.DOOrthoSize(m_ssoCamera.DefaultOrthoSize, m_ssoCamera.DiscoveryOutTranslationDuration)
-					.OnComplete(() =>
-					{
-						// Re-enable camera and character inputs 
-						m_rsoLockInputs.Value = false;
-						m_rseSetCameraLerp.Call(true);
-					});
-
-			});
+                m_rseSetCameraSmoothTime.Call(m_ssoCamera.SmoothTimeNewPanel);
+                m_rseSetCameraLerp.Call(true);
+                m_camera.DOOrthoSize(m_ssoCamera.DefaultOrthoSize, m_ssoCamera.SmoothTimeNewPanel).OnComplete(() => { 
+                    m_rseSetCameraSmoothTime.Call(m_ssoCamera.SmoothTime);
+                    m_rsoLockInputs.Value = false;
+                });
+            });
     }
 
     private void TogglePanelSpecialAction(PanelType panelType)
@@ -159,15 +141,15 @@ public class PanelsManager : MonoBehaviour
 
 		yield return new WaitForSeconds(m_ssoCamera.IntroGrandpaTranslationDuration);
 
-		m_camera.transform.DOMove(m_ssoCamera.GetOffset(m_character.position), m_ssoCamera.IntroKidTranslationDuration);
 		m_camera.DOOrthoSize(m_ssoCamera.DefaultOrthoSize, m_ssoCamera.IntroKidTranslationDuration);
+        m_rseSetCameraSmoothTime.Call(m_ssoCamera.SmoothTimeIntro);
+        m_rseSetCameraLerp.Call(true);
 
-		yield return new WaitForSeconds(m_ssoCamera.IntroKidTranslationDuration);
+        yield return new WaitForSeconds(m_ssoCamera.IntroKidTranslationDuration);
 
 		m_rseSetBubble.Call(CharacterType.GRANDPA, 1);
 		m_rsoLockInputs.Value = false;
-        m_rseSetCameraPosition.Call(m_ssoCamera.GetOffset(m_character.position));
-        m_rseSetCameraLerp.Call(true);
+        m_rseSetCameraSmoothTime.Call(m_ssoCamera.SmoothTime);
 		m_rseSetMobileInputs.Call(true);
         m_rseToggleForceActive.Call(false);
 

@@ -4,8 +4,10 @@ using UnityEngine;
 public class SSO_Camera : ScriptableObject
 {
 	public float SmoothTime;
-	
-	public float EndTranslationDuration;
+    public float SmoothTimeNewPanel;
+    public float SmoothTimeIntro;
+
+    public float EndTranslationDuration;
 	public float EndOrthoSize;
 
 	public float IntroGrandpaTranslationDuration;
