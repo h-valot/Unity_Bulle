@@ -358,14 +358,14 @@ public class Interactable : MonoBehaviour
 
 	private void PlayEndCinematic()
 	{
-		m_rseSetMobileInputs.Call(false);
+        m_rseDisplayEnd.Call(true);
+        m_rseSetMobileInputs.Call(false);
 		m_rsoLockInputs.Value = true;
 		m_rseSetCameraLerp.Call(false);
         m_rseToggleForceActive.Call(true);
         m_camera.transform.DOMove(m_cameraCinematicTarget.position, m_ssoCamera.EndTranslationDuration);
 		m_camera.DOOrthoSize(m_ssoCamera.EndOrthoSize, m_ssoCamera.EndTranslationDuration).OnComplete(() => 
 		{ 
-			m_rseDisplayEnd.Call(true); 
 			m_rsoLockCursor.Value = false;
 		});
 	}
