@@ -16,8 +16,9 @@ public class Bubble : MonoBehaviour
 
 	[FoldoutGroup("Internal references")][SerializeField] private GameObject m_graphicsParent;
 	[FoldoutGroup("Internal references")][SerializeField] private SpriteRenderer m_spriteRenderer;
+    [FoldoutGroup("Internal references")][SerializeField] private BubbleBouncing m_bubbleBouncing;
 
-	[ReadOnly] public int Index = -1;
+    [ReadOnly] public int Index = -1;
 
 	private bool m_entered;
 	private bool m_exited;
@@ -99,6 +100,11 @@ public class Bubble : MonoBehaviour
 		{
 			m_spriteRenderer.sprite = m_sprites[Index];
 		}
+
+		if (index == m_idMono && m_spMono && m_bubbleBouncing)
+		{
+            m_bubbleBouncing.StartBounce();
+        }
 	}
 
 	public void SetMono()
@@ -108,7 +114,8 @@ public class Bubble : MonoBehaviour
 		if (m_idMono != Index) return;
 		
 		m_spriteRenderer.sprite = m_spMono;
-	}
+        m_bubbleBouncing.StopBounce();
+    }
 
 	public void AnimateCollision()
 	{
