@@ -282,6 +282,7 @@ public class Interactable : MonoBehaviour
 			case ItemType.FISH:
 				m_rainTravel.IsValid = true;
 				m_srMarketForeground.sprite = m_spMarketOpened;
+                m_srMarketForeground.gameObject.GetComponent<BoxCollider2D>().enabled = false;
                 m_rsePlaySoundOfType.Call(InteractType.PLACE, ItemType.KEY);
                 m_rseSetBubble.Call(CharacterType.FISHMONGER_SHORTKING, 1);
 				m_rseSetBubble.Call(CharacterType.FISHMONGER_TALL, 1);

@@ -17,6 +17,7 @@ public class Bubble : MonoBehaviour
 	[FoldoutGroup("Internal references")][SerializeField] private GameObject m_graphicsParent;
 	[FoldoutGroup("Internal references")][SerializeField] private SpriteRenderer m_spriteRenderer;
     [FoldoutGroup("Internal references")][SerializeField] private BubbleBouncing m_bubbleBouncing;
+    [FoldoutGroup("Internal references")][SerializeField] private GameObject m_spawnObject;
 
     [ReadOnly] public int Index = -1;
 
@@ -104,6 +105,7 @@ public class Bubble : MonoBehaviour
 		if (index == m_idMono && m_spMono && m_bubbleBouncing)
 		{
             m_bubbleBouncing.StartBounce();
+            m_spawnObject.GetComponent<BoxCollider2D>().enabled = true;
         }
 	}
 
@@ -111,10 +113,12 @@ public class Bubble : MonoBehaviour
 	{
 		// Assertion
 		if (!m_spMono) return;
+		if (!m_spawnObject) return;
 		if (m_idMono != Index) return;
 		
 		m_spriteRenderer.sprite = m_spMono;
         m_bubbleBouncing.StopBounce();
+        m_spawnObject.GetComponent<BoxCollider2D>().enabled = false;
     }
 
 	public void AnimateCollision()

@@ -41,7 +41,7 @@ public class BubbleBouncing : MonoBehaviour
     {
         Sequence bounceSequence = DOTween.Sequence().Pause();
         bounceSequence.AppendInterval(m_bounceDelay / 2f);
-        bounceSequence.Append(transform.DOPunchScale(new Vector3(0, m_bounceForce, 0), m_bounceTime, m_bounceVibrato));
+        bounceSequence.Append(transform.DOPunchScale(new Vector3(m_bounceForce, m_bounceForce, 0), m_bounceTime, m_bounceVibrato));
         bounceSequence.AppendInterval(m_bounceDelay / 2f);
         bounceSequence.SetId(this);
         bounceSequence.Play().OnComplete(() => { Bounce(); });
