@@ -26,8 +26,9 @@ public class GameManager : MonoBehaviour
 		m_rseSetBubble.Call(CharacterType.LOVER, 0);
 		m_rseSetBubble.Call(CharacterType.COAST_GUARD, 0);
 		m_rseSetBubble.Call(CharacterType.GRANDPA, 0);
+        m_rseSetBubble.Call(CharacterType.SEAGULL_KID, 0);
 
-		m_rsoCurrentItem.Value = ItemType.NONE;
+        m_rsoCurrentItem.Value = ItemType.NONE;
 		m_rsoCurrentPanel.Value = PanelType.HARBOR;
 		
 		m_rsoToggleMitigedGravity.Value = false;

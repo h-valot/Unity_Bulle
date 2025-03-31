@@ -21,6 +21,7 @@ public class SFXManager : MonoBehaviour
     [SerializeField] private AudioClip m_whaleSFX;
     [SerializeField] private AudioClip m_heySFX;
     [SerializeField] private AudioClip m_drawingSFX;
+    [SerializeField] private AudioClip m_seagullSFX;
 
     private void OnEnable()
     {
@@ -91,6 +92,10 @@ public class SFXManager : MonoBehaviour
                 if(itemType == ItemType.BOOT)
                 {
                     sfxClip = m_whaleSFX;
+                }
+                else if(itemType == ItemType.SEAGULL)
+                {
+                    sfxClip = m_seagullSFX;
                 }
                 else
                 {

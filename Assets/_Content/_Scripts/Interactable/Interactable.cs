@@ -23,10 +23,13 @@ public class Interactable : MonoBehaviour
 
 	[ShowIf("@m_pfItemSpawned != null && m_pfItemSpawned.PickupType == ItemType.DIVING_SUIT")]
 	[SerializeField] private Interactable m_interactableFishermanBoot;
+    [ShowIf("@m_pfItemSpawned != null && m_pfItemSpawned.PickupType == ItemType.SEAGULL")][SerializeField] private Transform m_seagullDestination;
+    [ShowIf("@m_pfItemSpawned != null && m_pfItemSpawned.PickupType == ItemType.SEAGULL")][SerializeField] private float m_seagullFlyTime;
+    [ShowIf("@m_pfItemSpawned != null && m_pfItemSpawned.PickupType == ItemType.SEAGULL")][SerializeField] private SpriteRenderer m_seagullKidSP;
+    [ShowIf("@m_pfItemSpawned != null && m_pfItemSpawned.PickupType == ItemType.SEAGULL")][SerializeField] private Sprite m_seagullKidChockedSprite;
 
-
-	// PICKUP
-	[ShowIf("m_type", InteractType.PICKUP)][SerializeField] public ItemType PickupType;
+    // PICKUP
+    [ShowIf("m_type", InteractType.PICKUP)][SerializeField] public ItemType PickupType;
 
 	[ShowIf("PickupType", ItemType.BOOT)][SerializeField] private Transform m_marketTravelPosition;
 
@@ -40,16 +43,15 @@ public class Interactable : MonoBehaviour
 
 	[ShowIf("PickupType", ItemType.GRANNY)][SerializeField] private Interactable m_interactableGrandpaGranny;
 
-
-	// PLACE
-	[ShowIf("m_type", InteractType.PLACE)][SerializeField] private Transform m_placePosition;
+    // PLACE
+    [ShowIf("m_type", InteractType.PLACE)][SerializeField] private Transform m_placePosition;
 	[ShowIf("m_type", InteractType.PLACE)][SerializeField] private ItemType m_itemRequiered;
 
 	[ShowIf("m_itemRequiered", ItemType.FISH)][SerializeField] private Interactable m_rainTravel;
 	[ShowIf("m_itemRequiered", ItemType.FISH)][SerializeField] private SpriteRenderer m_srMarketForeground;
 	[ShowIf("m_itemRequiered", ItemType.FISH)][SerializeField] private Sprite m_spMarketOpened;
 
-	[ShowIf("m_itemRequiered", ItemType.BOOT)][SerializeField] private GameObject m_pfFish;
+    [ShowIf("m_itemRequiered", ItemType.BOOT)][SerializeField] private GameObject m_pfFish;
 	[ShowIf("m_itemRequiered", ItemType.BOOT)][SerializeField] private Transform m_fishSpawnPosition;
 
 	[ShowIf("m_itemRequiered", ItemType.KEY)][SerializeField] private Interactable m_TravelToHouse;
@@ -176,13 +178,22 @@ public class Interactable : MonoBehaviour
 				float InteractableScale = spawnInteractable.transform.localScale.x;
 				spawnInteractable.transform.localScale = Vector3.zero;
 				spawnInteractable.transform.DOScale(InteractableScale, 1f).SetEase(Ease.OutBounce).SetLink(gameObject);
-				spawnInteractable.transform.DOJump(m_spawnPosition.position, m_ssoInteractables.PlaceDoJumpPower, m_ssoInteractables.PlaceDoJumpNumber, m_ssoInteractables.PlaceDoJumpDuration)
-					.SetEase(Ease.Linear)
-					.SetLink(gameObject)
-					.OnComplete(() => 
-				{ 
-					m_rsePlaySoundOfType.Call(m_type, m_pfItemSpawned.PickupType);
-				});
+				if(m_pfItemSpawned.PickupType != ItemType.SEAGULL)
+				{
+                    spawnInteractable.transform.DOJump(m_spawnPosition.position, m_ssoInteractables.PlaceDoJumpPower, m_ssoInteractables.PlaceDoJumpNumber, m_ssoInteractables.PlaceDoJumpDuration)
+                                        .SetEase(Ease.Linear)
+                                        .SetLink(gameObject)
+                                        .OnComplete(() =>
+                                        {
+                                            m_rsePlaySoundOfType.Call(m_type, m_pfItemSpawned.PickupType);
+                                        });
+                }
+				else
+				{
+					spawnInteractable.transform.DOMove(m_seagullDestination.position, m_seagullFlyTime)
+										.SetEase(Ease.Linear)
+										.SetLink(gameObject);
+                }
 
 				if (m_pfItemSpawned.PickupType == ItemType.KEY)
 				{
@@ -194,6 +205,12 @@ public class Interactable : MonoBehaviour
 					m_interactableFishermanBoot.IsValid = true;
 					m_rseSetMono.Call(CharacterType.FISHERMAN);
 				}
+				else if (m_pfItemSpawned.PickupType == ItemType.SEAGULL)
+				{
+					m_seagullKidSP.sprite = m_seagullKidChockedSprite;
+                    m_rsePlaySoundOfType.Call(InteractType.PICKUP, ItemType.SEAGULL);
+                    m_rseSetMono.Call(CharacterType.SEAGULL_KID);
+                }
 				else if (m_pfItemSpawned.PickupType == ItemType.LADDER)
 				{
 					m_rseSetMono.Call(CharacterType.COAST_GUARD);

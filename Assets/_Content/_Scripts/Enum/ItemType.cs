@@ -7,5 +7,6 @@ public enum ItemType
     KEY,
     LADDER,
     PLANT,
-    GRANNY
+    GRANNY,
+    SEAGULL,
 }

@@ -9,4 +9,5 @@ public enum CharacterType
 	SINGER,
 	LOVER,
 	GRANDPA,
+	SEAGULL_KID,
 }

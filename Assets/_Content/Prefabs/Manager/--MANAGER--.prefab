@@ -169,6 +169,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: e9162409799efe44f92c54d6e0b8f270, type: 3}
     - target: {fileID: 2073737827177656780, guid: 9dcdd6213f252ef4c9b538dd740de40d, type: 3}
+      propertyPath: m_seagullSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: d4f0a8437599d114e9838812fd4e097d, type: 3}
+    - target: {fileID: 2073737827177656780, guid: 9dcdd6213f252ef4c9b538dd740de40d, type: 3}
       propertyPath: m_rsePlaySpecialSFX
       value: 
       objectReference: {fileID: 11400000, guid: 0629b077f4e4a174897ba74ce1599c19, type: 2}
